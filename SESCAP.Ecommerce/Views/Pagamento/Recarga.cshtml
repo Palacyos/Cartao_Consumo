@@ -1,0 +1,162 @@
+﻿@model RecargaViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Recarga";
+
+}
+
+<div class="top-navbar">
+
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@ViewBag.CartaoImg" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="wrapper-pagamento">
+
+    @if (TempData["MSG_E_Pagamento"] != null)
+    {
+        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["MSG_E_Pagamento"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+
+    @if (TempData["TIPO_ERRO_MSG_PAGAMENTO"] != null)
+    {
+        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["TIPO_ERRO_MSG_PAGAMENTO"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+
+    <form asp-controller="Pagamento" asp-action="Recarga" method="post">
+
+        <div class="input_group">
+            <div class="input_box">
+                <h2>Recarga</h2>
+
+                <div class="input_group">
+                    <div class="input_box">
+                        <select asp-for="Pagamento.TipoPagamento" class="custom_select name" id="tipo" asp-items="@ViewBag.TipoPagamento" required>
+                             <!-- <option value="vazio">Selecione Forma de Pagamento (obrigatório)</option>
+                            <option value="CreditCard">Credito</option>
+                           <option value="DebitCard">Debito</option> -->
+                        </select>
+
+
+                        <select asp-for="CartaoPagamento.Bandeira" class="custom_select name" asp-items="@ViewBag.Bandeira" id="bandeira">
+                            <!--<option value="vazio">Selecione a Bandeira do Cartão (obrigatório)</option>-->
+                        </select>
+                    </div>
+                </div>
+                <span asp-validation-for="Pagamento.TipoPagamento"></span>
+                <span asp-validation-for="CartaoPagamento.Bandeira"></span>
+            </div>
+        </div>
+
+        <div class="input_group">
+            <div class="input_box">
+                <input type="text" asp-for="CartaoPagamento.NomeNoCartao" class="name" placeholder="Nome no Cartão" />
+                <i class="fa-solid fa-user icon-pg"></i>
+            </div>
+        </div>
+        <span asp-validation-for="CartaoPagamento.NomeNoCartao"></span>
+
+
+        <div class="input_group">
+            <div class="input_box">
+                <input type="text" asp-for="CartaoPagamento.NumeroCartao" class="numero_cartao name" placeholder="Número do Cartão" maxlength="16" onkeypress="return onlynumber();" />
+                <i class="fa-regular fa-credit-card icon-pg"></i>
+            </div>
+        </div>
+        <span asp-validation-for="CartaoPagamento.NumeroCartao"></span>
+
+
+
+        <div class="input_group">
+            <div class="input_box">
+                <input type="password" asp-for="CartaoPagamento.CodigoSeguranca" class="numero_cvv name" placeholder="CVV" maxlength="3" onkeypress="return onlynumber();" />
+                <i class="fa-regular fa-id-card icon-pg"></i>
+            </div>
+        </div>
+        <span asp-validation-for="CartaoPagamento.CodigoSeguranca"></span>
+
+
+
+        <div class="input_group">
+            <div class="input_box">
+                <input type="text" asp-for="CartaoPagamento.VencimentoMM" class="mes_vencimento name" placeholder="Mês do Vencimento" maxlength="2" onkeypress="return onlynumber();" />
+                <i class="fa-solid fa-calendar icon-pg"></i>
+            </div>
+
+
+
+            <div class="input_box">
+                <input type="text" asp-for="CartaoPagamento.VencimentoYY" class="ano_vencimento name" placeholder="Ano do Vencimento" maxlength="4" onkeypress="return onlynumber();" />
+                <i class="fa-regular fa-calendar icon-pg"></i>
+            </div>
+        </div>
+        <span asp-validation-for="CartaoPagamento.VencimentoMM"></span>
+        <span asp-validation-for="CartaoPagamento.VencimentoYY"></span>
+
+
+
+        <div class="input_group">
+            <div class="input_box">
+                <input type="text" asp-for="Pagamento.Valor" class="amount name" placeholder="R$ digite um valor" value="0,00" required />
+                <i class="fa-solid fa-money-bill-1 icon-pg"></i>
+            </div>
+        </div>
+        <span asp-validation-for="Pagamento.Valor"></span>
+
+
+        <div class="input_group">
+            <div class="input_box">
+                <button type="submit">Pagar</button>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>

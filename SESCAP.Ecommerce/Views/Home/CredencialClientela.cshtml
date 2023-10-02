@@ -1,0 +1,161 @@
+﻿@model CARTAO
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Credencial";
+}
+
+
+<div class="top-navbar">
+
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@Model.CLIENTELA.CarregaFoto" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header">
+                    <div class="icon icon-success">
+                        <span class="material-icons-sharp">attach_money</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p class="category"><strong>Saldo</strong></p>
+                    <h3 class="card-title">@Model.SALDOCARTAO.SLDVLCART.ToString("C")</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.CLIENTELA.CATEGORIA.TPCATEGORI == 0)
+    {
+        
+
+        <div class="cartao-container">
+            <div class="cartao trabalhador-do-comercio">
+
+                <div class="cartao-header">
+                    <div class="logo">
+                        <img class="logo_img_cartao" src="~/imagens/logo_sesc_preto.png" />
+                    </div>
+                    <div class="main-cartao">
+                        <div class="cartao-image">
+                            <img src="@Model.CLIENTELA.CarregaFoto" />
+                            <div class="cartao-hover">
+                                <i class="fas fa-camera fa-2x"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="cartao-name">@Model.CLIENTELA.NMCLIENTE</h3>
+                        <span class="cartao-data">@Model.CLIENTELA.DTNASCIMEN.ToShortDateString()</span>
+                    </div>
+                </div>
+
+                <div class="conteudo-cartao">
+                    <div class="center">
+                        <div class="credencial-container">
+                            <h3 class="title">Credencial Plena</h3>
+                            <p class="cartao-text">@Model.CLIENTELA.CATEGORIA.DescTipoCategoria</p>
+                        </div>
+                        <div class="info-container">
+                            <div class="QR-container">
+                                <h4 class="cdbarra-num">@Model.CDBARRA.Substring(7, 13)</h4>
+                                <img class="qrcode-img" src="@Model.QrCode" />
+                            </div>
+                            <div class="val-regional">
+                                <h4 class="title-val-nacional">Validade Nacional: <span>@Model.CLIENTELA.DTVENCTO.ToString("MM/yyyy")</span></h4>
+                                <span class="desc-regional">@Model.CLIENTELA.UOP.ADMIN.DescRegional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    }
+
+    @if (Model.CLIENTELA.CATEGORIA.TPCATEGORI == 2)
+    {
+        <div class="cartao-container">
+            <div class="cartao publico-em-geral">
+
+                <div class="cartao-header">
+                    <div class="logo">
+                        <img class="logo_img_cartao" src="~/imagens/logo_sesc_preto.png" />
+                    </div>
+                    <div class="main-cartao">
+                        <div class="cartao-image publico-geral">
+                            <img src="@Model.CLIENTELA.CarregaFoto" />
+                            <div class="cartao-hover geral">
+                                <i class="fas fa-camera fa-2x"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="cartao-name">@Model.CLIENTELA.NMCLIENTE</h3>
+                        <span class="cartao-data">@Model.CLIENTELA.DTNASCIMEN.ToShortDateString()</span>
+                    </div>
+                </div>
+
+                <div class="conteudo-cartao">
+                    <div class="center">
+                        <div class="credencial-container">
+                            <h3 class="title">Credencial Atividades</h3>
+                            <p class="cartao-text">@Model.CLIENTELA.CATEGORIA.DescTipoCategoria</p>
+                        </div>
+                        <div class="info-container">
+                            <div class="QR-container">
+                                <h4 class="cdbarra-num">@Model.CDBARRA.Substring(7, 13)</h4>
+                                <img class="qrcode-img" src="@Model.QrCode" />
+                            </div>
+                            <div class="val-regional">
+                                <h4 class="title-val-nacional">Validade Nacional: <span>@Model.CLIENTELA.DTVENCTO.ToString("MM/yyyy")</span></h4>
+                                <span class="desc-regional">@Model.CLIENTELA.UOP.ADMIN.DescRegional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    }
+
+</div>

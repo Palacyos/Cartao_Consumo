@@ -1,0 +1,35 @@
+
+2023-09-21-00.08.39.078232-180 I1E1397              LEVEL: Event
+PID     : 64522                TID : 123145588273152PROC : dotnet
+INSTANCE: DB2                  NODE : 000
+HOSTNAME: imac-cti.sescap.com.br
+FUNCTION: DB2 UDB, RAS/PD component, pdLogInternal, probe:120
+START   : New Diagnostic Log file
+DATA #1 : Build Level, 240 bytes
+Instance "DB2" uses "64" bits and DB2 code release "SQL11058"
+with level identifier "0609010F".
+Informational tokens are "DB2 v11.5.8.0", "special_26260", "DYN2301190517MAC_26260", Fix Pack "0".
+DATA #2 : System Info, 1760 bytes
+System: Darwin imac-cti.sescap.com.br 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:22:22 PDT 2023; root:xnu-8796.121.3~7/RELEASE_X86_64 x86_64
+CPU: total:12 online:12 Threading degree per core:1 SIMD:N CPU Features:SSE2,SSE3,SSSE3,SSE4,AVX2
+Physical Memory(MB): total:14244 free:5468
+Virtual  Memory(MB): total:14244 free:5468
+Swap     Memory(MB): total:0 free:0
+Cur cpu time limit (seconds)  = 0x7FFFFFFFFFFFFFFF
+Cur file size limit (bytes) = 0x7FFFFFFFFFFFFFFF
+Cur data size (bytes)  = 0x7FFFFFFFFFFFFFFF
+Cur stack size (bytes)  = 0x0000000000800000
+Cur core size (bytes)  = 0x0000000000000000
+Cur memory size (bytes) = 0x7FFFFFFFFFFFFFFF
+nofiles (descriptors)  = 0x0000000000003100
+Disk: 4K Device Support: NONE
+
+Information in this record is only valid at the time when this file was
+created (see this record's time stamp)
+
+2023-09-21-00.08.39.078447-180 I1399E351            LEVEL: Error
+PID     : 64522                TID : 123145588273152PROC : dotnet
+INSTANCE: DB2                  NODE : 000
+HOSTNAME: imac-cti.sescap.com.br
+FUNCTION: DB2 UDB, common communication, sqlcctcpconnr, probe:110
+MESSAGE : SQL10007N  Message "3202" could not be retrieved.  Reason code: "3".

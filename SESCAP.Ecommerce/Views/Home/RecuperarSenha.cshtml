@@ -1,0 +1,71 @@
+﻿@model CadastroLoginSescAP
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar Senha</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body class="body-login">
+
+    <section class="caixa formularios">
+        <div class="formulario entrar">
+            <div class="formulario-conteudo">
+                <div class="logo">
+                    <img class="logo__img" src="~/imagens/logo_sesc_ap.png" />
+                </div>
+                <header>Recuperar Senha</header>
+
+                @if (TempData["MSG_E_RecuperaSenha"] != null)
+                {
+                    <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["MSG_E_RecuperaSenha"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (TempData["MSG_S_RecuperaSenha"] != null)
+                {
+                    <div style="font-size: 1.4rem; text-align: center;" class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["MSG_S_RecuperaSenha"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+
+                <form method="post">
+
+                    <div class="field input-field">
+                        <input type="email" asp-for="EMAIL" class="input" placeholder="E-Mail" />
+                        <span asp-validation-for="EMAIL"></span>
+                    </div>
+
+                    <div class="field button-field">
+                        <button>Enviar</button>
+                    </div>
+
+                    <div class="form-link">
+                        <span><a asp-controller="Home" asp-action="Login" class="login-link">Voltar ao login</a></span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+
+</body>
+</html>

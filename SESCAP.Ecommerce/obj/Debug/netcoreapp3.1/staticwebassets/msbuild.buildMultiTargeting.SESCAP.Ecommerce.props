@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/SESCAP.Ecommerce.props" />
+</Project>

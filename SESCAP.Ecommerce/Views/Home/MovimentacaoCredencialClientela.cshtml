@@ -1,0 +1,112 @@
+﻿@model CARTAO
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Movimentação Cartão";
+}
+<div class="top-navbar">
+
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@Model.CLIENTELA.CarregaFoto" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+                            <h2 class="ml-lg-2">Movimentações</h2>
+                        </div>
+                        <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+                            <a asp-controller="Pagamento" asp-action="Recarga" class="btn btn-success">
+                                <i class="material-icons-sharp">add_circle</i>
+                                <span>Recarregar Cartão</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                @if (Model.HSTMOVCARTS.Any())
+                {
+
+                    <table id="myTable" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Data</th>
+                                <th>Hora</th>
+                                <th>Operação</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            @foreach (var item in Model.HSTMOVCARTS.Where(h => h.IDCHECKOUT == 0).OrderByDescending(h => h.DTATU).ThenByDescending(h => h.HRATU))
+                            {
+
+                                <tr>
+                                    <td>@item.PRODUTOPDV.DSPRODUTO</td>
+                                    <td>@item.DTATU.ToShortDateString()</td>
+                                    <td>@item.HRATU.ToString(@"hh\:mm")</td>
+                                    <td>@item.DescVbCreDeb</td>
+                                    <td>@item.QTDPRODMOV.ToString("0").Replace('-', ' ').Replace('0', '+')</td>
+                                    <td>@item.VLPRODMOV.ToString("C").Replace('-', ' ')</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                }
+                else
+                {
+                <div style="font-size:1.7rem; text-align:center; margin:60px;" class="alert alert-warning" role="alert">Não existe movimentação</div>
+
+                }
+           
+            </div>
+        </div>
+    </div>
+</div>  

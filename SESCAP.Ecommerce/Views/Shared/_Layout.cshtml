@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>  
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/fontawesome/css/all.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+        <link href="~/themify-icons/themify-icons.css" rel="stylesheet" />
+        <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="~/css/style.css" rel="stylesheet" />
+        <link href="~/css/sweetalert2.min.css" rel="stylesheet"/>
+        <title>@ViewData["Title"] - Credencial Sesc-AP </title>
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+
+            <div class="body-overlay"></div>
+
+
+
+            <div id="sidebar">
+
+                <div class="sidebar-header">
+                    <h3><img src="~/imagens/sesc-azul.png" class="img-fluid" /> <span>Sesc Amapá</span> </h3>
+                </div>
+
+                <ul class="list-unstyled component m-0">
+                    <li class="active">
+
+                        <a asp-controller="Home" asp-action="CredencialClientela" class="home">
+                            <i class="material-icons-sharp">home</i>
+                            <span>Home</span>
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a asp-controller="Home" asp-action="MovimentacaoCredencialClientela">
+                            <i class="material-icons-sharp">credit_card</i>
+                            <span>Movimentações</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div id="content">
+
+                @RenderBody()
+
+            </div>
+
+
+        </div>
+
+        <script src="~/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/scripts.js"></script>
+        <script src="~/js/jquery.dataTables.min.js"></script>
+        <script src="~/js/jquery.mask.min.js"></script>
+        <script src="~/js/jquery.maskMoney.min.js"></script>
+        <script src="~/js/sweetalert2.all.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".xp-menubar").on('click', function () {
+                    $("#sidebar").toggleClass('active');
+                    $("#content").toggleClass('active');
+                });
+
+                $('.xp-menubar, .body-overlay').on('click', function () {
+
+                    $("#sidebar, .body-overlay").toggleClass('show-nav');
+
+                });
+
+                $('#myTable').DataTable({
+
+                    "language": {
+
+                        "paginate": {
+                            "previous": "Anterior",
+                            "next": "Próximo"
+                        },
+
+                        "emptyTable": "Não há dados para serem mostrados",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado um total de _MAX_ entradas)"
+
+                    },
+
+                    "pageLength": 25,
+                    "ordering": false,
+                    "searching": false
+
+
+                });
+
+            });
+
+
+            $(function () {
+                $('.amount').maskMoney({ decimal: ',', thousands: '.', precision: 2 });
+            })
+
+            $('.numero_cartao').mask('0000 0000 0000 0000');
+            $('.numero_cvv').mask('000');
+            $('.mes_vencimento').mask('00');
+            $('.ano_vencimento').mask('0000');
+
+
+            var strValue = "@((string)ViewBag.Pagamento_MSG)";
+            if (strValue !== null && strValue !== '') {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: strValue,
+                    showConfirmButton: false,
+                    timer: 1700
+                })
+            }
+
+
+            var strVal = "@((string)ViewBag.Pagamento_MSG_ERRO)";
+            if (strValue !== null && strVal !== '') {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: strVal,
+                    showConfirmButton: false,
+                    timer: 1700
+                })
+            }
+
+        </script>
+
+    </body>
+
+</html>

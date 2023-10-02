@@ -1,0 +1,115 @@
+﻿@model CadastroLoginSescAP
+
+
+<!DOCTYPE html>
+        
+<html lang="pt-br"> 
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Cadastro</title>
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/fontawesome/css/all.min.css" rel="stylesheet" />
+        <link href="~/css/style.css" rel="stylesheet" />
+    </head>
+    <body class="body-cadastro">
+
+        <section class="caixa formularios">
+            <div class="formulario cadastro">
+                <div class="formulario-conteudo">
+                    <div class="logo">
+                        <img class="logo__img" src="~/imagens/logo_sesc_ap.png" />
+                    </div>
+                    <header>Cadastro</header>
+
+                    @if (TempData["MSG_UsuarioSemCredencial"] != null)
+                    {
+                        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["MSG_UsuarioSemCredencial"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["MSG_UsuarioCadastrado"] != null)
+                    {
+                        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                            @TempData["MSG_UsuarioCadastrado"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["MSG_E_CredencialVencida"] != null)
+                    {
+                        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                            @TempData["MSG_E_CredencialVencida"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+
+                    <form asp-action="CadastroLoginClientela" asp-controller="Home" method="post" class="formulario" id="formulario-cadastro">
+
+                        <div class="field input-field" id="matricula-cadastro">
+                            <input type="text" asp-for="MATRICULA" class="input" placeholder="Matrícula" maxlength="13" OnKeyPress="formatar('####-######-#', this)" />
+                            <span asp-validation-for="MATRICULA"></span>
+                        </div>
+                        <div class="field input-field">
+                            <input type="email" asp-for="EMAIL" class="input" placeholder="E-Mail" />
+                            <span asp-validation-for="EMAIL"></span>
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" asp-for="CPF" class="input" placeholder="CPF" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" />
+                            <span asp-validation-for="CPF"></span>
+                        </div>
+                        <div class="field input-field">
+                            <input type="password" asp-for="SENHA" class="password" placeholder="Senha" />
+                            <span asp-validation-for="SENHA"></span>
+                            <i class="formulario__input-icon fa-regular fa-eye-slash"></i>
+                        </div>
+
+                        <div class="field input-field">
+                            <input type="password" asp-for="CONFIRMACAOSENHA" class="password" placeholder="Digite a senha novamente" />
+                            <span asp-validation-for="CONFIRMACAOSENHA"></span>
+                        </div>
+
+
+
+                        <div class="form-link">
+                            <span>Já possui cadastro? <a asp-controller="Home" asp-action="Login" class="login-link">Entrar</a></span>
+                        </div>
+
+                        <div class="field button-field">
+                            <button>Cadastrar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/jquery.validate.min.js"></script>
+        <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/scripts.js"></script>
+
+        <script type="text/javascript">
+
+            function formatar(mascara, documento) {
+                var i = documento.value.length;
+                var saida = mascara.substring(0, 1);
+                var texto = mascara.substring(i);
+
+                if (texto.substring(0, 1) != saida) {
+                    documento.value += texto.substring(0, 1);
+                }
+            }
+
+
+        </script>
+
+    </body>
+</html>
