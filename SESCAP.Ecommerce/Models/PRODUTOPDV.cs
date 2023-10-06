@@ -26,6 +26,8 @@ namespace SESCAP.Ecommerce.Models
         public short TPCOMPROD { get; set; }
         public short VBPREPARO { get; set; }
 
+        public CARTCRED CARTCRED { get; set; }
+
         public SALDOCARTAO SALDOCARTAO { get; set; }
 
         public ICollection<HSTMOVCART> HSTMOVCARTS { get; set; }

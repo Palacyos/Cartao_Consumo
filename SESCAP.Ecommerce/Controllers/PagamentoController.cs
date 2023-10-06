@@ -35,16 +35,17 @@ namespace SESCAP.Ecommerce.Controllers
         private ICxDepRetPdvRepositorio CxDepRetPdvRepositorio { get; }
         private ICapdvRepositorio CapdvRepositorio { get; }
         private IProdutoPdvRepositorio ProdutoPdvRepositorio { get; }
-        private ISaldoCartaoRepositorio SaldoCartaoRepositorio { get; }
         private IHstMovCartReposiotrio HstMovCartReposiotrio { get; }
         private IConfiguration Configuration { get; }
+        private ISaldoCartaoRepositorio SaldoCartaoRepositorio { get; }
+        private ICartCredRepositorio CartCredRepositorio { get; }
         private ITarefaRecorrente TarefaRecorrente { get; }
         private readonly IMapper _mapper;
 
 
         public PagamentoController(IClientelaRepositorio clientelaRepositorio, ICartaoRepositorio cartaoRepositorio, LoginClientela loginClientela, GerenciarCielo gerenciarCielo,
             IMoedaPgtoRepositorio moedaPgtoRepositorio, IPagamentoOnlineRepositorio pagamentoOnlineRepositorio, IMapper mapper, ICacaixaRepositorio cacaixaRepositorio, ICxDepRetPdvRepositorio cxDepRetPdvRepositorio, ICapdvRepositorio capdvRepositorio,
-            IConfiguration configuration, IProdutoPdvRepositorio produtoPdvRepositorio, ISaldoCartaoRepositorio saldoCartaoRepositorio, IHstMovCartReposiotrio hstMovCartReposiotrio, ITarefaRecorrente tarefaRecorrente)
+            IConfiguration configuration, IProdutoPdvRepositorio produtoPdvRepositorio, IHstMovCartReposiotrio hstMovCartReposiotrio, ITarefaRecorrente tarefaRecorrente, ICartCredRepositorio cartCredRepositorio, ISaldoCartaoRepositorio saldoCartaoRepositorio)
         {
             ClientelaRepositorio = clientelaRepositorio;
             CartaoRepositorio = cartaoRepositorio;
@@ -58,10 +59,11 @@ namespace SESCAP.Ecommerce.Controllers
             CapdvRepositorio = capdvRepositorio;
             Configuration = configuration;
             ProdutoPdvRepositorio = produtoPdvRepositorio;
-            SaldoCartaoRepositorio = saldoCartaoRepositorio;
             HstMovCartReposiotrio = hstMovCartReposiotrio;
             TarefaRecorrente = tarefaRecorrente;
-           
+            CartCredRepositorio = cartCredRepositorio;
+            SaldoCartaoRepositorio = saldoCartaoRepositorio;
+
         }
  
 
@@ -110,7 +112,7 @@ namespace SESCAP.Ecommerce.Controllers
 
                 try
                 {
-                    Transaction transacaoPagamento =  GerenciarCielo.GerarPagamentoCartaoDeCreditoRecarga(recargaViewModel);
+                    Transaction transacaoPagamento =  GerenciarCielo.GerarPagamentoRecarga(recargaViewModel);
 
                     if (transacaoPagamento.Payment.GetStatus() == Status.PaymentConfirmed) {
 
@@ -135,33 +137,22 @@ namespace SESCAP.Ecommerce.Controllers
                         }
                      
                         var cxDeposito = CacaixaRepositorio.CaixaDeposito(caixa.SQCAIXA, caixa.CDPESSOA);
-                      
+
                         var depRetPdv = CxDepRetPdvRepositorio.CadastraDeposito(cartao.NUMCARTAO, cxDeposito.SQCAIXA, cxDeposito.CDPESSOA, cxDeposito.DTABERTURA, pgOnline.Total, Configuration.GetValue<int>("CIELOCREDITO"));
 
                         var obterSaldoCartao = SaldoCartaoRepositorio.ObterSaldoCartao(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
-                        if (obterSaldoCartao != null)
-                        {
-                            
-                            SaldoCartaoRepositorio.AtualizarSaldoCartao(obterSaldoCartao, depRetPdv.VLDEPRET);
+                        SaldoCartaoRepositorio.AtualizarSaldoCartao(obterSaldoCartao, depRetPdv.VLDEPRET);
 
-                            HstMovCartReposiotrio.InsereMovCartaoConsumo(produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.DTDEPRET, depRetPdv.NUMCARTAO, depRetPdv.VLDEPRET, depRetPdv.SQCAIXA, depRetPdv.CDPESSOA);
+                        var cartaoCredito = CartCredRepositorio.ObterCartaoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
-                            CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
+                        CartCredRepositorio.AtualizarValorProdutoCredito(cartaoCredito, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString() );
+
+                        HstMovCartReposiotrio.InsereMovCartaoConsumo(produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.DTDEPRET, depRetPdv.NUMCARTAO, depRetPdv.VLDEPRET, depRetPdv.SQCAIXA, depRetPdv.CDPESSOA);
+
+                        CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
                                                        
-                            return new RedirectToActionResult("ConfirmacaoPagamento", "Pagamento", new { id = pgOnline.Id });
-                            
-                        }
-                        else
-                        {
-                            SaldoCartaoRepositorio.InsereValorRecarga(cartao.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
-
-                            HstMovCartReposiotrio.InsereMovCartaoConsumo(produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.DTDEPRET, depRetPdv.NUMCARTAO, depRetPdv.VLDEPRET, depRetPdv.SQCAIXA, depRetPdv.CDPESSOA);
-
-                            CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
-
-                        }
-
+                        
                         return new RedirectToActionResult("ConfirmacaoPagamento", "Pagamento", new { id = pgOnline.Id });
 
                     }

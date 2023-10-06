@@ -80,9 +80,10 @@ namespace SESCAP.Ecommerce
             services.AddScoped<IMoedaPgtoRepositorio, MoedaPgtoRepositorio>();
             services.AddScoped<IPagamentoOnlineRepositorio, PagamentoOnlineRepositorio>();
             services.AddScoped<ICxDepRetPdvRepositorio, CxDepRetPdvRepositorio>();
-            services.AddScoped<ISaldoCartaoRepositorio, SaldoCartaoRepositorio>();
             services.AddScoped<IProdutoPdvRepositorio, ProdutoPdvRepositorio>();
+            services.AddScoped<ISaldoCartaoRepositorio, SaldoCartaoRepositorio>();
             services.AddScoped<IHstMovCartReposiotrio, HstMovCartRepositorio>();
+            services.AddScoped<ICartCredRepositorio, CartCredRepositorio>();
             services.AddScoped<ITarefaRecorrente, TarefaRecorrente>();
            
 
@@ -153,7 +154,7 @@ namespace SESCAP.Ecommerce
             });
 
             app.UseHangfireDashboard();
-            recurringJoManager.AddOrUpdate("Fecha Caixa", () => serviceProvider.GetService<ITarefaRecorrente>().FechaCaixa(), Cron.Daily(23,59));
+            recurringJoManager.AddOrUpdate("Fecha Caixa", () => serviceProvider.GetService<ITarefaRecorrente>().FechaCaixa(), Cron.Daily(2));
            
 
         }

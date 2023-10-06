@@ -5,10 +5,8 @@ using SESCAP.Ecommerce.Models;
 
 namespace SESCAP.Ecommerce.Database
 {
-    public class SaldocartaoConfiguracao: IEntityTypeConfiguration<SALDOCARTAO>
+	public class SaldocartaoConfiguracao : IEntityTypeConfiguration<SALDOCARTAO>
     {
-      
-
         public void Configure(EntityTypeBuilder<SALDOCARTAO> builder)
         {
             builder.ToTable("SALDOCARTAO");
@@ -16,7 +14,7 @@ namespace SESCAP.Ecommerce.Database
             /*
              * -> chave primária composta 
              */
-            builder.HasKey(sld => new { sld.NUMCARTAO, sld.CDPRODUTO});
+            builder.HasKey(sld => new { sld.NUMCARTAO, sld.CDPRODUTO });
 
             builder.Property(sld => sld.NUMCARTAO).IsRequired();
             builder.Property(sld => sld.CDPRODUTO).IsRequired();
@@ -48,3 +46,4 @@ namespace SESCAP.Ecommerce.Database
         }
     }
 }
+

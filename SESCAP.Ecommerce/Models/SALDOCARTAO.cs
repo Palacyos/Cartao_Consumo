@@ -1,11 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace SESCAP.Ecommerce.Models
 {
-    
-    public class SALDOCARTAO
-    {
+	public class SALDOCARTAO
+	{
 
         public decimal SLDQTCART { get; set; }
         public decimal SLDQTBLOQ { get; set; }
@@ -19,7 +16,8 @@ namespace SESCAP.Ecommerce.Models
         public PRODUTOPDV PRODUTOPDV { get; set; }
 
         public SALDOCARTAO()
-        {
-        }
-    }
+		{
+		}
+	}
 }
+

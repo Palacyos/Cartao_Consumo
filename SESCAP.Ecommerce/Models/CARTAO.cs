@@ -27,6 +27,8 @@ namespace SESCAP.Ecommerce.Models
 
         public CLIENTELA CLIENTELA { get; set; }
 
+        public CARTCRED CARTCRED { get; set; }
+
         public SALDOCARTAO SALDOCARTAO { get; set; }
 
         public ICollection<HSTMOVCART> HSTMOVCARTS { get; set; }

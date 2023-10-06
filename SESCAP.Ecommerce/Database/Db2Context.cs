@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SESCAP.Ecommerce.Models;
 
 namespace SESCAP.Ecommerce.Database
@@ -30,6 +27,7 @@ namespace SESCAP.Ecommerce.Database
         public DbSet<PagamentoOnline> PagamentosOnline { get; set; }
         public DbSet<LOCALVENDA> LocalVendas { get; set; }
         public DbSet<CAIXALANCA> LancamentosCaixas { get; set; }
+        public DbSet<CARTCRED> CartCreds { get; set; }
 
         public Db2Context(DbContextOptions<Db2Context> options) : base(options)
         {
@@ -60,6 +58,7 @@ namespace SESCAP.Ecommerce.Database
             modelbuilder.ApplyConfiguration(new PagamentoOnlineConfiguracao());
             modelbuilder.ApplyConfiguration(new LocalVendaConfiguracao());
             modelbuilder.ApplyConfiguration(new CaixaLancaConfiguracao());
+            modelbuilder.ApplyConfiguration(new CartCredConfiguracao());
             
             
         }

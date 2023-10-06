@@ -36,13 +36,14 @@ namespace SESCAP.Ecommerce.Repositorios
                 caixa.HRFECHAMEN = horaAtual;
                 caixa.SMFIELDATU = 312;
                 caixa.STCAIXA = 1;
+                caixa.LGFECHAMEN = caixa.CDPESSOA.ToString();
 
                 Banco.Cacaixas.Attach(caixa);
                 Banco.Entry(caixa).Property(cx => cx.DTFECHAMEN).IsModified = true;
                 Banco.Entry(caixa).Property(cx => cx.HRFECHAMEN).IsModified = true;
                 Banco.Entry(caixa).Property(cx => cx.SMFIELDATU).IsModified = true;
                 Banco.Entry(caixa).Property(cx => cx.STCAIXA).IsModified = true;
-
+                Banco.Entry(caixa).Property(cx => cx.LGFECHAMEN).IsModified = true;
 
                 CAIXALANCA lanc = new CAIXALANCA();
 
@@ -59,9 +60,12 @@ namespace SESCAP.Ecommerce.Repositorios
                 lanc.DSSTATUS = null;
                 lanc.CDPESSOA = Configuration.GetValue<int>("CdPessoa");
 
+                caixa.VLSALDOATU = 0;
+                Banco.Entry(caixa).Property(cx => cx.VLSALDOATU).IsModified = true;
+
+
                 Banco.Add(lanc);
                 Banco.SaveChanges();
-
 
             }
         }

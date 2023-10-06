@@ -19,7 +19,7 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
         }
 
        
-        public Transaction GerarPagamentoCartaoDeCreditoRecarga(RecargaViewModel recargaViewModel)
+        public Transaction GerarPagamentoRecarga(RecargaViewModel recargaViewModel)
         {
 
             CLIENTELA clientela = LoginClientela.Obter();
