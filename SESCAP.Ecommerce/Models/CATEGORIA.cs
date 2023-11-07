@@ -43,10 +43,12 @@ namespace SESCAP.Ecommerce.Models
                 {
                     return "Público em Geral";
                 }
-                else
+                else if(TPCATEGORI == 1)
                 {
                     return "Dependente";
                 }
+
+                return "";
                
             }
         }

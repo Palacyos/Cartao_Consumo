@@ -8425,6 +8425,14 @@
       "PackagePath": "staticwebassets/fonts/fa-solid-900.woff2"
     },
     {
+      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/.DS_Store",
+      "PackagePath": "staticwebassets/imagens/.DS_Store"
+    },
+    {
+      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/cartao.png",
+      "PackagePath": "staticwebassets/imagens/cartao.png"
+    },
+    {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/default_sesc_amapa.jpg",
       "PackagePath": "staticwebassets/imagens/default_sesc_amapa.jpg"
     },
@@ -8435,6 +8443,10 @@
     {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/logo_sesc_preto.png",
       "PackagePath": "staticwebassets/imagens/logo_sesc_preto.png"
+    },
+    {
+      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/pix.png",
+      "PackagePath": "staticwebassets/imagens/pix.png"
     },
     {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/sesc-azul.png",

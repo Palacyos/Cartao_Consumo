@@ -83,9 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="IBM.Data.DB2.Core-osx" Version="3.1.0.500" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -95,7 +95,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.7" />
     <PackageReference Include="CPFCNPJ" Version="2.0.5" />
-    <PackageReference Include="CieloRest" Version="1.0.19" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
     <PackageReference Include="QRCoder-ImageSharp" Version="0.9.0" />
@@ -117,5 +116,13 @@
     <Compile Update="Libraries\Lang\Mensagem.Designer.cs">
       <DependentUpon>Mensagem.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cielo">
+      <HintPath>..\Cielo3.0-master\Cielo\bin\Release\netstandard2.0\Cielo.dll</HintPath>
+    </Reference>
+    <Reference Include="Cielo.Models">
+      <HintPath>..\Cielo3.0-master\Cielo.Models\bin\Release\netstandard2.0\Cielo.Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

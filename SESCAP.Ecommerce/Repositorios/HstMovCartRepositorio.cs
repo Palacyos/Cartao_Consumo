@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using IBM.Data.DB2.Core;
-using IBM.EntityFrameworkCore;
-using IBM.EntityFrameworkCore.Storage.Internal;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using SESCAP.Ecommerce.Database;
 using SESCAP.Ecommerce.Models;
-using System.Data.SqlClient;
 using System.Data;
 
 namespace SESCAP.Ecommerce.Repositorios

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WboDRhU9UPYibkAZWGjpCu4bU9d7MLeJMum7k0ArKPw=",
+  "Hash": "YU+3s7NKciaYRq1R99DZ7xhhURNl10GIzBeYLvPu7yE=",
   "Source": "SESCAP.Ecommerce",
   "BasePath": "_content/SESCAP.Ecommerce",
   "Mode": "Default",
@@ -35819,6 +35819,40 @@
       "OriginalItemSpec": "wwwroot/fonts/fa-solid-900.woff2"
     },
     {
+      "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/.DS_Store",
+      "SourceId": "SESCAP.Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/",
+      "BasePath": "_content/SESCAP.Ecommerce",
+      "RelativePath": "imagens/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imagens/.DS_Store"
+    },
+    {
+      "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/cartao.png",
+      "SourceId": "SESCAP.Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/",
+      "BasePath": "_content/SESCAP.Ecommerce",
+      "RelativePath": "imagens/cartao.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imagens/cartao.png"
+    },
+    {
       "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/default_sesc_amapa.jpg",
       "SourceId": "SESCAP.Ecommerce",
       "SourceType": "Discovered",
@@ -35868,6 +35902,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/imagens/logo_sesc_preto.png"
+    },
+    {
+      "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/pix.png",
+      "SourceId": "SESCAP.Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/",
+      "BasePath": "_content/SESCAP.Ecommerce",
+      "RelativePath": "imagens/pix.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imagens/pix.png"
     },
     {
       "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/sesc-azul.png",

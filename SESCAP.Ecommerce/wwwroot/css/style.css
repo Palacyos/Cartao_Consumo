@@ -244,14 +244,34 @@ a, a:hover, a:focus{
 .wrapper{
     position: relative;
     width: 100%;
-    /*overflow: auto;*/
+    
 }
 
+@media (max-width: 425px) {
+
+    .wrapper {
+        display: flex;
+    }
+}
+
+@media (min-width: 414px) {
+
+    .wrapper {
+        display: unset;
+    }
+}
+
+@media (min-width: 412px) {
+
+    .wrapper {
+        display: unset;
+    }
+}
 /*-----SIDEBAR---*/
 
 #sidebar{
     position: fixed;
-    height: 100vh !important;
+/*    height: 100vh !important;*/
     top: 0;
     left: 0;
     bottom: 0;
@@ -1199,4 +1219,246 @@ table.table-stripped.table-hover tbody tr:hover {
 .input_box select {
     padding-left: 5px !important;
     
+}
+
+/*-------------Forma de Pagamento--------------------*/
+
+.container_forma_pagamento {
+    width: 400px;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    margin: 100px auto 0;
+}
+
+
+.imgPagamento {
+    width: 50px;
+    height: auto;
+}
+
+.container_forma_pagamento .title_forma_pagamento {
+    font-size: 20px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.container_forma_pagamento .categoria_pagamento{
+    margin-top: 10px;
+    padding-top: 20px;
+
+}
+
+.categoria_pagamento .forma_pagamento{
+    width: 100%;
+    height: 65px;
+    padding: 20px;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.forma_pagamento:nth-child(2), .forma_pagamento:nth-child(3){
+    margin: 15px 0;
+}
+
+.forma_pagamento .imgName {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgName .nome_pagamento{
+    font-size: 14px !important;
+    margin-left: 20px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.imgName .imgContainer{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forma_pagamento:hover {
+    box-shadow: 0px 0px 0px 1px #1F3864;
+}
+
+
+/*-------------Formulario Pix--------------------*/
+
+.container_pix {
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    margin: 100px auto 0;
+    width: 440px;
+    border-radius: 7px;
+    padding: 30px 25px 40px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container_pix h2{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.container_pix .input{
+    resize: none;
+    padding: 8px 13px;
+    font-size: 17.6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+}
+
+.gerar_btn {
+    color: #fff;
+    background-color: rgb(31, 56, 91);
+    cursor: pointer;
+    padding: 16px 0;
+    margin-top: 20px;
+}
+
+.container_pix :where(input, button){
+    width: 100%;
+    outline:none;
+    border: none;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.container_pix :where(input)::placeholder{
+    color: #aaa;
+}
+
+@media screen and (max-width: 475px){
+    .container_pix :where(input, button){
+        font-size: 16px !important;
+    }
+
+    .container_pix img{
+        width: 100%;
+        margin: 0;
+    }
+
+    .container_pix .gerar_btn{
+        padding: 15px 0;
+    }
+}
+
+/*-------------QrCode Pix--------------------*/
+
+.container_qrcode {
+    width: 400px;
+    padding: 25px 35px;
+    position: absolute;
+    top: 500%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background: #fff !important;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container_qrcode p{
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 8px;
+    text-align:center !important;
+}
+
+.copy_text{
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+}
+
+.copy_text input.chave_pix_text{
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    color: #555;
+    border: none;
+
+
+}
+
+.copy_text button {
+    padding: 10px;
+    background: rgb(31, 56, 91);
+    color: #fff;
+    font-size: 14px;
+    border: none !important;
+    outline: none !important;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+.copy_text button:active {
+    background: #809ce2;
+
+}
+
+.copy_text button:before {
+    content: "Copiado";
+    position: absolute;
+    top: -72%;
+    right: 0;
+    background: rgb(31, 56, 91);
+    padding: 8px 10px;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 12px;
+    display: none;
+   
+}
+
+.copy_text button:after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    right: 21px;
+    width: 10px;
+    height: 10px;
+    background: rgb(31, 56, 91);
+    transform: rotate(45deg);
+    display: none;
+    
+}
+
+.copy_text.active button:before,
+.copy_text.active button:after{
+    display: block;
+    
+}
+
+#imgBox{
+    width: 200px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow: hidden;
+    margin: 10px auto;
+    transition: max-height 1s;
+}
+
+#imgBox img{
+    width: 100%;
+    padding: 10px;
+}
+
+/*-------------botão erro fechar pix--------------------*/
+
+
+#btn_pix_close {
+    position: relative;
+    width: 10px;
+    left: 20%;
+    box-shadow: none !important;
 }

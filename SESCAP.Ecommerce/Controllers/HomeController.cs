@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using SESCAP.Ecommerce.Libraries.Email;
 using SESCAP.Ecommerce.Libraries.Filtros;
 using SESCAP.Ecommerce.Libraries.Login;
@@ -21,15 +22,22 @@ namespace SESCAP.Ecommerce.Controllers
         private ICartaoRepositorio CartaoRepositorio { get; }
         private GerenciarEmail GerenciarEmail { get; }
         private LoginClientela LoginClientela { get; }
+        private ISaldoCartaoRepositorio SaldoCartaoRepositorio { get; }
+        private IProdutoPdvRepositorio ProdutoPdvRepositorio { get; }
+        private IConfiguration Configuration { get; }
        
-
-        public HomeController(ICadastroLoginRepositorio cadastroLoginRepositorio, LoginClientela loginClientela, IClientelaRepositorio clientelaRepositorio, ICartaoRepositorio cartaoRepositorio, GerenciarEmail gerenciarEmail)
+        public HomeController(ICadastroLoginRepositorio cadastroLoginRepositorio, LoginClientela loginClientela, IClientelaRepositorio clientelaRepositorio, ICartaoRepositorio cartaoRepositorio, GerenciarEmail gerenciarEmail, ISaldoCartaoRepositorio saldoCartaoRepositorio,
+            IProdutoPdvRepositorio produtoPdvRepositorio, IConfiguration configuration)
         {
             ClientelaRepositorio = clientelaRepositorio;
             CadastroLoginRepositorio = cadastroLoginRepositorio;
             LoginClientela = loginClientela;
             CartaoRepositorio = cartaoRepositorio;
             GerenciarEmail = gerenciarEmail;
+            SaldoCartaoRepositorio = saldoCartaoRepositorio;
+            ProdutoPdvRepositorio = produtoPdvRepositorio;
+            Configuration = configuration;
+
            
         }
 
@@ -258,6 +266,12 @@ namespace SESCAP.Ecommerce.Controllers
 
             var cartao = CartaoRepositorio.Cartao(clientela.CARTAO.NUMCARTAO);
 
+            var produtoPdv = ProdutoPdvRepositorio.ObterProdutoPdv(Configuration.GetValue<int>("ProdutoPdvRecargaCartao"));
+
+            var saldo = SaldoCartaoRepositorio.ObterSaldoCartao(cartao.NUMCARTAO, produtoPdv.CDPRODUTO);
+
+            ViewBag.ObterSaldo = saldo;
+         
             return View(cartao);
 
 

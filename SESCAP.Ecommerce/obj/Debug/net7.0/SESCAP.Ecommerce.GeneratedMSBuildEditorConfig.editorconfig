@@ -44,8 +44,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnYW1lbnRvL0NvbmZpcm1hY2FvUGFnYW1lbnRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Pagamento/FormaPagmento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnYW1lbnRvL0Zvcm1hUGFnbWVudG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Pagamento/QrCodePix.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnYW1lbnRvL1FyQ29kZVBpeC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Pagamento/Recarga.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnYW1lbnRvL1JlY2FyZ2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Pagamento/RecargaPix.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnYW1lbnRvL1JlY2FyZ2FQaXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Shared/_Layout.cshtml]

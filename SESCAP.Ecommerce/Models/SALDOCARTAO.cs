@@ -18,6 +18,10 @@ namespace SESCAP.Ecommerce.Models
         public SALDOCARTAO()
 		{
 		}
+
+
+
+
 	}
 }
 

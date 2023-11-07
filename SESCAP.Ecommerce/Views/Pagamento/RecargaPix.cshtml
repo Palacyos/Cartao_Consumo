@@ -1,0 +1,68 @@
+﻿@model RecargaViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Recarga";
+
+}
+
+<div class="top-navbar">
+
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@ViewBag.CartaoImg" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container_pix">
+
+    @if (TempData["MSG_E_Pagamento"] != null)
+    {
+        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["MSG_E_Pagamento"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="btn_pix_close"></button>
+        </div>
+    }
+    <form asp-controller="Pagamento" asp-action="RecargaPix" method="post">
+        <h2>Insira o valor da recarga</h2>
+
+        <div class="input">
+            <input type="text" asp-for="Pagamento.Valor" class="amount" placeholder="R$ digite o valor" value="0,00" required />
+        </div>
+        <span asp-validation-for="Pagamento.Valor"></span>
+        <button type="submit" class="gerar_btn">Enviar</button>
+    </form>
+</div>

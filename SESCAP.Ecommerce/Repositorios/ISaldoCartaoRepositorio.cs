@@ -7,6 +7,8 @@ namespace SESCAP.Ecommerce.Repositorios
 	{
         SALDOCARTAO ObterSaldoCartao(int nucartao, int cdproduto);
 
+        void InsereSaldo(int numcartao,int cdproduto, decimal sldvlcart);
+
         void AtualizarSaldoCartao(SALDOCARTAO saldoCartao, decimal sldvlrcartao);
     }
 }

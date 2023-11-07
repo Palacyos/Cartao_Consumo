@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Drawing.Text;
 using Cielo;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Configuration;
 using SESCAP.Ecommerce.Libraries.Login;
 using SESCAP.Ecommerce.Models;
@@ -19,7 +19,7 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
         }
 
        
-        public Transaction GerarPagamentoRecarga(RecargaViewModel recargaViewModel)
+        public Transaction GerarPagamentoRecargaCartaoDeCredito(RecargaViewModel recargaViewModel)
         {
 
             CLIENTELA clientela = LoginClientela.Obter();
@@ -55,12 +55,12 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
                 card: creditCard);
            
 
-            var merchanOrderId = new Random().Next();
+            var merchantOrderId = new Random().Next();
 
 
             var transaction = new Transaction(
 
-                merchantOrderId: merchanOrderId.ToString(),
+                merchantOrderId: merchantOrderId.ToString(),
                 customer: customer,
                 payment: payment
 
@@ -70,7 +70,80 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
             return apiCielo.CreateTransaction(Guid.NewGuid(), transaction);
 
         }
-        
-        
+
+        public Transaction GerarPagamentoRecargaPix(RecargaViewModel recargaViewModel)
+        {
+            CLIENTELA clientela = LoginClientela.Obter();
+
+            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoSandbox:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoSandbox:Cielo:MerchantKey"));
+
+            ISerializerJSON json = new SerializerJSON();
+
+            var apiCielo = new CieloApi(CieloEnvironment.SANDBOX, merchant, json);
+
+
+            var customer = new Customer(clientela.NMCLIENTE);
+            customer.SetIdentityType(IdentityType.CPF);
+            customer.Identity = clientela.NUCPF;
+
+
+            var payment = new Payment();
+            payment.SetAmount(recargaViewModel.Pagamento.Valor);
+            payment.Type = "Pix";
+
+            var merchantOrderId = new Random().Next();
+
+            var transaction = new Transaction(
+                merchantOrderId: merchantOrderId.ToString(),
+                customer: customer,
+                payment: payment);
+
+            return apiCielo.CreateTransaction(Guid.NewGuid(), transaction);
+
+
+        }
+
+
+        public Transaction ConsultaPagamentoPix(string nome, string identity, string identityType, string paymentType, string amount, string merchanOrderId, Guid paymentId)
+        {
+
+
+            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoSandbox:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoSandbox:Cielo:MerchantKey"));
+
+            ISerializerJSON json = new SerializerJSON();
+
+            var apiCielo = new CieloApi(CieloEnvironment.SANDBOX, merchant, json);
+
+            var customer = new Customer(nome);
+            customer.Identity = identity;
+            customer.IdentityType = identityType;
+
+
+            var payment = new Payment();
+            payment.Amount = amount;
+            payment.Type = paymentType;
+            
+
+            var transaction = new Transaction(
+                merchantOrderId: merchanOrderId,
+                customer: customer,
+                payment: payment);
+
+            return apiCielo.CreateTransaction(paymentId, transaction);
+
+            
+            
+        }
+
+        public Transaction VerificarPagamentoPix(Guid paymentId)
+        {
+            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoSandbox:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoSandbox:Cielo:MerchantKey"));
+
+            ISerializerJSON json = new SerializerJSON();
+
+            var apiCielo = new CieloApi(CieloEnvironment.SANDBOX, merchant, json);
+
+            return apiCielo.GetTransaction(paymentId);
+        }
     }
 }

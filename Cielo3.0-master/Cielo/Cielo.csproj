@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.19</Version>
+    <Authors>Hugo de Brito Valadares Rodrigues Alves</Authors>
+    <Product />
+    <Company />
+    <Description>Integração com API da Cielo 3.0 (Funções Assíncronas, HttpClient, .Net Standard 2)</Description>
+    <PackageProjectUrl>https://github.com/hugobritobh/Cielo3.0</PackageProjectUrl>
+    <PackageId>CieloRest</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/hugobritobh/Cielo3.0</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/hugobritobh/Cielo3.0</RepositoryUrl>
+    <AssemblyVersion>1.0.19.0</AssemblyVersion>
+    <FileVersion>1.0.19.0</FileVersion>
+    <PackageTags>Cielo</PackageTags>
+    <NeutralLanguage>pt-BR</NeutralLanguage>
+    <RepositoryType>https://github.com/hugobritobh/Cielo3.0.git</RepositoryType>
+    <PackageReleaseNotes>Update em Package
+E colocando o Deserialize de forma Async</PackageReleaseNotes>
+    <PackageIcon>LogoCielo.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dto\**" />
+    <EmbeddedResource Remove="Dto\**" />
+    <None Remove="Dto\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LogoCielo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cielo.Models\Cielo.Models.csproj">
+      <Private>True</Private>
+      <IncludeAssets></IncludeAssets>
+      <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

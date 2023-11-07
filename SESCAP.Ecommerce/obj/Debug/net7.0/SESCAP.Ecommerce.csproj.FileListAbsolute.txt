@@ -348,3 +348,5 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net7.0/SESCAP.Ecommerce.genruntimeconfig.cache
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net7.0/ref/SESCAP.Ecommerce.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Hangfire.InMemory.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Cielo.pdb
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Cielo.Models.pdb

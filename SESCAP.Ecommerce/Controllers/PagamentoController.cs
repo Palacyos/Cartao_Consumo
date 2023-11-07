@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cielo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 using SESCAP.Ecommerce.Libraries.Filtros;
 using SESCAP.Ecommerce.Libraries.Login;
 using SESCAP.Ecommerce.Libraries.Pagamento.Cielo;
@@ -14,10 +8,9 @@ using SESCAP.Ecommerce.Models.Constantes;
 using SESCAP.Ecommerce.Repositorios;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using System.ComponentModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Hangfire;
-using Hangfire.Common;
+using System;
+using Cielo;
+using SESCAP.Ecommerce.Libraries.GeradorQRCode;
 
 namespace SESCAP.Ecommerce.Controllers
 {
@@ -80,7 +73,6 @@ namespace SESCAP.Ecommerce.Controllers
 
             ViewBag.TipoPagamento = new[]
             {
-                new SelectListItem(){Value = "", Text = "Selecione Forma de Pagamento (obrigatório)"},
                 new SelectListItem(){Value = "CreditCard", Text = "Crédito"}
             };
 
@@ -112,7 +104,7 @@ namespace SESCAP.Ecommerce.Controllers
 
                 try
                 {
-                    Transaction transacaoPagamento =  GerenciarCielo.GerarPagamentoRecarga(recargaViewModel);
+                    Transaction transacaoPagamento =  GerenciarCielo.GerarPagamentoRecargaCartaoDeCredito(recargaViewModel);
 
                     if (transacaoPagamento.Payment.GetStatus() == Status.PaymentConfirmed) {
 
@@ -142,17 +134,31 @@ namespace SESCAP.Ecommerce.Controllers
 
                         var obterSaldoCartao = SaldoCartaoRepositorio.ObterSaldoCartao(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
-                        SaldoCartaoRepositorio.AtualizarSaldoCartao(obterSaldoCartao, depRetPdv.VLDEPRET);
+                        if (obterSaldoCartao == null)
+                        {
+                            SaldoCartaoRepositorio.InsereSaldo(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
+                        }
+                        else
+                        {
+                            SaldoCartaoRepositorio.AtualizarSaldoCartao(obterSaldoCartao, depRetPdv.VLDEPRET);
+                        }
 
                         var cartaoCredito = CartCredRepositorio.ObterCartaoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
-                        CartCredRepositorio.AtualizarValorProdutoCredito(cartaoCredito, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString() );
+                        if (cartaoCredito == null)
+                        {
+                            CartCredRepositorio.InsereValorProdutoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString());
+                        }
+                        else
+                        {
+                            CartCredRepositorio.AtualizarValorProdutoCredito(cartaoCredito, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString() );
+                        }
 
                         HstMovCartReposiotrio.InsereMovCartaoConsumo(produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.DTDEPRET, depRetPdv.NUMCARTAO, depRetPdv.VLDEPRET, depRetPdv.SQCAIXA, depRetPdv.CDPESSOA);
 
                         CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
-                                                       
-                        
+
+                    
                         return new RedirectToActionResult("ConfirmacaoPagamento", "Pagamento", new { id = pgOnline.Id });
 
                     }
@@ -161,10 +167,12 @@ namespace SESCAP.Ecommerce.Controllers
 
                     ViewBag.Pagamento_MSG_ERRO = TempData["Pagamento_MSG_ERRO"] as string;
 
-                    TempData["TIPO_ERRO_MSG_PAGAMENTO"] = "Erro no pagamento, verifique os dados do cartão.";
+                    TempData["TIPO_ERRO_MSG_PAGAMENTO"] = $"Erro no pagamento, verifique os dados do cartão. ({transacaoPagamento.Payment.ReturnMessage})";
+
 
                     return Recarga();
 
+                   
 
                 }
                 catch ( CieloException e )
@@ -184,6 +192,71 @@ namespace SESCAP.Ecommerce.Controllers
     
         }
 
+        [HttpGet]
+        public IActionResult RecargaPix()
+        {
+
+            var clientelaLogin = LoginClientela.Obter();
+            var clientela = ClientelaRepositorio.ObterClientela(clientelaLogin.SQMATRIC, clientelaLogin.CDUOP);
+            var cartao = CartaoRepositorio.Cartao(clientela.CARTAO.NUMCARTAO);
+
+            ViewBag.CartaoImg = cartao.CLIENTELA.CarregaFoto;
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult RecargaPix([FromForm] RecargaViewModel recargaViewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Transaction transacaoPagamento = GerenciarCielo.GerarPagamentoRecargaPix(recargaViewModel);
+
+                    if (transacaoPagamento.Payment.GetStatus() == Status.Pending)
+                    {
+                            
+                        return new RedirectToActionResult("QrCodePix", "Pagamento", new {nome = transacaoPagamento.Customer.Name, identity = transacaoPagamento.Customer.Identity, identityType = transacaoPagamento.Customer.IdentityType, paymentType = transacaoPagamento.Payment.Type,
+                        amount = transacaoPagamento.Payment.Amount, merchantOrderId = transacaoPagamento.MerchantOrderId, paymentId = transacaoPagamento.Payment.PaymentId.Value});
+                        
+                    }
+                }
+                catch(CieloException e)
+                {
+                    TempData["MSG_E_Pagamento"] = e.GetCieloErrorsString();
+
+                    return RecargaPix();
+                }
+
+            }
+            return RecargaPix();
+
+        }
+
+        [HttpGet]
+        public IActionResult QrCodePix(string nome, string identity, string identityType, string paymentType, string amount, string merchantOrderId, Guid paymentId)
+        {
+            var clientelaLogin = LoginClientela.Obter();
+            var clientela = ClientelaRepositorio.ObterClientela(clientelaLogin.SQMATRIC, clientelaLogin.CDUOP);
+            var cartao = CartaoRepositorio.Cartao(clientela.CARTAO.NUMCARTAO);
+
+            ViewBag.CartaoImg = cartao.CLIENTELA.CarregaFoto;
+
+            var result = GerenciarCielo.ConsultaPagamentoPix(nome,identity,identityType,paymentType, amount, merchantOrderId, paymentId);
+
+            var qrCode = result.Payment.QrcodeBase64Image;
+
+            var formatCode = string.Format($"data:image/png;base64,{qrCode}");
+            
+
+            ViewBag.QrCodeImg = formatCode;
+            ViewBag.ChavePix = result.Payment.QrCodeString;
+               
+            return View();
+        }
 
         [HttpGet]
         public IActionResult ConfirmacaoPagamento(int id) 
@@ -216,6 +289,19 @@ namespace SESCAP.Ecommerce.Controllers
             PagamentoOnlineRepositorio.Cadastrar(pgOnline);
 
             return pgOnline;
+        }
+
+
+        [HttpGet]
+        public IActionResult FormaPagmento()
+        {
+            var clientelaLogin = LoginClientela.Obter();
+            var clientela = ClientelaRepositorio.ObterClientela(clientelaLogin.SQMATRIC, clientelaLogin.CDUOP);
+            var cartao = CartaoRepositorio.Cartao(clientela.CARTAO.NUMCARTAO);
+
+            ViewBag.CartaoImg = cartao.CLIENTELA.CarregaFoto;
+
+            return View();
         }
 
 

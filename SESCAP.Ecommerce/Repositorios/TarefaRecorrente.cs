@@ -26,7 +26,7 @@ namespace SESCAP.Ecommerce.Repositorios
         public void FechaCaixa()
         {
 
-            var caixa = Banco.Cacaixas.Where(cx => cx.CDPESSOA == Configuration.GetValue<int>("CdPessoa") && cx.DTABERTURA == data && cx.DTFECHAMEN == null && cx.STCAIXA == 0 && cx.CDPDV == Configuration.GetValue<int>("CAPDV")).ToList().LastOrDefault();
+            var caixa = Banco.Cacaixas.Where(cx => cx.CDPESSOA == Configuration.GetValue<int>("CdPessoa") && cx.DTFECHAMEN == null && cx.STCAIXA == 0 && cx.CDPDV == Configuration.GetValue<int>("CAPDV")).ToList().LastOrDefault();
 
            
             if (caixa != null)

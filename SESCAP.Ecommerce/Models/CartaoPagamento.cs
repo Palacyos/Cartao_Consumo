@@ -1,13 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using AutoMapper.Configuration.Annotations;
-using Cielo;
+﻿using System.ComponentModel.DataAnnotations;
 using SESCAP.Ecommerce.Libraries.Lang;
 
 namespace SESCAP.Ecommerce.Models
 {
-    
+
     public class CartaoPagamento
     {
         [Display(Name = "Número do Cartão")]

@@ -77,16 +77,8 @@
 
                 <div class="input_group">
                     <div class="input_box">
-                        <select asp-for="Pagamento.TipoPagamento" class="custom_select name" id="tipo" asp-items="@ViewBag.TipoPagamento" required>
-                             <!-- <option value="vazio">Selecione Forma de Pagamento (obrigatório)</option>
-                            <option value="CreditCard">Credito</option>
-                           <option value="DebitCard">Debito</option> -->
-                        </select>
-
-
-                        <select asp-for="CartaoPagamento.Bandeira" class="custom_select name" asp-items="@ViewBag.Bandeira" id="bandeira">
-                            <!--<option value="vazio">Selecione a Bandeira do Cartão (obrigatório)</option>-->
-                        </select>
+                        <select hidden asp-for="Pagamento.TipoPagamento" class="custom_select name" id="tipo" asp-items="@ViewBag.TipoPagamento" required></select>
+                        <select asp-for="CartaoPagamento.Bandeira" class="custom_select name" asp-items="@ViewBag.Bandeira" id="bandeira"></select>
                     </div>
                 </div>
                 <span asp-validation-for="Pagamento.TipoPagamento"></span>

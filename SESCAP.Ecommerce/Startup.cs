@@ -21,6 +21,7 @@ using Hangfire;
 using Hangfire.MemoryStorage;
 using System;
 using Hangfire.InMemory;
+using Microsoft.Extensions.Logging;
 
 namespace SESCAP.Ecommerce
 {
