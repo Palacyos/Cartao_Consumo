@@ -10,6 +10,8 @@ using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using Cielo;
+using QRCoder;
+using SESCAP.Ecommerce.Libraries.Seguranca;
 using SESCAP.Ecommerce.Libraries.GeradorQRCode;
 
 namespace SESCAP.Ecommerce.Controllers
@@ -218,9 +220,8 @@ namespace SESCAP.Ecommerce.Controllers
 
                     if (transacaoPagamento.Payment.GetStatus() == Status.Pending)
                     {
-                            
-                        return new RedirectToActionResult("QrCodePix", "Pagamento", new {nome = transacaoPagamento.Customer.Name, identity = transacaoPagamento.Customer.Identity, identityType = transacaoPagamento.Customer.IdentityType, paymentType = transacaoPagamento.Payment.Type,
-                        amount = transacaoPagamento.Payment.Amount, merchantOrderId = transacaoPagamento.MerchantOrderId, paymentId = transacaoPagamento.Payment.PaymentId.Value});
+                        
+                        return new RedirectToActionResult("QrCodePix", "Pagamento", new {paymentId = transacaoPagamento.Payment.PaymentId.Value, qrCodeString = transacaoPagamento.Payment.QrCodeString});
                         
                     }
                 }
@@ -228,16 +229,16 @@ namespace SESCAP.Ecommerce.Controllers
                 {
                     TempData["MSG_E_Pagamento"] = e.GetCieloErrorsString();
 
-                    return RecargaPix();
+                    return RecargaPix();        
                 }
 
             }
             return RecargaPix();
 
-        }
+            }
 
         [HttpGet]
-        public IActionResult QrCodePix(string nome, string identity, string identityType, string paymentType, string amount, string merchantOrderId, Guid paymentId)
+        public IActionResult QrCodePix(Guid paymentId, string qrCodeString)
         {
             var clientelaLogin = LoginClientela.Obter();
             var clientela = ClientelaRepositorio.ObterClientela(clientelaLogin.SQMATRIC, clientelaLogin.CDUOP);
@@ -245,17 +246,75 @@ namespace SESCAP.Ecommerce.Controllers
 
             ViewBag.CartaoImg = cartao.CLIENTELA.CarregaFoto;
 
-            var result = GerenciarCielo.ConsultaPagamentoPix(nome,identity,identityType,paymentType, amount, merchantOrderId, paymentId);
+            try
+            {
+                var result = GerenciarCielo.VerificarStatusPagamentoPix(paymentId);
+                
+                if (result.Payment.GetStatus() == Status.Pending)
+                {
+                    var qrCodeImagem = GeradorQrCode.GerarImagem(qrCodeString);
 
-            var qrCode = result.Payment.QrcodeBase64Image;
+                    ViewBag.QrCodeImg = qrCodeImagem;
+                    ViewBag.ChavePix = qrCodeString;
+                    ViewBag.StatusPagamento = result.Payment.Status;
 
-            var formatCode = string.Format($"data:image/png;base64,{qrCode}");
-            
+                    return View();
+                }
 
-            ViewBag.QrCodeImg = formatCode;
-            ViewBag.ChavePix = result.Payment.QrCodeString;
-               
-            return View();
+                PagamentoOnline pgOnline = SalvarPagamento(result);
+
+                TempData["Pagamento_MSG"] = "Pagamento Realizado Com Sucesso";
+
+                var capdv = CapdvRepositorio.ObterCaixaPdv(Configuration.GetValue<int>("CAPDV"));
+
+                var produtoPdvRecargaCartao = ProdutoPdvRepositorio.ObterProdutoPdv(Configuration.GetValue<int>("ProdutoPdvRecargaCartao"));
+
+                var caixa = CacaixaRepositorio.ObterCaixaAberto(capdv.CDPDV);
+
+                if (caixa == null)
+                {
+                    caixa = CacaixaRepositorio.AbreCaixa(capdv.CDPDV, Configuration.GetValue<int>("CdPessoa"), capdv.LOCALVENDA.UOP.CDUOP, capdv.NMESTACAO, capdv.LOCALVENDA.CDLOCVENDA);
+                }
+
+                var cxDeposito = CacaixaRepositorio.CaixaDeposito(caixa.SQCAIXA, caixa.CDPESSOA);
+
+                var depRetPdv = CxDepRetPdvRepositorio.CadastraDeposito(cartao.NUMCARTAO, cxDeposito.SQCAIXA, cxDeposito.CDPESSOA, cxDeposito.DTABERTURA, pgOnline.Total, Configuration.GetValue<int>("PixCielo"));
+
+                var obterSaldoCartao = SaldoCartaoRepositorio.ObterSaldoCartao(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
+
+                if (obterSaldoCartao == null)
+                {
+                    SaldoCartaoRepositorio.InsereSaldo(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
+                }
+                else
+                {
+                    SaldoCartaoRepositorio.AtualizarSaldoCartao(obterSaldoCartao, depRetPdv.VLDEPRET);
+                }
+
+                var cartaoCredito = CartCredRepositorio.ObterCartaoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
+
+                if (cartaoCredito == null)
+                {
+                    CartCredRepositorio.InsereValorProdutoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString());
+                }
+                else
+                {
+                    CartCredRepositorio.AtualizarValorProdutoCredito(cartaoCredito, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString());
+                }
+
+                HstMovCartReposiotrio.InsereMovCartaoConsumo(produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.DTDEPRET, depRetPdv.NUMCARTAO, depRetPdv.VLDEPRET, depRetPdv.SQCAIXA, depRetPdv.CDPESSOA);
+
+                CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
+
+                return new RedirectToActionResult("ConfirmacaoPagamento", "Pagamento", new { id = pgOnline.Id });
+            }
+            catch (CieloException e)
+            {
+                TempData["MSG_E_Pagamento"] = e.GetCieloErrorsString();
+
+                return View();
+            }
+
         }
 
         [HttpGet]

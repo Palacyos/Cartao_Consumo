@@ -61,3 +61,27 @@ copyText.querySelector("button").addEventListener("click", function () {
     }, 2500);
 
 });
+
+$(document).ready(function () {
+    var intervalo = 8000;
+    var statusAnterior = null;
+
+    function monitorarStatus() {
+        var statusDoPagamento = $("#respostaCielo").val();
+
+        if (statusDoPagamento !== statusAnterior) {
+
+            redirecionar(statusDoPagamento);
+            statusAnterior = statusDoPagamento;
+
+        }
+    }
+
+    function redirecionar(status) {
+
+        var url = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search;
+        window.location.href = url;
+    }
+
+    setInterval(monitorarStatus, intervalo);
+});

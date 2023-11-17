@@ -47,13 +47,20 @@
 </div>
 
 <div class="container_qrcode">
+    @if (TempData["MSG_E_Pagamento"] != null)
+    {
+        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["MSG_E_Pagamento"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="btn_pix_close"></button>
+        </div>
+    }
     <p>Scaneie o QrCode ou Copie a chave pix</p>
     <div id="imgBox">
-        <img src="@ViewBag.QrCodeImg"/>
+        <img src="@ViewBag.QrCodeImg" />
     </div>
     <div class="copy_text">
         <input type="text" class="chave_pix_text" value="@ViewBag.ChavePix" />
         <button><i class="fa fa-clone"></i></button>
     </div>
-
+    <input hidden id="respostaCielo" value="@ViewBag.StatusPagamento" />
 </div>
