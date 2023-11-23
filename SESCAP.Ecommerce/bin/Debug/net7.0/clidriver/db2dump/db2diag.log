@@ -33,3 +33,10 @@ INSTANCE: DB2                  NODE : 000
 HOSTNAME: imac-cti.sescap.com.br
 FUNCTION: DB2 UDB, common communication, sqlcctcpconnr, probe:110
 MESSAGE : SQL10007N  Message "3202" could not be retrieved.  Reason code: "3".
+
+2023-11-23-11.10.12.178673-180 I1751E361            LEVEL: Error
+PID     : 55727                TID : 123145492799488PROC : SESCAP.Ecommerce
+INSTANCE: DB2                  NODE : 000
+HOSTNAME: imac-cti.sescap.com.br
+FUNCTION: DB2 UDB, common communication, sqlcctcpconnr, probe:110
+MESSAGE : SQL10007N  Message "3202" could not be retrieved.  Reason code: "3".
