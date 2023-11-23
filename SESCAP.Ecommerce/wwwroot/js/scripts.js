@@ -1,14 +1,11 @@
 ﻿const pwShowHide = document.querySelectorAll(".formulario__input-icon");
 
-
-
 pwShowHide.forEach(inputIcon => {
 
     inputIcon.addEventListener("click", () => {
 
         let pwFields = inputIcon.parentElement.parentElement.querySelectorAll(".password");
-
-
+        
         pwFields.forEach(password => {
 
             if (password.type === "password") {
@@ -53,7 +50,7 @@ copyText.querySelector("button").addEventListener("click", function () {
 
     let input = copyText.querySelector("input.chave_pix_text");
     input.select();
-    document.execCommand("copy");
+    navigator.clipboard.writeText(input.value);
     copyText.classList.add("active");
     window.getSelection().removeAllRanges();
     setTimeout(function () {
@@ -63,7 +60,7 @@ copyText.querySelector("button").addEventListener("click", function () {
 });
 
 $(document).ready(function () {
-    var intervalo = 8000;
+    var intervalo = 20000;
     var statusAnterior = null;
 
     function monitorarStatus() {
@@ -81,7 +78,45 @@ $(document).ready(function () {
 
         var url = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search;
         window.location.href = url;
+        
     }
 
     setInterval(monitorarStatus, intervalo);
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var data = url.searchParams.get("paymentId");
+
+    var paymentId = data;
+
+    var botaoConfirmacaoPagamento = document.getElementById('respostaCielo');
+
+    function consultarStatusPagamento(){
+        fetch('https://apiquery.cieloecommerce.cielo.com.br/1/sales/' + paymentId , {
+            method: 'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'MerchantKey':'aLxI6MaTliNBqfoocOdcAk4bt57EQHE6SXpUOn9w',
+                'MerchantId':'9ae48b85-2595-4c39-813f-dd78ef8978fe'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            var statusPagamento = data.Payment.Status;
+
+            console.log('Status do pagamento: ', statusPagamento);
+
+            if(statusPagamento === 2){
+                botaoConfirmacaoPagamento.innerHTML = "<p class='confirm_text'>Finalizando transação...</p>";
+                botaoConfirmacaoPagamento.style = "background: #29ca8e !important; color: #fff !important; pointer-events: none !important;";
+            }
+        })
+        .catch(error => {
+            console.log('Erro no requisição', error);
+        });
+    }
+    setInterval(consultarStatusPagamento, 5000);
 });

@@ -62,5 +62,9 @@
         <input type="text" class="chave_pix_text" value="@ViewBag.ChavePix" />
         <button><i class="fa fa-clone"></i></button>
     </div>
-    <input hidden id="respostaCielo" value="@ViewBag.StatusPagamento" />
+
+    <button class="pgto_confirm" id="respostaCielo" value="@ViewBag.StatusPagamento">
+        <div class="confirm_loader"></div>
+    </button>
+   
 </div>

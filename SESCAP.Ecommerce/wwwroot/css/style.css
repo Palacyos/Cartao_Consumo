@@ -1451,8 +1451,6 @@ table.table-stripped.table-hover tbody tr:hover {
 }
 
 /*-------------botão erro fechar pix--------------------*/
-
-
 #btn_pix_close {
     position: relative;
     width: 10px;
@@ -1462,4 +1460,51 @@ table.table-stripped.table-hover tbody tr:hover {
 
 #confirmacaoPagamento {
     min-width: 400px;
+}
+
+/*-------------botão confirmação recebimento pix--------------------*/
+.pgto_confirm{
+    border: 0;
+    outline: none !important;
+    user-select: none !important;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    font-size: 18px;
+    color: rgb(31, 56, 91);
+    background: #f1f5f4;
+    width: 330px;
+    height: 50px;
+    cursor: pointer !important;
+    top: 10px;
+    border-radius: 3px;
+    display: grid;
+    place-content: center;
+    transition: 0.2s;
+    
+}
+
+.confirm_loader{
+    pointer-events: none !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(31, 56, 91);
+    animation: an1 1s ease infinite;
+}
+
+@keyframes an1 {
+    0%{
+        transform: rotate(0turn);
+    }
+
+    100%{
+        transform: rotate(1turn);
+    }
+}
+
+.confirm_text{
+    font-family: monospace;
+    width: 25ch;
+    white-space: nowrap;
 }

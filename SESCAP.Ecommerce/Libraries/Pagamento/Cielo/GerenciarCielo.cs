@@ -75,11 +75,11 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
         {
             CLIENTELA clientela = LoginClientela.Obter();
 
-            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoProducao:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoProducao:Cielo:MerchantKey"));
+            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoSandbox:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoSandbox:Cielo:MerchantKey"));
 
             ISerializerJSON json = new SerializerJSON();
 
-            var apiCielo = new CieloApi(CieloEnvironment.PRODUCTION, merchant, json);
+            var apiCielo = new CieloApi(CieloEnvironment.SANDBOX, merchant, json);
 
 
             var customer = new Customer(clientela.NMCLIENTE);
@@ -105,11 +105,11 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
 
         public Transaction VerificarStatusPagamentoPix(Guid paymentId)
         {
-            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoProducao:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoProducao:Cielo:MerchantKey"));
+            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("PagamentoSandbox:Cielo:MerchantId"), Configuration.GetValue<string>("PagamentoSandbox:Cielo:MerchantKey"));
 
             ISerializerJSON json = new SerializerJSON();
 
-            var apiCielo = new CieloApi(CieloEnvironment.PRODUCTION, merchant, json);
+            var apiCielo = new CieloApi(CieloEnvironment.SANDBOX, merchant, json);
 
             return apiCielo.GetTransaction(paymentId);
         }
