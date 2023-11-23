@@ -93,17 +93,11 @@ namespace SESCAP.Ecommerce.Controllers
             return View();
         }
 
-
         [HttpPost] 
         public IActionResult Recarga([FromForm] RecargaViewModel recargaViewModel)
-        {
-            
-
-
+        {           
             if (ModelState.IsValid)
-            {
-                
-
+            {                
                 try
                 {
                     Transaction transacaoPagamento =  GerenciarCielo.GerarPagamentoRecargaCartaoDeCredito(recargaViewModel);
@@ -171,20 +165,15 @@ namespace SESCAP.Ecommerce.Controllers
 
                     TempData["TIPO_ERRO_MSG_PAGAMENTO"] = $"Erro no pagamento, verifique os dados do cartão. ({transacaoPagamento.Payment.ReturnMessage})";
 
-
                     return Recarga();
-
-                   
 
                 }
                 catch ( CieloException e )
                 {
-
                     TempData["MSG_E_Pagamento"] = e.GetCieloErrorsString();
 
                     return Recarga();
                 }
-
 
             }
             else

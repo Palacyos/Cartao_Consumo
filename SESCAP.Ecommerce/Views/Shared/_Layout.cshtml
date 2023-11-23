@@ -118,7 +118,6 @@
             $('.mes_vencimento').mask('00');
             $('.ano_vencimento').mask('0000');
 
-
             var strValue = "@((string)ViewBag.Pagamento_MSG)";
             if (strValue !== null && strValue !== '') {
                 Swal.fire({
@@ -129,7 +128,6 @@
                     timer: 1700
                 })
             }
-
 
             var strVal = "@((string)ViewBag.Pagamento_MSG_ERRO)";
             if (strValue !== null && strVal !== '') {

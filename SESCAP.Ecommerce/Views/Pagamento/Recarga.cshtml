@@ -103,8 +103,6 @@
         </div>
         <span asp-validation-for="CartaoPagamento.NumeroCartao"></span>
 
-
-
         <div class="input_group">
             <div class="input_box">
                 <input type="password" asp-for="CartaoPagamento.CodigoSeguranca" class="numero_cvv name" placeholder="CVV" maxlength="3" onkeypress="return onlynumber();" />
@@ -113,15 +111,11 @@
         </div>
         <span asp-validation-for="CartaoPagamento.CodigoSeguranca"></span>
 
-
-
         <div class="input_group">
             <div class="input_box">
                 <input type="text" asp-for="CartaoPagamento.VencimentoMM" class="mes_vencimento name" placeholder="Mês do Vencimento" maxlength="2" onkeypress="return onlynumber();" />
                 <i class="fa-solid fa-calendar icon-pg"></i>
             </div>
-
-
 
             <div class="input_box">
                 <input type="text" asp-for="CartaoPagamento.VencimentoYY" class="ano_vencimento name" placeholder="Ano do Vencimento" maxlength="4" onkeypress="return onlynumber();" />
@@ -131,8 +125,6 @@
         <span asp-validation-for="CartaoPagamento.VencimentoMM"></span>
         <span asp-validation-for="CartaoPagamento.VencimentoYY"></span>
 
-
-
         <div class="input_group">
             <div class="input_box">
                 <input type="text" asp-for="Pagamento.Valor" class="amount name" placeholder="R$ digite um valor" value="0,00" required />
@@ -140,7 +132,6 @@
             </div>
         </div>
         <span asp-validation-for="Pagamento.Valor"></span>
-
 
         <div class="input_group">
             <div class="input_box">

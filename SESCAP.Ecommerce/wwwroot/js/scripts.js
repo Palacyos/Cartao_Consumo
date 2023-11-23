@@ -95,12 +95,12 @@ document.addEventListener('DOMContentLoaded', function(){
     var botaoConfirmacaoPagamento = document.getElementById('respostaCielo');
 
     function consultarStatusPagamento(){
-        fetch('https://apiquery.cieloecommerce.cielo.com.br/1/sales/' + paymentId , {
+        fetch('https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/' + paymentId , {
             method: 'GET',
             headers:{
                 'Content-Type':'application/json',
-                'MerchantKey':'aLxI6MaTliNBqfoocOdcAk4bt57EQHE6SXpUOn9w',
-                'MerchantId':'9ae48b85-2595-4c39-813f-dd78ef8978fe'
+                'MerchantKey':'AGTFNLTSSYULGMJUESDAHVXPFITUTFEWHGLRDGRX',
+                'MerchantId':'238f2dee-9764-4bc7-9eda-643c264bef56'
             }
         })
         .then(response => response.json())
