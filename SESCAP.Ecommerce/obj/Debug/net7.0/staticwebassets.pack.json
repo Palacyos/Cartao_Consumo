@@ -1,14 +1,6 @@
 {
   "Files": [
     {
-      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/.DS_Store",
-      "PackagePath": "staticwebassets/.DS_Store"
-    },
-    {
-      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/css/.DS_Store",
-      "PackagePath": "staticwebassets/css/.DS_Store"
-    },
-    {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/css/bootstrap.min.css"
     },
@@ -27,10 +19,6 @@
     {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
-    },
-    {
-      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/fontawesome/.DS_Store",
-      "PackagePath": "staticwebassets/fontawesome/.DS_Store"
     },
     {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/fontawesome/LICENSE.txt",
@@ -8425,10 +8413,6 @@
       "PackagePath": "staticwebassets/fonts/fa-solid-900.woff2"
     },
     {
-      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/.DS_Store",
-      "PackagePath": "staticwebassets/imagens/.DS_Store"
-    },
-    {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/cartao.png",
       "PackagePath": "staticwebassets/imagens/cartao.png"
     },
@@ -8451,10 +8435,6 @@
     {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/sesc-azul.png",
       "PackagePath": "staticwebassets/imagens/sesc-azul.png"
-    },
-    {
-      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/js/.DS_Store",
-      "PackagePath": "staticwebassets/js/.DS_Store"
     },
     {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/js/additional-methods.min.js",

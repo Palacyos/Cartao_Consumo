@@ -60,7 +60,7 @@ copyText.querySelector("button").addEventListener("click", function () {
 });
 
 $(document).ready(function () {
-    var intervalo = 20000;
+    var intervalo = 15000;
     var statusAnterior = null;
 
     function monitorarStatus() {
@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var paymentId = data;
 
     var botaoConfirmacaoPagamento = document.getElementById('respostaCielo');
+    var botaoMovimentacao = document.getElementById('btn_movimentacoes');
+    var botaoHome = document.getElementById('btn_home');
 
     function consultarStatusPagamento(){
         fetch('https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/' + paymentId , {
@@ -110,8 +112,10 @@ document.addEventListener('DOMContentLoaded', function(){
             console.log('Status do pagamento: ', statusPagamento);
 
             if(statusPagamento === 2){
-                botaoConfirmacaoPagamento.innerHTML = "<p class='confirm_text'>Finalizando transação...</p>";
-                botaoConfirmacaoPagamento.style = "background: #29ca8e !important; color: #fff !important; pointer-events: none !important;";
+                botaoConfirmacaoPagamento.innerHTML = "<p class='confirm_text'>Finalizando, aguarde...</p>";
+                botaoConfirmacaoPagamento.style = "background: #fff3cd !important; color: #664d03 !important; pointer-events: none !important;";
+                botaoMovimentacao.style = "pointer-events: none !important;";
+                botaoHome.style = "pointer-events: none !important;";   
             }
         })
         .catch(error => {

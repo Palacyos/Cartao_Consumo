@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ErbTSgg5LiwO/uoNJWoaUwdYgRKfUU8mUUkaPW+qYo5EoaRQYjMNwT2+xNA3CuE9gLp8Btf+zJS7mZUZGZBJVw==",
+  "dgSpecHash": "qH8NE49q928hZNisXNsgTCDe+tufJNKeenl5UqZgOj+u7j1j4R47fQRwSTOO0rHPmMfslCkYjakwKSXUFDclkg==",
   "success": true,
   "projectFilePath": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/SESCAP.Ecommerce.csproj",
   "expectedPackageFiles": [
@@ -62,7 +62,6 @@
     "/Users/tpalacio/.nuget/packages/humanizer.core.zh-cn/2.14.1/humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/humanizer.core.zh-hans/2.14.1/humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/humanizer.core.zh-hant/2.14.1/humanizer.core.zh-hant.2.14.1.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/ibm.data.db2.core-osx/3.1.0.500/ibm.data.db2.core-osx.3.1.0.500.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/ibm.entityframeworkcore-osx/7.0.0.200/ibm.entityframeworkcore-osx.7.0.0.200.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/jetbrains.annotations/2022.3.1/jetbrains.annotations.2022.3.1.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.11/microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
@@ -83,12 +82,12 @@
     "/Users/tpalacio/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/microsoft.diasymreader/1.4.0/microsoft.diasymreader.1.4.0.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/microsoft.dotnet.scaffolding.shared/7.0.10/microsoft.dotnet.scaffolding.shared.7.0.10.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore/7.0.12/microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.12/microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.12/microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.design/7.0.12/microsoft.entityframeworkcore.design.7.0.12.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.12/microsoft.entityframeworkcore.relational.7.0.12.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.12/microsoft.entityframeworkcore.tools.7.0.12.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore/7.0.11/microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.11/microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.11/microsoft.entityframeworkcore.analyzers.7.0.11.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.design/7.0.11/microsoft.entityframeworkcore.design.7.0.11.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.11/microsoft.entityframeworkcore.relational.7.0.11.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.11/microsoft.entityframeworkcore.tools.7.0.11.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/microsoft.extensions.caching.memory/7.0.0/microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/microsoft.extensions.configuration.abstractions/7.0.0/microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
@@ -226,7 +225,10 @@
     "/Users/tpalacio/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/tpalacio/.nuget/packages/x.pagedlist/8.4.7/x.pagedlist.8.4.7.nupkg.sha512",
-    "/Users/tpalacio/.nuget/packages/x.pagedlist.mvc.core/8.4.7/x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
+    "/Users/tpalacio/.nuget/packages/x.pagedlist.mvc.core/8.4.7/x.pagedlist.mvc.core.8.4.7.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/tpalacio/.nuget/packages/microsoft.netcore.app.host.osx-x64/7.0.14/microsoft.netcore.app.host.osx-x64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

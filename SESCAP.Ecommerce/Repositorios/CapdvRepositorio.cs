@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using IBM.Data.DB2.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SESCAP.Ecommerce.Database;

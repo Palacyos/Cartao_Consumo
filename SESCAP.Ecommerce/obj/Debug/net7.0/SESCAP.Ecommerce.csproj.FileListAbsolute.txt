@@ -88,7 +88,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/clidriver/msg/en_US.iso88591/db2stt.mo
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/clidriver/msg/en_US.iso88591/db2supp.mo
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/clidriver/security64/plugin/IBM/client/IBMIAMauth.dylib
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/clidriver/security64/plugin/IBM/client/IBMkrb5.dylib
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/SESCAP.Ecommerce
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/SESCAP.Ecommerce.deps.json
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/SESCAP.Ecommerce.runtimeconfig.json
@@ -104,7 +103,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Hangfire.MemoryStorage.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Hangfire.NetCore.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Humanizer.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/IBM.Data.DB2.Core.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/IBM.EntityFrameworkCore.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/JetBrains.Annotations.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.AspNetCore.Razor.Language.dll
@@ -350,3 +348,4 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Hangfire.InMemory.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Cielo.pdb
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Cielo.Models.pdb
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net7.0/SESCAP.Ecommerce.sourcelink.json

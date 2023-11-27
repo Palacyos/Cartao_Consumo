@@ -1,5 +1,5 @@
 ﻿using System;
-using IBM.Data.DB2.Core;
+using IBM.Data.Db2;
 using Microsoft.Extensions.Configuration;
 using SESCAP.Ecommerce.Database;
 using SESCAP.Ecommerce.Models;

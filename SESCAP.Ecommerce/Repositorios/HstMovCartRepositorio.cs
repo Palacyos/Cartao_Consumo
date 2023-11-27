@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using IBM.Data.DB2.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SESCAP.Ecommerce.Database;
 using SESCAP.Ecommerce.Models;
 using System.Data;
+using IBM.Data.Db2;
 
 namespace SESCAP.Ecommerce.Repositorios
 {

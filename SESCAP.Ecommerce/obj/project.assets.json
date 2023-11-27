@@ -756,21 +756,6 @@
           }
         }
       },
-      "IBM.Data.DB2.Core-osx/3.1.0.500": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.Loader": "4.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.1/IBM.Data.DB2.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/IBM.Data.DB2.Core.dll": {}
-        },
-        "build": {
-          "buildTransitive/IBM.Data.DB2.Core-osx.targets": {}
-        }
-      },
       "IBM.EntityFrameworkCore-osx/7.0.0.200": {
         "type": "package",
         "dependencies": {
@@ -1378,11 +1363,11 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.12": {
+      "Microsoft.EntityFrameworkCore/7.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.12",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.12",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.11",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
@@ -1401,7 +1386,7 @@
           "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.11": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -1414,7 +1399,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.11": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1423,11 +1408,11 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Design/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Design/7.0.11": {
         "type": "package",
         "dependencies": {
           "Humanizer.Core": "2.14.1",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.12",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.11",
           "Microsoft.Extensions.DependencyModel": "7.0.0",
           "Mono.TextTemplating": "2.2.1"
         },
@@ -1445,10 +1430,10 @@
           "build/net6.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Relational/7.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.12",
+          "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "compile": {
@@ -1462,10 +1447,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Tools/7.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "7.0.12"
+          "Microsoft.EntityFrameworkCore.Design": "7.0.11"
         },
         "compile": {
           "lib/net6.0/_._": {}
@@ -4804,109 +4789,6 @@
         "logo.png"
       ]
     },
-    "IBM.Data.DB2.Core-osx/3.1.0.500": {
-      "sha512": "8QMJ4ZHYT37VxrKnpvyq9QlxOvNIeFvXsjuQeuaqK6TS2/7TxkFpc0EkaumlEs0HgrD5f4XRI0NhgtIXzxm5iQ==",
-      "type": "package",
-      "path": "ibm.data.db2.core-osx/3.1.0.500",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Lic_en.txt",
-        "buildTransitive/IBM.Data.DB2.Core-osx.targets",
-        "buildTransitive/clidriver/adm/db2trc",
-        "buildTransitive/clidriver/bin/db2cli",
-        "buildTransitive/clidriver/bin/db2level",
-        "buildTransitive/clidriver/bnd/db2ajgrt.bnd",
-        "buildTransitive/clidriver/bnd/db2cli.bnd",
-        "buildTransitive/clidriver/bnd/db2cli.lst",
-        "buildTransitive/clidriver/bnd/db2clipk.bnd",
-        "buildTransitive/clidriver/bnd/db2clist.bnd",
-        "buildTransitive/clidriver/bnd/db2spcdb.bnd",
-        "buildTransitive/clidriver/cfg/DigiCertGlobalRootCA.arm",
-        "buildTransitive/clidriver/cfg/db2dsdriver.cfg.sample",
-        "buildTransitive/clidriver/cfg/db2dsdriver.xsd",
-        "buildTransitive/clidriver/cfgcache/conlic.bin",
-        "buildTransitive/clidriver/conv/alt/04370923.cnv",
-        "buildTransitive/clidriver/conv/alt/08500923.cnv",
-        "buildTransitive/clidriver/conv/alt/08501252.cnv",
-        "buildTransitive/clidriver/conv/alt/08600923.cnv",
-        "buildTransitive/clidriver/conv/alt/08630923.cnv",
-        "buildTransitive/clidriver/conv/alt/09230437.cnv",
-        "buildTransitive/clidriver/conv/alt/09230850.cnv",
-        "buildTransitive/clidriver/conv/alt/09230860.cnv",
-        "buildTransitive/clidriver/conv/alt/09231043.cnv",
-        "buildTransitive/clidriver/conv/alt/09231051.cnv",
-        "buildTransitive/clidriver/conv/alt/09231114.cnv",
-        "buildTransitive/clidriver/conv/alt/09231208.cnv",
-        "buildTransitive/clidriver/conv/alt/09231252.cnv",
-        "buildTransitive/clidriver/conv/alt/09231275.cnv",
-        "buildTransitive/clidriver/conv/alt/09241252.cnv",
-        "buildTransitive/clidriver/conv/alt/09370950.cnv",
-        "buildTransitive/clidriver/conv/alt/10430923.cnv",
-        "buildTransitive/clidriver/conv/alt/10510923.cnv",
-        "buildTransitive/clidriver/conv/alt/11140923.cnv",
-        "buildTransitive/clidriver/conv/alt/12080923.cnv",
-        "buildTransitive/clidriver/conv/alt/12520850.cnv",
-        "buildTransitive/clidriver/conv/alt/12520923.cnv",
-        "buildTransitive/clidriver/conv/alt/12750923.cnv",
-        "buildTransitive/clidriver/conv/alt/1388ucs2.cnv",
-        "buildTransitive/clidriver/conv/alt/IBM00850.ucs",
-        "buildTransitive/clidriver/conv/alt/IBM00923.ucs",
-        "buildTransitive/clidriver/conv/alt/IBM01252.ucs",
-        "buildTransitive/clidriver/conv/ms/0930ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/0939ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/0943ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/0954ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/1390ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/1399ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/5039ucs2.cnv",
-        "buildTransitive/clidriver/conv/ms/ucs20943.cnv",
-        "buildTransitive/clidriver/lib/icc/C/icc/icclib/ICCSIG.txt",
-        "buildTransitive/clidriver/lib/icc/C/icc/icclib/libicclib084.dylib",
-        "buildTransitive/clidriver/lib/icc/N/icc/icclib/ICCSIG.txt",
-        "buildTransitive/clidriver/lib/icc/N/icc/icclib/libicclib085.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8acmeidup.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8cms.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8dbfl.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8drld.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8iccs.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8kicc.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8km.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8km2.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8ldap.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8p11.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8ssl.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8sys.dylib",
-        "buildTransitive/clidriver/lib/icc/libgsk8valn.dylib",
-        "buildTransitive/clidriver/lib/libDB2xml4c.58.0.dylib",
-        "buildTransitive/clidriver/lib/libdb2.dylib",
-        "buildTransitive/clidriver/lib/libdb2clixml4c.dylib",
-        "buildTransitive/clidriver/license/UNIX/odbc_LI_en",
-        "buildTransitive/clidriver/license/odbc_REDIST.txt",
-        "buildTransitive/clidriver/license/odbc_notices.txt",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2adm.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2admh.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2caem.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2cklog.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2cli.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2clia1.lst",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2clias.lst",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2clit.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2clp.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2clp2.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2fodc.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2sql.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2sqlh.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2stt.mo",
-        "buildTransitive/clidriver/msg/en_US.iso88591/db2supp.mo",
-        "buildTransitive/clidriver/security64/plugin/IBM/client/IBMIAMauth.dylib",
-        "buildTransitive/clidriver/security64/plugin/IBM/client/IBMkrb5.dylib",
-        "ibm.data.db2.core-osx.3.1.0.500.nupkg.sha512",
-        "ibm.data.db2.core-osx.nuspec",
-        "lib/netstandard2.1/IBM.Data.DB2.Core.dll",
-        "notices.txt"
-      ]
-    },
     "IBM.EntityFrameworkCore-osx/7.0.0.200": {
       "sha512": "mOtZhyWJz2Ni2t95hTWaOB6D/2cFHzWWiZpCAiKi976655j2UAv7Qpk57pmuwUyEPHXfJ/UVeUL4ACRHTIC3Lg==",
       "type": "package",
@@ -5740,10 +5622,10 @@
         "microsoft.dotnet.scaffolding.shared.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore/7.0.12": {
-      "sha512": "HRge/bJ5SKMNeqybC4NnRwWZn69QBjVVoVmwhmJ8xgQ50Ye+jTOOf2mef/y4Lrq1HUeMg8cu+3JeFdnp+Y8skA==",
+    "Microsoft.EntityFrameworkCore/7.0.11": {
+      "sha512": "r7YGITjQ7v1hYtUXIavjSx+T1itKVPUFAIBN7HaKNjbR8x+gep8w9H3NEchglJOh1woZR4b2MhbSo2YFRZwZDg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/7.0.12",
+      "path": "microsoft.entityframeworkcore/7.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5751,42 +5633,42 @@
         "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.12": {
-      "sha512": "GDlY3DzUbpagqb0683NUM2RK9eJFjTfmlLJd5YtvzBf8T4dwanIOSjd2vN7dXJihyZ0JlYaCetyHgxzbrxiUOw==",
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.11": {
+      "sha512": "IoOnhycZ0/VtLowf0HgB0cujxwksokzkS3/5108AHOcbntHUTqwxtCjG4E4FCly/45G+mxb+4PxBdFZhA49lwQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.12",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.12": {
-      "sha512": "feFe61uKUNoHJfo9tnO65BTzcpWEYIr34xWikhYgZl5c9RiiUJLuCoTqoGc9fuuKy+xk9aUa1NwgDGMC4KmBig==",
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.11": {
+      "sha512": "Qexum5safSSfijx6P1QSq5bVJPPTM/uf7lQmpL/shkiozEC/0FzqNaVUfFpbNN8zsO1jMFYbeDMF4cxJMlTT9w==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.12",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Design/7.0.12": {
-      "sha512": "5UoOLj+qJGkEoL379wi1cSq1bBCCZQZRO5w/wE89ZakQT6qx8juAlJLg4fFwfrg0tYWP12iUAholwcuDM38s7g==",
+    "Microsoft.EntityFrameworkCore.Design/7.0.11": {
+      "sha512": "DaykA+XkNNiznnJq8HWVl4jpBycL9/W8NkonoBz7eIrxfU9Q4zH4iPztlvOkJugYCNPS29frPnju3RY72FoPNQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.design/7.0.12",
+      "path": "microsoft.entityframeworkcore.design/7.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5794,35 +5676,35 @@
         "build/net6.0/Microsoft.EntityFrameworkCore.Design.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.xml",
-        "microsoft.entityframeworkcore.design.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.design.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/7.0.12": {
-      "sha512": "apLzFyjM3s/voBiaMCJPwIOk5SxA1N6GmSbhqthfbUDn8mX+kxZl4RXNdaoBLzPKfUg4EoqCtt0YON/g9YXruQ==",
+    "Microsoft.EntityFrameworkCore.Relational/7.0.11": {
+      "sha512": "yHEEyah1XARStV1SJOsdKj8ieoMCZ0MkNuQaLfWONMWmbqwuDohfGQZk/FuzdT4aO/lJrUYiXbBSFv0ACzphEw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/7.0.12",
+      "path": "microsoft.entityframeworkcore.relational/7.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/7.0.12": {
-      "sha512": "4ZW43BJzV5aY8rkrSxhej1xiiDr1dLfFl/MitpHn4a5QJpQqctJ0kl/MF1U3CAIKnkeC4RaC9ZjJjODDbHtdeQ==",
+    "Microsoft.EntityFrameworkCore.Tools/7.0.11": {
+      "sha512": "dhNLVQsMi6E4XEkVNmxbaNkLd06Q0ipwgiBz9k9rSjzaNJQVUA+/N6lsKRWXjFjTPgsaVpos+KN5Iimy6TQ2Yg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/7.0.12",
+      "path": "microsoft.entityframeworkcore.tools/7.0.11",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.tools.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -11328,12 +11210,12 @@
       "Hangfire.Core >= 1.8.5",
       "Hangfire.InMemory >= 0.5.1",
       "Hangfire.MemoryStorage >= 1.8.0",
-      "IBM.Data.DB2.Core-osx >= 3.1.0.500",
       "IBM.EntityFrameworkCore-osx >= 7.0.0.200",
-      "Microsoft.EntityFrameworkCore >= 7.0.12",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.12",
+      "Microsoft.EntityFrameworkCore >= 7.0.11",
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
       "Microsoft.Extensions.Logging >= 7.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.10",
+      "Net.IBM.Data.Db2-osx >= 7.0.0.200",
       "Newtonsoft.Json >= 13.0.3",
       "QRCoder-ImageSharp >= 0.9.0",
       "System.Drawing.Common >= 7.0.0",
@@ -11360,7 +11242,6 @@
       ],
       "sources": {
         "/usr/local/share/dotnet/library-packs": {},
-        "/usr/local/share/dotnet/sdk/7.0.308/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11407,23 +11288,19 @@
             "target": "Package",
             "version": "[1.8.0, )"
           },
-          "IBM.Data.DB2.Core-osx": {
-            "target": "Package",
-            "version": "[3.1.0.500, )"
-          },
           "IBM.EntityFrameworkCore-osx": {
             "target": "Package",
             "version": "[7.0.0.200, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[7.0.12, )"
+            "version": "[7.0.11, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.12, )"
+            "version": "[7.0.11, )"
           },
           "Microsoft.Extensions.Logging": {
             "target": "Package",
@@ -11432,6 +11309,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[7.0.10, )"
+          },
+          "Net.IBM.Data.Db2-osx": {
+            "target": "Package",
+            "version": "[7.0.0.200, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -11461,6 +11342,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.osx-x64",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11469,7 +11364,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }
