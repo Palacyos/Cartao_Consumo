@@ -16,7 +16,7 @@
     </head>
 
     <body>
-
+       
         <div class="wrapper">
 
             <div class="body-overlay"></div>
@@ -49,13 +49,9 @@
                 </ul>
 
             </div>
-
-
-
+           
             <div id="content">
-
                 @RenderBody()
-
             </div>
 
 
@@ -140,6 +136,26 @@
                 })
             }
 
+            function DisplayBusyIndication(){
+                $('.body_loader').show();
+            }
+
+            function HideBusyIndication(){
+                $('.body_loader').hide();
+            }
+
+            $(window).on('load', function(){
+                DisplayBusyIndication();
+            });
+
+            $(document).on('submit','form', function(){
+                DisplayBusyIndication();
+            });
+
+            window.setTimeout(function(){
+                HideBusyIndication();
+
+            }, 1000);
         </script>
 
     </body>

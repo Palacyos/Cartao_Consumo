@@ -124,3 +124,5 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     setInterval(consultarStatusPagamento, 5000);
 });
+
+

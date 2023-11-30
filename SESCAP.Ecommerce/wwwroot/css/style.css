@@ -15,8 +15,92 @@
 
 }
 
-html, body{
+/*-------------loader inicio--------------------*/
+.body_loader{
+    width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    
+}
+
+.loader_container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ring{
+    width: 200px;
+    height: 200px;
+    border: 0px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.ring:nth-child(1){
+border-bottom-width: 8px;
+border-color: #d39e00;
+animation: rotate 2s linear infinite;
+}
+
+.ring:nth-child(2){
+    border-right-width: 8px;
+    border-color: #fff;
+    animation: rotate2 2s linear infinite;
+}
+
+.ring:nth-child(3){
+    border-top-width: 8px;
+    border-color: #1f385b;
+    animation: rotate3 2s linear infinite;
+}
+    
+
+@keyframes rotate {
+    0%{
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    100%{
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+
+}
+
+@keyframes rotate2 {
+    0%{
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+    100%{
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+
+}
+
+@keyframes rotate3 {
+    0%{
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+    100%{
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+
+}
+
+.loading{
+    color: #fff;
+}
+/*-------------loader fim--------------------*/
+
+html, body{
+    height: 100vh;
 }
 
 html, html{
@@ -414,7 +498,7 @@ a, a:hover, a:focus{
 #content{
     position: relative;
     transition: all 0.5s;
-    
+   
     
 
 }
@@ -448,7 +532,7 @@ a, a:hover, a:focus{
     padding: 30px 30px 0px 30px;
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
    
 }
 
@@ -1507,3 +1591,4 @@ table.table-stripped.table-hover tbody tr:hover {
     width: 25ch;
     white-space: nowrap;
 }
+
