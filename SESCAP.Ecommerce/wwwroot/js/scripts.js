@@ -74,7 +74,7 @@ $(document).ready(function () {
         }
     }
 
-    function redirecionar(status) {
+    function redirecionar(_status) {
 
         var url = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search;
         window.location.href = url;
@@ -83,6 +83,7 @@ $(document).ready(function () {
 
     setInterval(monitorarStatus, intervalo);
 });
+
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -96,33 +97,36 @@ document.addEventListener('DOMContentLoaded', function(){
     var botaoMovimentacao = document.getElementById('btn_movimentacoes');
     var botaoHome = document.getElementById('btn_home');
 
-    function consultarStatusPagamento(){
-        fetch('https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/' + paymentId , {
-            method: 'GET',
-            headers:{
-                'Content-Type':'application/json',
-                'MerchantKey':'AGTFNLTSSYULGMJUESDAHVXPFITUTFEWHGLRDGRX',
-                'MerchantId':'238f2dee-9764-4bc7-9eda-643c264bef56'
+    function consultarStatusPagamento(paymentId){
+
+        fetch(`/pagamento/consultar-status-pagamento-pix?paymentId=${paymentId}`)
+        .then(response =>{
+            if(!response.ok)
+            {
+                throw new Error('Erro ao consultar status do pagamento');
             }
+            return response.json();
         })
-        .then(response => response.json())
         .then(data => {
-            var statusPagamento = data.Payment.Status;
+            var statusPagamento = data.payment.status;
 
             console.log('Status do pagamento: ', statusPagamento);
+            
+            if(statusPagamento == 2){
 
-            if(statusPagamento === 2){
                 botaoConfirmacaoPagamento.innerHTML = "<p class='confirm_text'>Finalizando, aguarde...</p>";
                 botaoConfirmacaoPagamento.style = "background: #fff3cd !important; color: #664d03 !important; pointer-events: none !important;";
                 botaoMovimentacao.style = "pointer-events: none !important;";
-                botaoHome.style = "pointer-events: none !important;";   
+                botaoHome.style = "pointer-events: none !important;";
             }
         })
         .catch(error => {
-            console.log('Erro no requisição', error);
+            console.error('Erro na requisição', error);
         });
     }
-    setInterval(consultarStatusPagamento, 5000);
+    setInterval(function(){
+        consultarStatusPagamento(paymentId)
+    }, 2000);
 });
 
 

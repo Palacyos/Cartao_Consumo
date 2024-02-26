@@ -17,15 +17,15 @@
           "/Users/tpalacio/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -36,8 +36,8 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -53,15 +53,15 @@
             },
             "Hangfire.AspNetCore": {
               "target": "Package",
-              "version": "[1.8.5, )"
+              "version": "[1.8.7, )"
             },
             "Hangfire.Core": {
               "target": "Package",
-              "version": "[1.8.5, )"
+              "version": "[1.8.7, )"
             },
             "Hangfire.InMemory": {
               "target": "Package",
-              "version": "[0.5.1, )"
+              "version": "[0.7.0, )"
             },
             "Hangfire.MemoryStorage": {
               "target": "Package",
@@ -69,29 +69,29 @@
             },
             "IBM.EntityFrameworkCore-osx": {
               "target": "Package",
-              "version": "[7.0.0.200, )"
+              "version": "[7.0.0.300, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[7.0.15, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[7.0.15, )"
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[7.0.10, )"
+              "version": "[7.0.11, )"
             },
             "Net.IBM.Data.Db2-osx": {
               "target": "Package",
-              "version": "[7.0.0.200, )"
+              "version": "[8.0.0.100, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -103,7 +103,7 @@
             },
             "System.Drawing.Common": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.0.1, )"
             },
             "X.PagedList.Mvc.Core": {
               "target": "Package",
@@ -121,20 +121,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-x64",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -143,7 +129,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

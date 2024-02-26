@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sXcBh5EZoiTyDaUClqbsiy88dVvEBwK5hHbSVr8Wny8=",
+  "Hash": "P9gCAkDlXHbhooLUrEZTeKH05WSFyblwr5NGosWzBx8=",
   "Source": "SESCAP.Ecommerce",
   "BasePath": "_content/SESCAP.Ecommerce",
   "Mode": "Default",
@@ -40010,6 +40010,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/imagens/default_sesc_amapa.jpg"
+    },
+    {
+      "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/imagem_erro.png",
+      "SourceId": "SESCAP.Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/",
+      "BasePath": "_content/SESCAP.Ecommerce",
+      "RelativePath": "imagens/imagem_erro.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imagens/imagem_erro.png"
     },
     {
       "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/logo_sesc_ap.png",

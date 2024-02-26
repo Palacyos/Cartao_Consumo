@@ -13,6 +13,8 @@ using Cielo;
 using QRCoder;
 using SESCAP.Ecommerce.Libraries.Seguranca;
 using SESCAP.Ecommerce.Libraries.GeradorQRCode;
+using System.Threading.Tasks;
+using System.Net;
 
 namespace SESCAP.Ecommerce.Controllers
 {
@@ -102,9 +104,8 @@ namespace SESCAP.Ecommerce.Controllers
                 {
                     Transaction transacaoPagamento =  GerenciarCielo.GerarPagamentoRecargaCartaoDeCredito(recargaViewModel);
 
-                    if (transacaoPagamento.Payment.GetStatus() == Status.PaymentConfirmed) {
-
-                       
+                    if (transacaoPagamento.Payment.GetStatus() == Status.PaymentConfirmed) 
+                    {
                         PagamentoOnline pgOnline = SalvarPagamento(transacaoPagamento);
 
                         TempData["Pagamento_MSG"] = "Pagamento Realizado Com Sucesso";
@@ -209,9 +210,7 @@ namespace SESCAP.Ecommerce.Controllers
 
                     if (transacaoPagamento.Payment.GetStatus() == Status.Pending)
                     {
-                        
                         return new RedirectToActionResult("QrCodePix", "Pagamento", new {paymentId = transacaoPagamento.Payment.PaymentId.Value, qrCodeString = transacaoPagamento.Payment.QrCodeString});
-                        
                     }
                 }
                 catch(CieloException e)
@@ -224,7 +223,7 @@ namespace SESCAP.Ecommerce.Controllers
             }
             return RecargaPix();
 
-            }
+        }
 
         [HttpGet]
         public IActionResult QrCodePix(Guid paymentId, string qrCodeString)
@@ -352,6 +351,20 @@ namespace SESCAP.Ecommerce.Controllers
             return View();
         }
 
+        [HttpGet]
+        public JsonResult ConsultarStatusPagamentoPix(Guid paymentId)
+        {
+            try
+            {
+                var status = GerenciarCielo.VerificarStatusPagamentoPix(paymentId);
+                return Json(status);
+            }
+            catch(Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new {ex.Message});
+            }
+        }
 
     }
 }

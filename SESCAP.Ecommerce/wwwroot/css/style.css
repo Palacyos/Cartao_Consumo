@@ -97,6 +97,8 @@ animation: rotate 2s linear infinite;
 .loading{
     color: #fff;
 }
+
+
 /*-------------loader fim--------------------*/
 
 html, body{
@@ -1574,6 +1576,9 @@ table.table-stripped.table-hover tbody tr:hover {
     border: 3px solid transparent;
     border-top-color: rgb(31, 56, 91);
     animation: an1 1s ease infinite;
+    position: relative;
+    right: 60px;
+    top: 10px;
 }
 
 @keyframes an1 {
@@ -1592,3 +1597,24 @@ table.table-stripped.table-hover tbody tr:hover {
     white-space: nowrap;
 }
 
+.pgto_confirm span{
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    bottom: 13px;
+    
+}
+
+.container_erro_nulo,
+.container_titulo_mensagem_error {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.img-centralizada {
+    display: block;
+    margin: 0 auto;
+}

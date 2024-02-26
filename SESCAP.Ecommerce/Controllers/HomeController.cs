@@ -168,14 +168,11 @@ namespace SESCAP.Ecommerce.Controllers
                 TempData["MSG_S_RecuperaSenha"] = "Link enviado com sucesso.";
 
                 ModelState.Clear();
-
             }
             else
             {
-                TempData["MSG_E_RecuperaSenha"] = "E-mail não cadastrado.";
-                   
+                TempData["MSG_E_RecuperaSenha"] = "E-mail não cadastrado."; 
             }
-
             return View();
         }
 
@@ -215,9 +212,7 @@ namespace SESCAP.Ecommerce.Controllers
 
             if (ModelState.IsValid)
             {
-
                 int idCadastro;
-
                 try
                 {
 
@@ -230,7 +225,6 @@ namespace SESCAP.Ecommerce.Controllers
                         return View();
 
                     }
-
                   
                 }
                 catch (FormatException)
@@ -282,7 +276,6 @@ namespace SESCAP.Ecommerce.Controllers
         public IActionResult MovimentacaoCredencialClientela()
         {
 
-
             var clientelaLogin = LoginClientela.Obter();
 
             var clientela = ClientelaRepositorio.ObterClientela(clientelaLogin.SQMATRIC, clientelaLogin.CDUOP);
@@ -290,6 +283,39 @@ namespace SESCAP.Ecommerce.Controllers
             var cartao = CartaoRepositorio.Cartao(clientela.CARTAO.NUMCARTAO);
 
             return View(cartao);
+        }
+
+        [HttpGet]
+        public IActionResult Error(int id)
+        {
+            var modelErro = new ErrorView();
+
+            if(id == 500)
+            {
+                modelErro.Mensagem = "Tente novamente mais tarde ou entre contato com uma de nossas unidades.";
+                modelErro.Titulo = "Ocorreu um erro!";
+                modelErro.ErroCode = id;
+
+            }
+            else if(id == 404)
+            {
+                modelErro.Mensagem = "A página que está procurando não existe!";
+                modelErro.Titulo = "Ops! Página não encontrada.";
+                modelErro.ErroCode = id;
+            }
+            else if(id == 403)
+            {
+                modelErro.Mensagem = "Você não tem permissão para fazer isto.";
+                modelErro.Titulo = "Acesso Negado.";
+                modelErro.ErroCode = id;
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+
+            return View("Error", modelErro);
+
         }
 
     }

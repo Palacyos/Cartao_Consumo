@@ -8421,6 +8421,10 @@
       "PackagePath": "staticwebassets/imagens/default_sesc_amapa.jpg"
     },
     {
+      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/imagem_erro.png",
+      "PackagePath": "staticwebassets/imagens/imagem_erro.png"
+    },
+    {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/imagens/logo_sesc_ap.png",
       "PackagePath": "staticwebassets/imagens/logo_sesc_ap.png"
     },

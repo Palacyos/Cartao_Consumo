@@ -43,10 +43,10 @@ namespace SESCAP.Ecommerce
            
 
             services.AddHangfire(config =>
-                    config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
-                    .UseSimpleAssemblyNameTypeSerializer()
-                    .UseRecommendedSerializerSettings()
-                    .UseInMemoryStorage());
+            config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseInMemoryStorage());
 
             services.AddHangfireServer();
 
@@ -126,6 +126,11 @@ namespace SESCAP.Ecommerce
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            /*
+             * -> Rota Personalizada
+            */
+            services.AddRouting(op => op.ConstraintMap["slugify"] = typeof(RouteSlugifyParameterTransformer));
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRecurringJobManager recurringJoManager, IServiceProvider serviceProvider)
@@ -136,7 +141,8 @@ namespace SESCAP.Ecommerce
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error/{0}");
+                app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
                 
                 app.UseHsts();
             }
@@ -151,7 +157,8 @@ namespace SESCAP.Ecommerce
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Login}/{id?}");
+                    pattern: "{controller:slugify=Home}/{action:slugify=Login}/{id?}"
+                );
             });
 
             app.UseHangfireDashboard();

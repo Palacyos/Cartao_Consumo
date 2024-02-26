@@ -317,7 +317,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/runtimes/win/lib/net7.0/Microsoft.Win32.SystemEvents.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net7.0/SESCAP.Ecommerce.csproj.AssemblyReference.cache
@@ -349,3 +348,9 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Cielo.pdb
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Cielo.Models.pdb
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net7.0/SESCAP.Ecommerce.sourcelink.json
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.Extensions.Logging.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net7.0/Microsoft.Extensions.Primitives.dll
