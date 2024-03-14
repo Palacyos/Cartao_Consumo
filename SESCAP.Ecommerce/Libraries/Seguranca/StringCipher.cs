@@ -9,12 +9,12 @@ namespace SESCAP.Ecommerce.Libraries.Seguranca
 
     public static class StringCipher
     {
-        private static readonly string encryptionKey = "MAKV2SPBNI99212";
+        private static readonly string encryptionKey = "MAKV2SPBNI99212S3SCMAC3";
 
         public static string Encrypt(string clearText)
         {
            
-            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            byte[] clearBytes = Encoding.UTF8.GetBytes(clearText);
             using (Aes encryptor = Aes.Create())
             {
                 PasswordDeriveBytes pdb = new PasswordDeriveBytes(encryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
@@ -51,7 +51,7 @@ namespace SESCAP.Ecommerce.Libraries.Seguranca
                         cs.Write(cipherBytes, 0, cipherBytes.Length);
                         cs.Close();
                     }
-                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                    cipherText = Encoding.UTF8.GetString(ms.ToArray());
                 }
             }
             return cipherText;

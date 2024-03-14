@@ -49,6 +49,13 @@
 <div class="container py-5 h-100" id="confirmacaoPagamento">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-8 col-xl-6">
+            @if (TempData["MSG_ComprovanteEnviado"] != null)
+            {
+                <div style="font-size: 1.4rem; text-align: center;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    @TempData["MSG_ComprovanteEnviado"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
             <div class="card border-top border-bottom border-3" style="border-color: rgb(31, 56, 91) !important;">
                 <div class="card-body p-5">
 
@@ -91,3 +98,4 @@
         </div>
     </div>
 </div>
+

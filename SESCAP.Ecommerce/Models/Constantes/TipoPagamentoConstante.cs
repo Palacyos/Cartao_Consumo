@@ -3,7 +3,7 @@ namespace SESCAP.Ecommerce.Models.Constantes
 {
     public class TipoPagamentoConstante
     {
-        public const string CartaoCredito = "Crédito";
+        public const string CartaoCredito = "Cartão de Crédito";
         public const string Pix = "Pix";
 
 

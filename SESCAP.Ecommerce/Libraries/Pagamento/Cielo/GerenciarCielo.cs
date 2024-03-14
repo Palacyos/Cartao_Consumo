@@ -51,33 +51,32 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
             customer.Identity = clientela.NUCPF;
 
             var creditCard = new Card();
-                creditCard.SecurityCode = recargaViewModel.CartaoPagamento.CodigoSeguranca;
-                creditCard.ExpirationDate = recargaViewModel.CartaoPagamento.VencimentoMM + "/" + recargaViewModel.CartaoPagamento.VencimentoYY;
-                creditCard.Holder = recargaViewModel.CartaoPagamento.NomeNoCartao;
-                creditCard.CardNumber = recargaViewModel.CartaoPagamento.NumeroCartao.Replace(" ", "");
-                creditCard.Brand = recargaViewModel.CartaoPagamento.Bandeira;
+            creditCard.SecurityCode = recargaViewModel.CartaoPagamento.CodigoSeguranca;
+            creditCard.ExpirationDate = recargaViewModel.CartaoPagamento.VencimentoMM + "/" + recargaViewModel.CartaoPagamento.VencimentoYY;
+            creditCard.Holder = recargaViewModel.CartaoPagamento.NomeNoCartao;
+            creditCard.CardNumber = recargaViewModel.CartaoPagamento.NumeroCartao.Replace(" ", "");
+            creditCard.Brand = recargaViewModel.CartaoPagamento.Bandeira;
             
 
             var payment = new Payment(
-                amount: recargaViewModel.Pagamento.Valor,
-                currency: Currency.BRL,
-                paymentType: recargaViewModel.Pagamento.TipoPagamento,
-                installments: 1,
-                capture: true,
-                softDescriptor: descricaoFatura,
-                card: creditCard);
+            amount: recargaViewModel.Pagamento.Valor,
+            currency: Currency.BRL,
+            paymentType: recargaViewModel.Pagamento.TipoPagamento,
+            installments: 1,
+            capture: true,
+            softDescriptor: descricaoFatura,
+            card: creditCard);
            
 
             var merchantOrderId = new Random().Next();
 
 
             var transaction = new Transaction(
+            merchantOrderId: merchantOrderId.ToString(),
+            customer: customer,
+            payment: payment
 
-                merchantOrderId: merchantOrderId.ToString(),
-                customer: customer,
-                payment: payment
-
-                );
+            );
 
 
             return apiCielo.CreateTransaction(Guid.NewGuid(), transaction);
@@ -116,9 +115,9 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
             var merchantOrderId = new Random().Next();
 
             var transaction = new Transaction(
-                merchantOrderId: merchantOrderId.ToString(),
-                customer: customer,
-                payment: payment);
+            merchantOrderId: merchantOrderId.ToString(),
+            customer: customer,
+            payment: payment);
 
             return apiCielo.CreateTransaction(Guid.NewGuid(), transaction);
 

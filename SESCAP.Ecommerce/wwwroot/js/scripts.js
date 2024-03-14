@@ -60,7 +60,7 @@ copyText.querySelector("button").addEventListener("click", function () {
 });
 
 $(document).ready(function () {
-    var intervalo = 15000;
+    var intervalo = 10000;
     var statusAnterior = null;
 
     function monitorarStatus() {
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     setInterval(function(){
         consultarStatusPagamento(paymentId)
-    }, 2000);
+    }, 1000);
 });
 
 

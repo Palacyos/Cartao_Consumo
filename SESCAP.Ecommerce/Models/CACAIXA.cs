@@ -44,6 +44,14 @@ namespace SESCAP.Ecommerce.Models
         public ICollection<CXDEPRETPDV> CXDEPRETPDVs { get; set; }
         public ICollection<CAIXALANCA> LANCAMENTOSCAIXA { get; set; }
 
+        public string NumeroFechamentoFormatado
+        {
+            get
+            {
+                return TransformaNumeroFechamento(NUFECHAMEN);
+            }
+        }
+
         public CACAIXA()
         {
             HSTMOVCARTS = new List<HSTMOVCART>();
@@ -73,6 +81,21 @@ namespace SESCAP.Ecommerce.Models
             var numero = int.Parse($"{conteudo}0000");
             return numero;
             
+        }
+
+        public string TransformaNumeroFechamento(int numeroFechamento)
+        {
+            string entradaString = numeroFechamento.ToString();
+           
+            string ano = entradaString[..4];
+            
+            string fechamentoNumero = entradaString.Substring(4, 4);
+
+            string numeroFechamentoFormatado = $"{fechamentoNumero}/{ano}";
+
+            string numfechamento = numeroFechamentoFormatado.TrimStart('0');
+
+            return numfechamento;
         }
     }
 }

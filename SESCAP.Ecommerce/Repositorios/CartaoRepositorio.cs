@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SESCAP.Ecommerce.Database;
 using SESCAP.Ecommerce.Models;
-using X.PagedList;
+
 
 namespace SESCAP.Ecommerce.Repositorios
 {

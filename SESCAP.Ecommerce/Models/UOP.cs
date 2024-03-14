@@ -31,6 +31,8 @@ namespace SESCAP.Ecommerce.Models
         public ICollection<CACAIXA> CACAIXAS { get; set; }
         public ICollection<LOCALVENDA> LOCALVENDAS { get; set; }
 
+        public string CnpjFormat => $"{NUCGCUOP[..2]}.{NUCGCUOP.Substring(2,3)}.{NUCGCUOP.Substring(5,3)}/{NUCGCUOP.Substring(8,4)}-{NUCGCUOP.Substring(12,2)}";
+
         public UOP()
         {
             CLIENTELAS = new List<CLIENTELA>();

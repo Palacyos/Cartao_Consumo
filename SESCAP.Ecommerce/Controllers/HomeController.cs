@@ -10,7 +10,6 @@ using SESCAP.Ecommerce.Libraries.Login;
 using SESCAP.Ecommerce.Libraries.Seguranca;
 using SESCAP.Ecommerce.Models;
 using SESCAP.Ecommerce.Repositorios;
-using X.PagedList;
 
 namespace SESCAP.Ecommerce.Controllers
 {
@@ -162,9 +161,15 @@ namespace SESCAP.Ecommerce.Controllers
 
             if (cadastro != null)
             {
-                var idCrip =  StringCipher.Encrypt(cadastro.ID.ToString());
+               
+                DateTime expiracao = DateTime.Now.AddMinutes(20);
+                var stringExpiracao = expiracao.ToString("yyyy-MM-ddTHH:mm:ss");
 
-                GerenciarEmail.LinkResetarSenha(cadastro, idCrip);
+                var idCrip =  StringCipher.Encrypt($"{cadastro.ID}|{stringExpiracao}");
+                
+                var textoSeguroParaUrl = idCrip.Replace("/","-").Replace("+","_").Replace("%","~");
+
+                GerenciarEmail.LinkResetarSenha(cadastro, textoSeguroParaUrl);
                 TempData["MSG_S_RecuperaSenha"] = "Link enviado com sucesso.";
 
                 ModelState.Clear();
@@ -182,24 +187,38 @@ namespace SESCAP.Ecommerce.Controllers
         {
             try
             {
-                
-                var idCadastroDecrip = StringCipher.Decrypt(id);
+                var textoSeguroParaUrl = id.Replace("-","/").Replace("_","+").Replace("~","%");
+                var idCadastroDecrip = StringCipher.Decrypt(textoSeguroParaUrl);
+                string[] dados = idCadastroDecrip.Split('|');
                 int idCadastro;
 
-                if (!int.TryParse(idCadastroDecrip, out idCadastro))
+                if (int.TryParse(dados[0], out idCadastro))
                 {
+                    DateTime expiracao = DateTime.Parse(dados[1]);
 
-                    TempData["MSG_E_CriarNovaSenha"] = "Link de alteração de senha inválido.";
-
+                    if( DateTime.Now > expiracao)
+                    {
+                        TempData["MSG_E_RecuperaSenha"] = "Link de alteração de senha expirado.";
+                        return RedirectToAction(nameof(RecuperarSenha));
+                    }
+                    
                 }
+
+                if(!int.TryParse(dados[0], out idCadastro))
+                {
+                    TempData["MSG_E_RecuperaSenha"] = "Link de alteração de senha inválido.";
+                    return RedirectToAction(nameof(RecuperarSenha));
+                }
+
+                return View();
             }
             catch (FormatException)
             {
-                TempData["MSG_E_CriarNovaSenha"] = "Link de alteração de senha inválido.";
+                TempData["MSG_E_RecuperaSenha"] = "Link de alteração de senha inválido.";
+                return RedirectToAction(nameof(RecuperarSenha));
             }
 
-            return View();
-
+            
         }
 
         [HttpPost]
@@ -215,10 +234,11 @@ namespace SESCAP.Ecommerce.Controllers
                 int idCadastro;
                 try
                 {
+                    var textoSeguroParaUrl = id.Replace("-","/").Replace("_","+");
+                    var idCadastroDecrip = StringCipher.Decrypt(textoSeguroParaUrl);
+                    string[] dados = idCadastroDecrip.Split('|');
 
-                    var idCadastroDecrip = StringCipher.Decrypt(id);
-
-                    if (!int.TryParse(idCadastroDecrip, out idCadastro))
+                    if (!int.TryParse(dados[0], out idCadastro))
                     {
 
                         TempData["MSG_E_CriarNovaSenha"] = "Link de alteração de senha inválido.";
@@ -241,12 +261,12 @@ namespace SESCAP.Ecommerce.Controllers
 
                     CadastroLoginRepositorio.Atualizar(cadastroDb);
 
-                    TempData["MSG_S_CriarNovaSenha"] = "Senha alterada com sucesso.";
+                    TempData["MSG_CadastroSucesso"] = "Senha alterada com sucesso.";
 
                 }
 
             }
-            return View();
+            return RedirectToAction(nameof(Login));
 
         }
 

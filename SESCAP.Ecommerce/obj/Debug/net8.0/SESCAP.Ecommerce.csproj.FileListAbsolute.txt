@@ -101,7 +101,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/Hangfire.NetCore.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/Humanizer.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/IBM.EntityFrameworkCore.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/JetBrains.Annotations.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/Microsoft.AspNetCore.Razor.Language.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/Microsoft.Build.dll
@@ -158,8 +157,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/System.Security.Cryptography.ProtectedData.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/System.Security.Permissions.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/System.Windows.Extensions.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/X.PagedList.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/X.PagedList.Mvc.Core.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/ca/Hangfire.Core.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/de/Hangfire.Core.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/es/Hangfire.Core.resources.dll
@@ -324,7 +321,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.AssemblyInfoInputs.cache
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.AssemblyInfo.cs
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.csproj.CoreCompileInputs.cache
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.MvcApplicationPartsAssemblyInfo.cs
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.MvcApplicationPartsAssemblyInfo.cache
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.RazorAssemblyInfo.cache
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.RazorAssemblyInfo.cs
@@ -344,5 +340,18 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.genruntimeconfig.cache
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/ref/SESCAP.Ecommerce.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/HarfBuzzSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/QuestPDF.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/SkiaSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/SkiaSharp.HarfBuzz.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/osx/native/libHarfBuzzSharp.dylib
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-arm64/native/libHarfBuzzSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-x64/native/libHarfBuzzSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-x86/native/libHarfBuzzSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/osx/native/libSkiaSharp.dylib
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-arm64/native/libSkiaSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-x64/native/libSkiaSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Diagnostics.EventLog.Messages.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll

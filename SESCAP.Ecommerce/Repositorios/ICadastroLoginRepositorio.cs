@@ -18,5 +18,7 @@ namespace SESCAP.Ecommerce.Repositorios
         CadastroLoginSescAP ObterCadastro(int Id);
 
         CadastroLoginSescAP ObterCadastroPorEmail(string email);
+
+        CadastroLoginSescAP ObterCadastroPorCpf(string cpf);
     }
 }

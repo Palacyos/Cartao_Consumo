@@ -16,7 +16,7 @@ namespace SESCAP.Ecommerce.Libraries.AutoMapper
                 .ForMember(dest => dest.FormaPgto, opt => opt.MapFrom(orig =>
 
                     (orig.Payment.GetPaymentType().ToString() == "CreditCard")
-                        ? TipoPagamentoConstante.CartaoCredito : TipoPagamentoConstante.Pix))
+                    ? TipoPagamentoConstante.CartaoCredito : TipoPagamentoConstante.Pix))
 
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(orig => orig.Payment.GetAmount()))
                 .ForMember(dest => dest.Transacao, opt => opt.MapFrom(orig => JsonConvert.SerializeObject(orig)))

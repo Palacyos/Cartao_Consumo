@@ -15,6 +15,10 @@ using SESCAP.Ecommerce.Libraries.Seguranca;
 using SESCAP.Ecommerce.Libraries.GeradorQRCode;
 using System.Threading.Tasks;
 using System.Net;
+using SESCAP.Ecommerce.Libraries.Email;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.Extensions.Hosting;
 
 namespace SESCAP.Ecommerce.Controllers
 {
@@ -37,12 +41,16 @@ namespace SESCAP.Ecommerce.Controllers
         private ISaldoCartaoRepositorio SaldoCartaoRepositorio { get; }
         private ICartCredRepositorio CartCredRepositorio { get; }
         private ITarefaRecorrente TarefaRecorrente { get; }
+        private ICadastroLoginRepositorio CadastroLoginRepositorio{get;}
+        private GerenciarEmail GerenciarEmail {get;}
+        private readonly IWebHostEnvironment _hostingEnv;
         private readonly IMapper _mapper;
 
 
         public PagamentoController(IClientelaRepositorio clientelaRepositorio, ICartaoRepositorio cartaoRepositorio, LoginClientela loginClientela, GerenciarCielo gerenciarCielo,
-            IMoedaPgtoRepositorio moedaPgtoRepositorio, IPagamentoOnlineRepositorio pagamentoOnlineRepositorio, IMapper mapper, ICacaixaRepositorio cacaixaRepositorio, ICxDepRetPdvRepositorio cxDepRetPdvRepositorio, ICapdvRepositorio capdvRepositorio,
-            IConfiguration configuration, IProdutoPdvRepositorio produtoPdvRepositorio, IHstMovCartReposiotrio hstMovCartReposiotrio, ITarefaRecorrente tarefaRecorrente, ICartCredRepositorio cartCredRepositorio, ISaldoCartaoRepositorio saldoCartaoRepositorio)
+        IMoedaPgtoRepositorio moedaPgtoRepositorio, IPagamentoOnlineRepositorio pagamentoOnlineRepositorio, IMapper mapper, ICacaixaRepositorio cacaixaRepositorio, ICxDepRetPdvRepositorio cxDepRetPdvRepositorio, ICapdvRepositorio capdvRepositorio,
+        IConfiguration configuration, IProdutoPdvRepositorio produtoPdvRepositorio, IHstMovCartReposiotrio hstMovCartReposiotrio, ITarefaRecorrente tarefaRecorrente, ICartCredRepositorio cartCredRepositorio, ISaldoCartaoRepositorio saldoCartaoRepositorio,
+        ICadastroLoginRepositorio cadastroLoginRepositorio, GerenciarEmail gerenciarEmail, IWebHostEnvironment hostingEnv)
         {
             ClientelaRepositorio = clientelaRepositorio;
             CartaoRepositorio = cartaoRepositorio;
@@ -60,6 +68,9 @@ namespace SESCAP.Ecommerce.Controllers
             TarefaRecorrente = tarefaRecorrente;
             CartCredRepositorio = cartCredRepositorio;
             SaldoCartaoRepositorio = saldoCartaoRepositorio;
+            CadastroLoginRepositorio = cadastroLoginRepositorio;
+            GerenciarEmail = gerenciarEmail;
+            _hostingEnv = hostingEnv;
 
         }
  
@@ -107,7 +118,7 @@ namespace SESCAP.Ecommerce.Controllers
                     if (transacaoPagamento.Payment.GetStatus() == Status.PaymentConfirmed) 
                     {
                         PagamentoOnline pgOnline = SalvarPagamento(transacaoPagamento);
-
+                        
                         TempData["Pagamento_MSG"] = "Pagamento Realizado Com Sucesso";
 
                         var clientelaLogin = LoginClientela.Obter();
@@ -155,6 +166,17 @@ namespace SESCAP.Ecommerce.Controllers
 
                         CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
 
+                        var cadastro = CadastroLoginRepositorio.ObterCadastroPorCpf(clientela.NUCPF);
+
+                        string wwwRootPath = _hostingEnv.WebRootPath;
+                        string caminhoArquivo = Path.Combine(wwwRootPath, "comprovante", "comprovante_de_recarga.pdf");
+                        string logo = Path.Combine(wwwRootPath, "imagens", "logo_sesc_ap.png");
+
+                        TimeSpan horaDeposito = new(depRetPdv.HRDEPRET.Hours, depRetPdv.HRDEPRET.Minutes, depRetPdv.HRDEPRET.Seconds);
+
+                        ComprovanteRecarga.GerarPDF(clientela.UOP.CnpjFormat, caixa.NumeroFechamentoFormatado, depRetPdv.SQDEPRET, depRetPdv.DTDEPRET, horaDeposito, clientela.MatFormat, clientela.NMCLIENTE, produtoPdvRecargaCartao.DSPRODUTO, pgOnline.FormaPgto, depRetPdv.VLDEPRET, obterSaldoCartao.SLDVLCART, caminhoArquivo, logo);
+
+                        GerenciarEmail.EnviaComprovante(cadastro);
                     
                         return new RedirectToActionResult("ConfirmacaoPagamento", "Pagamento", new { id = pgOnline.Id });
 
@@ -164,7 +186,9 @@ namespace SESCAP.Ecommerce.Controllers
 
                     ViewBag.Pagamento_MSG_ERRO = TempData["Pagamento_MSG_ERRO"] as string;
 
-                    TempData["TIPO_ERRO_MSG_PAGAMENTO"] = $"Erro no pagamento, verifique os dados do cartão. ({transacaoPagamento.Payment.ReturnMessage})";
+                    var msgPagemnto = _hostingEnv.IsDevelopment() ? transacaoPagamento.Payment.ReturnMessage : transacaoPagamento.Payment.ReasonMessage;
+
+                    TempData["TIPO_ERRO_MSG_PAGAMENTO"] = $"Erro no pagamento, verifique os dados do cartão. ({msgPagemnto})";
 
                     return Recarga();
 
@@ -294,6 +318,17 @@ namespace SESCAP.Ecommerce.Controllers
 
                 CacaixaRepositorio.AtualizaSaldoCaixa(cxDeposito, depRetPdv.VLDEPRET);
 
+                var cadastro = CadastroLoginRepositorio.ObterCadastroPorCpf(clientela.NUCPF);
+                string wwwRootPath = _hostingEnv.WebRootPath;
+                string caminhoArquivo = Path.Combine(wwwRootPath, "comprovante", "comprovante_de_recarga.pdf");
+                string logo = Path.Combine(wwwRootPath, "imagens", "logo_sesc_ap.png");
+
+                TimeSpan horaDeposito = new(depRetPdv.HRDEPRET.Hours, depRetPdv.HRDEPRET.Minutes, depRetPdv.HRDEPRET.Seconds);
+
+                ComprovanteRecarga.GerarPDF(clientela.UOP.CnpjFormat, caixa.NumeroFechamentoFormatado, depRetPdv.SQDEPRET, depRetPdv.DTDEPRET, horaDeposito, clientela.MatFormat, clientela.NMCLIENTE, produtoPdvRecargaCartao.DSPRODUTO, pgOnline.FormaPgto, depRetPdv.VLDEPRET, obterSaldoCartao.SLDVLCART, caminhoArquivo, logo);
+
+                GerenciarEmail.EnviaComprovante(cadastro);
+
                 return new RedirectToActionResult("ConfirmacaoPagamento", "Pagamento", new { id = pgOnline.Id });
             }
             catch (CieloException e)
@@ -316,6 +351,8 @@ namespace SESCAP.Ecommerce.Controllers
             ViewBag.CartaoImg = cartao.CLIENTELA.CarregaFoto;
 
             PagamentoOnline pgOnline = PagamentoOnlineRepositorio.ObterPagamento(id);
+
+            TempData["MSG_ComprovanteEnviado"] = "Comprovante de recarga enviado ao e-mail cadastrado.";
 
             ViewBag.Pagamento_MSG = TempData["Pagamento_MSG"] as string;
 

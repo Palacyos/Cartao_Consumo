@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "P9gCAkDlXHbhooLUrEZTeKH05WSFyblwr5NGosWzBx8=",
+  "Hash": "0eFMbbrILaKSgvMEwR0J1O6yemfciCnqqrtx01AYrE0=",
   "Source": "SESCAP.Ecommerce",
   "BasePath": "_content/SESCAP.Ecommerce",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/comprovante/comprovante_de_recarga.pdf",
+      "SourceId": "SESCAP.Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/",
+      "BasePath": "_content/SESCAP.Ecommerce",
+      "RelativePath": "comprovante/comprovante_de_recarga.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/comprovante/comprovante_de_recarga.pdf"
+    },
     {
       "Identity": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/css/bootstrap.min.css",
       "SourceId": "SESCAP.Ecommerce",

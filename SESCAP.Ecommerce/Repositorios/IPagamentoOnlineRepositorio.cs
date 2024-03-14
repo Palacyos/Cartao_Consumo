@@ -1,6 +1,4 @@
-﻿using System;
-using SESCAP.Ecommerce.Models;
-using X.PagedList;
+﻿using SESCAP.Ecommerce.Models;
 
 namespace SESCAP.Ecommerce.Repositorios
 {
@@ -9,6 +7,5 @@ namespace SESCAP.Ecommerce.Repositorios
 
         void Cadastrar(PagamentoOnline pagamentoOnline); 
         PagamentoOnline ObterPagamento(int Id);
-        IPagedList<PagamentoOnline> ObterTodosOsPagamentosDoCliente(int? pagina, int Sqmatric, int Cduop);
     }
 }

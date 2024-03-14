@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/comprovante/comprovante_de_recarga.pdf",
+      "PackagePath": "staticwebassets/comprovante/comprovante_de_recarga.pdf"
+    },
+    {
       "Id": "/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/wwwroot/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/css/bootstrap.min.css"
     },

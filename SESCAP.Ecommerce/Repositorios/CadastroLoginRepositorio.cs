@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SESCAP.Ecommerce.Database;
@@ -53,6 +54,10 @@ namespace SESCAP.Ecommerce.Repositorios
             Banco.SaveChanges();
         }
 
-     
+        public CadastroLoginSescAP ObterCadastroPorCpf(string cpf)
+        {
+            var cpfClientelaBanco = Convert.ToUInt64(cpf).ToString(@"000\.000\.000\-00");
+            return Banco.Cadastros.FirstOrDefault(c => c.CPF.Equals(cpfClientelaBanco));
+        }
     }
 }

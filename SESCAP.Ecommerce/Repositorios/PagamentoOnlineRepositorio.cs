@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Extensions.Configuration;
 using SESCAP.Ecommerce.Database;
 using SESCAP.Ecommerce.Models;
-using X.PagedList;
 
 namespace SESCAP.Ecommerce.Repositorios
 {
@@ -29,14 +27,5 @@ namespace SESCAP.Ecommerce.Repositorios
             return _banco.PagamentosOnline.FirstOrDefault(po => po.Id == id);
         }
 
-        public IPagedList<PagamentoOnline> ObterTodosOsPagamentosDoCliente(int? pagina, int Sqmatric, int Cduop)
-        {
-            int RegistroPorPagina = _conf.GetValue<int>("RegistroPorPagina");
-
-            int NumeroPagina = pagina ?? 1;
-
-            return _banco.PagamentosOnline.ToPagedList<PagamentoOnline>(NumeroPagina, RegistroPorPagina);
-
-        }
     }
 }
