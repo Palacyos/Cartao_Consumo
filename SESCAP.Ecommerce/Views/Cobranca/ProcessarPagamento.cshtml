@@ -1,0 +1,121 @@
+﻿@model RecargaViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pagamento";
+}
+
+<div class="top-navbar">
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@ViewBag.clientelaImg" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+                            <h2 class="ml-lg-2">Pagamento</h2>
+                        </div>
+                        <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+                            @* <a asp-controller="Pagamento" asp-action="FormaPagmento" class="btn btn-success">
+                                <i class="material-icons-sharp">add_circle</i>
+                                <span>Recarregar Cartão</span>
+                            </a> *@
+                        </div>
+                    </div>    
+                </div>        
+                <div class="container mt-5">
+                    @if (TempData["MSG_E_Pagamento"] != null)
+                    {
+                        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["MSG_E_Pagamento"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="btn_pix_close"></button>
+                        </div>
+                    }
+                    <form asp-controller="Cobranca" asp-action="ConfirmarPagamento" method="get" id="paymentForm">
+                       <div id="antiForgeryTokenContainer" style="display: none;">
+                            @Html.AntiForgeryToken()
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var cobranca in Model.Cobrancas)
+                                {
+                                    <tr>
+                                        <td>@cobranca.DsCobranca</td>
+                                        <td>@cobranca.Valor.ToString("C")</td>
+                                        <input type="hidden" name="cobrancasData" value="@cobranca.IdClasse|@cobranca.CdElement|@cobranca.Sqcobranca|@cobranca.Valor|@cobranca.ValorDesconto|
+                                        @cobranca.ValorJuros|@cobranca.DsCobranca" />
+                                    </tr>
+                                }
+                                <input id="montante" name="total" type="hidden" value="@Model.Total"/>
+                            </tbody>
+                        </table>
+
+                        <div class="cob-flex-container mt-3">
+                            <span class="total-amount">Total a pagar: <span>@Model.Total.ToString("C")</span></span>
+                            <div>
+                               <div class="payment-options">
+                                    <div class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="pix" id="pix">
+                                        <label for="pix">PIX</label>
+                                    </div>
+                                    <div class="payment-option active">
+                                        <input type="radio" name="paymentMethod" value="credit" id="credit" checked>
+                                        <label for="credit">CRÉDITO</label>
+                                    </div>
+                                </div>
+                                <button id="payProcessButton" class="btn btn-primary mt-2" type="submit">Pagar</button>
+                                <div class="body_loader" style="display: none;">
+                                    <div class="loader_container">
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                        <span class="loading">SESC-AP...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>            

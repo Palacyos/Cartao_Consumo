@@ -138,13 +138,13 @@ namespace SESCAP.Ecommerce.Controllers
                      
                         var cxDeposito = CacaixaRepositorio.CaixaDeposito(caixa.SQCAIXA, caixa.CDPESSOA);
 
-                        var depRetPdv = CxDepRetPdvRepositorio.CadastraDeposito(cartao.NUMCARTAO, cxDeposito.SQCAIXA, cxDeposito.CDPESSOA, cxDeposito.DTABERTURA, pgOnline.Total, Configuration.GetValue<int>("CIELOCREDITO"));
+                        var depRetPdv = CxDepRetPdvRepositorio.CadastraDeposito(cartao.NUMCARTAO, cxDeposito.SQCAIXA, cxDeposito.CDPESSOA, pgOnline.Total, Configuration.GetValue<int>("CIELOCREDITO"));
 
                         var obterSaldoCartao = SaldoCartaoRepositorio.ObterSaldoCartao(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
                         if (obterSaldoCartao == null)
                         {
-                            SaldoCartaoRepositorio.InsereSaldo(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
+                            obterSaldoCartao = SaldoCartaoRepositorio.InsereSaldo(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
                         }
                         else
                         {
@@ -290,19 +290,19 @@ namespace SESCAP.Ecommerce.Controllers
 
                 var cxDeposito = CacaixaRepositorio.CaixaDeposito(caixa.SQCAIXA, caixa.CDPESSOA);
 
-                var depRetPdv = CxDepRetPdvRepositorio.CadastraDeposito(cartao.NUMCARTAO, cxDeposito.SQCAIXA, cxDeposito.CDPESSOA, cxDeposito.DTABERTURA, pgOnline.Total, Configuration.GetValue<int>("PixCielo"));
+                var depRetPdv = CxDepRetPdvRepositorio.CadastraDeposito(cartao.NUMCARTAO, cxDeposito.SQCAIXA, cxDeposito.CDPESSOA, pgOnline.Total, Configuration.GetValue<int>("PixCielo"));
 
                 var obterSaldoCartao = SaldoCartaoRepositorio.ObterSaldoCartao(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
                 if (obterSaldoCartao == null)
                 {
-                    SaldoCartaoRepositorio.InsereSaldo(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
+                    obterSaldoCartao = SaldoCartaoRepositorio.InsereSaldo(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET);
                 }
                 else
                 {
                     SaldoCartaoRepositorio.AtualizarSaldoCartao(obterSaldoCartao, depRetPdv.VLDEPRET);
                 }
-
+                
                 var cartaoCredito = CartCredRepositorio.ObterCartaoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO);
 
                 if (cartaoCredito == null)
@@ -310,7 +310,7 @@ namespace SESCAP.Ecommerce.Controllers
                     CartCredRepositorio.InsereValorProdutoCredito(depRetPdv.NUMCARTAO, produtoPdvRecargaCartao.CDPRODUTO, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString());
                 }
                 else
-                {
+                { 
                     CartCredRepositorio.AtualizarValorProdutoCredito(cartaoCredito, depRetPdv.VLDEPRET, depRetPdv.DTDEPRET, depRetPdv.HRDEPRET, depRetPdv.CDPESSOA.ToString());
                 }
 

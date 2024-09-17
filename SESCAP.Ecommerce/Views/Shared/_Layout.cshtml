@@ -21,20 +21,18 @@
 
             <div class="body-overlay"></div>
 
-
-
-            <div id="sidebar">
+            <nav id="sidebar">
 
                 <div class="sidebar-header">
                     <h3><img src="~/imagens/sesc-azul.png" class="img-fluid" /> <span>Sesc Amapá</span> </h3>
                 </div>
 
-                <ul class="list-unstyled component m-0">
-                    <li class="active">
+                <ul class="list-unstyled component m-0" id="menu">
+                    <li>
 
                         <a asp-controller="Home" asp-action="CredencialClientela" class="home"  id="btn_home">
                             <i class="material-icons-sharp">home</i>
-                            <span>Home</span>
+                            <span>Credencial</span>
                         </a>
 
                     </li>
@@ -46,9 +44,23 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a asp-controller="Pagamento" asp-action="FormaPagmento" id="btn_recarga" class="sub-btn">
+                            <i class="material-icons-sharp">monetization_on</i>
+                            <span>Recarregar Cartão</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Cobranca" asp-action="CobrancaClientela" id="btn_cobranca" class="sub-btn">
+                            <i class="material-icons-sharp">receipt_long</i>
+                            <span>Cobranças</span>
+                        </a>
+                    </li>
+
                 </ul>
 
-            </div>
+            </nav>
            
             <div id="content">
                 @RenderBody()
@@ -59,11 +71,13 @@
 
         <script src="~/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/jquery.min.js"></script>
-        <script src="~/js/scripts.js"></script>
         <script src="~/js/jquery.dataTables.min.js"></script>
         <script src="~/js/jquery.mask.min.js"></script>
         <script src="~/js/jquery.maskMoney.min.js"></script>
         <script src="~/js/sweetalert2.all.min.js"></script>
+        <script src="~/js/scripts.js"></script>
+
+        @RenderSection("Scripts", required:false)
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -105,15 +119,15 @@
             });
 
 
-            $(function () {
+            $(document).ready(function () {
                 $('.amount').maskMoney({ decimal: ',', thousands: '.', precision: 2 });
-            })
+                $('.numero_cartao').mask('0000 0000 0000 0000');
+                $('.numero_cvv').mask('000');
+                $('.mes_vencimento').mask('00');
+                $('.ano_vencimento').mask('0000');
+            });
 
-            $('.numero_cartao').mask('0000 0000 0000 0000');
-            $('.numero_cvv').mask('000');
-            $('.mes_vencimento').mask('00');
-            $('.ano_vencimento').mask('0000');
-
+          
             var strValue = "@((string)ViewBag.Pagamento_MSG)";
             if (strValue !== null && strValue !== '') {
                 Swal.fire({
@@ -122,18 +136,18 @@
                     title: strValue,
                     showConfirmButton: false,
                     timer: 1700
-                })
+                });
             }
 
             var strVal = "@((string)ViewBag.Pagamento_MSG_ERRO)";
-            if (strValue !== null && strVal !== '') {
+            if (strVal !== null && strVal !== '') {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
                     title: strVal,
                     showConfirmButton: false,
                     timer: 1700
-                })
+                });
             }
 
             function DisplayBusyIndication(){
@@ -156,6 +170,278 @@
                 HideBusyIndication();
 
             }, 1000);
+
+            $(document).ready(function(){
+                
+                var activeItem = sessionStorage.getItem('activeItem');
+              
+                if (!activeItem) {
+                    $('#sidebar ul li:first-child').addClass('active');
+                    sessionStorage.setItem('activeItem', 0);
+                } else {
+                    
+                    $('#sidebar ul li').eq(activeItem).addClass('active').siblings().removeClass('active');
+                }
+               
+                $('#sidebar ul li').click(function(){
+                  
+                    $('#sidebar ul li').removeClass('active');
+                   
+                    $(this).addClass('active');
+           
+                    var index = $(this).index();
+
+                    sessionStorage.setItem('activeItem', index);
+                });
+
+                $('.dropdown-menu a').click(function() {
+                    
+                    sessionStorage.removeItem('activeItem');
+                });
+            });
+
+            $(document).ready(function () {
+
+                // Função para desmarcar todos os checkboxes
+                function uncheckAllCheckboxes() {
+                    $('.billing-checkbox').prop('checked', false).prop('disabled', false).closest('tr').removeClass('selected');
+                    updatePayButtonState();
+                    updateTotalAmount();
+                }
+
+                // Desmarcar todos os checkboxes ao carregar a página
+                uncheckAllCheckboxes();
+
+
+                function updatePayButtonState() {
+                    var anyChecked = $('.billing-checkbox:checked').length > 0;
+                    $('#payButton').prop('disabled', !anyChecked);
+                }
+
+                function updateTotalAmount() {
+
+                    var totalAmount = 0;
+
+                    $('.billing-checkbox:checked').each(function() {
+
+                        totalAmount += parseFloat($(this).data('amount').replace(',', '.'));
+                    });
+
+                    var valorFormatado = new Intl.NumberFormat('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }).format(totalAmount);
+
+                    $('#totalAmount').text(valorFormatado);
+
+                }
+
+                function handleCheckboxChange() {
+                    var currentCheckbox = $(this);
+                    var currentType = currentCheckbox.data('type');
+                    var isChecked = currentCheckbox.is(':checked');
+
+                    if (isChecked) {
+                        if (currentType == "@((string)ViewBag.EducacaoFundamental)" || currentType == "@((string)ViewBag.EducacaoInfantil)") {
+                            var sameTypeCheckboxes = $('.billing-checkbox').filter(function () {
+                                return $(this).data('type') == currentType && $(this).data('status') == 0;
+                            }).sort(function (a, b) {
+                                return new Date($(a).data('vencimento')) - new Date($(b).data('vencimento'));
+                            });
+
+                            var currentVencimento = new Date(currentCheckbox.data('vencimento'));
+
+                            sameTypeCheckboxes.each(function () {
+                                var checkbox = $(this);
+                                var vencimento = new Date(checkbox.data('vencimento'));
+
+                                if (vencimento <= currentVencimento) {
+                                    checkbox.prop('checked', true).prop('disabled', true).closest('tr').addClass('selected');
+                                }
+                            });
+
+                            currentCheckbox.prop('disabled', false);
+                        }
+                        currentCheckbox.closest('tr').addClass('selected');
+                    } else {
+                        if (currentType == "@((string)ViewBag.EducacaoFundamental)" || currentType == "@((string)ViewBag.EducacaoInfantil)") {
+                            var sameTypeCheckboxes = $('.billing-checkbox').filter(function () {
+                                return $(this).data('type') == currentType && $(this).data('status') == 0;
+                            }).sort(function (a, b) {
+                                return new Date($(a).data('vencimento')) - new Date($(b).data('vencimento'));
+                            });
+
+                            var currentVencimento = new Date(currentCheckbox.data('vencimento'));
+
+                            sameTypeCheckboxes.each(function () {
+                                var checkbox = $(this);
+                                var vencimento = new Date(checkbox.data('vencimento'));
+
+                                if (vencimento <= currentVencimento) {
+                                    checkbox.prop('checked', false).prop('disabled', false).closest('tr').removeClass('selected');
+                                }
+                            });
+                        }
+                        currentCheckbox.closest('tr').removeClass('selected');
+                    }
+
+                    updatePayButtonState();
+                    updateTotalAmount();
+                }
+
+                function loadBillings(status) {
+                    $.ajax({
+                        url: '@Url.Action("ObterCobrancasPorStatus", "Cobranca")',
+                        type: 'GET',
+                        data: { status: status },
+                        success: function (data) {
+                            $('#billingTableBody').html(data);
+                            $('.billing-checkbox').on('change', handleCheckboxChange);
+
+                            if (status == 1) {
+                                $('#datavr').text('Pagamento');
+                            } else {
+                                $('#datavr').text('Vencimento');
+                            }
+
+                            if (status == 1 || status == 2) {
+                                $('#selectHeader').hide();
+                                $('#payButton').hide();
+                                $('.selectColumn').hide();
+                                $('.total-amount').hide();
+                            } else {
+                                $('#selectHeader').show();
+                                $('.selectColumn').show();
+                                $('#payButton').show();
+                                $('.total-amount').show();
+                            }
+                        }
+                    });
+                }
+
+                $('#showPaid').on('click', function () {
+                    loadBillings(1);
+                });
+
+                $('#showOverdue').on('click', function () {
+                    loadBillings(2);
+                });
+
+                $('.billing-checkbox').on('change', handleCheckboxChange);
+
+                $('#billingForm').on('submit', function () {
+                    $('.billing-checkbox:disabled').each(function () {
+                        var checkbox = $(this);
+                        var clone = checkbox.clone().prop('disabled', false).hide();
+                        $(this).after(clone);
+                    });
+                });
+
+                updatePayButtonState();
+                updateTotalAmount();
+            });
+
+            $(document).ready(function() {
+                const links = $('.btn_sel');
+                const defaultLinkId = 'showOpen';
+
+                function setActiveLink(link) {
+                    links.removeClass('active');
+                    $(link).addClass('active');
+                    localStorage.setItem('activeLink', $(link).attr('id'));
+                }
+
+                links.on('click', function(event) {
+                    setActiveLink(this);
+                });
+
+                const activeLinkId = localStorage.getItem('activeLink') || defaultLinkId;
+                const activeLink = $('#' + activeLinkId);
+                if (activeLink.length) {
+                    activeLink.addClass('active');
+                }
+
+                $(window).on('beforeunload', function() {
+                    localStorage.setItem('activeLink', defaultLinkId);
+                });
+            });
+
+            $(document).ready(function() {
+                var form = $('#paymentForm');
+                var antiForgeryTokenField = $('#antiForgeryTokenContainer input'); // Campo do AntiForgeryToken gerado
+
+                // Função para verificar qual método de pagamento está selecionado
+                function handlePaymentMethodChange() {
+                    var selectedValue = $('input[name="paymentMethod"]:checked').val(); // Verifica qual botão está selecionado
+
+                    if (selectedValue === 'pix') {
+                        // Alterar para método de pagamento PIX (POST)
+                        var newAction = '@Url.Action("ConfirmarPagamentoPix", "Cobranca")';
+                        form.attr('action', newAction);
+                        form.attr('method', 'post'); // Define o método como POST
+
+                        // Adicionar o campo AntiForgeryToken
+                        if (!form.find('input[name="__RequestVerificationToken"]').length) {
+                            form.append(antiForgeryTokenField.clone());
+                        }
+                    } else {
+                        // Alterar para método de pagamento Crédito (GET)
+                        var newAction = '@Url.Action("ConfirmarPagamento", "Cobranca")';
+                        form.attr('action', newAction);
+                        form.attr('method', 'get'); // Define o método como GET
+
+                        // Remover o campo AntiForgeryToken
+                        form.find('input[name="__RequestVerificationToken"]').remove();
+                    }
+                }
+
+                // Chama a função logo no carregamento da página para garantir o comportamento correto
+                handlePaymentMethodChange();
+
+                // Ativa a função sempre que o método de pagamento for alterado
+                $('input[name="paymentMethod"]').change(function() {
+                    handlePaymentMethodChange();
+                });
+            });
+ 
+            $(document).ready(function() {
+                // Seleciona o input pelo id
+                var valorTotalInput = $('#valorTotalPagamento');
+
+                // Pega o valor original (decimal)
+                var valorDecimal = parseFloat(valorTotalInput.val().replace(",", "."));
+
+                // Formata para o padrão monetário brasileiro
+                var valorFormatado = new Intl.NumberFormat('pt-BR', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(valorDecimal);
+
+                // Exibe o valor formatado para o usuário
+                valorTotalInput.val(valorFormatado);
+            });
+
+            document.getElementById('paymentForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Evita o envio automático
+
+                // Criptografa os dados usando Base64
+                const inputs = document.querySelectorAll('input[name="cobrancasData"]');
+                inputs.forEach(input => {
+                   input.value = btoa(unescape(encodeURIComponent(input.value)));
+                });
+
+                // Criptografa o total também
+                const totalInput = document.getElementById('montante');
+                totalInput.value = btoa(unescape(encodeURIComponent(totalInput.value)));
+                // Envia o formulário manualmente após a criptografia
+                this.submit();
+            });
+
+           document.getElementById("payProcessButton").addEventListener("click", function() {
+                // Exibe o overlay com o spinner
+                document.querySelector('.body_loader').style.display = 'flex';
+            });
+
         </script>
 
     </body>

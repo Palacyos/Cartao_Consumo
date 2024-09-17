@@ -24,10 +24,8 @@ namespace SESCAP.Ecommerce.Repositorios
         }
 
         public CACAIXA ObterCaixaAberto(int cdpdv)
-        {
-            var dataAtual = DateTime.Now;
-            
-            return Banco.Cacaixas.FirstOrDefault(cx => cx.DTABERTURA.Equals(dataAtual) && cx.DTFECHAMEN == null && cx.STCAIXA == 0 && cx.CDPDV == cdpdv && cx.CDPESSOA.Equals(Configuration.GetValue<int>("CdPessoa")));
+        {       
+            return Banco.Cacaixas.FirstOrDefault(cx => cx.DTFECHAMEN == null && cx.STCAIXA == 0 && cx.CDPDV == cdpdv && cx.CDPESSOA.Equals(Configuration.GetValue<int>("CdPessoa")));
         }
 
         public CACAIXA CaixaDeposito(int sqcaixa, int cdPessoa)
@@ -35,7 +33,7 @@ namespace SESCAP.Ecommerce.Repositorios
             return Banco.Cacaixas
                 .Include(cx => cx.PESSOA)
                     .ThenInclude(p => p.USUARIO)
-                .FirstOrDefault(cx => cx.SQCAIXA.Equals(sqcaixa) && cx.CDPESSOA.Equals(cdPessoa));
+            .FirstOrDefault(cx => cx.SQCAIXA.Equals(sqcaixa) && cx.CDPESSOA.Equals(cdPessoa));
         }
       
         public CACAIXA AbreCaixa(int cdpdv, int cdpessoa, int cduop, string nmestacao, int cdlocvenda)

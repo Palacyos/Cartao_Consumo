@@ -124,6 +124,47 @@ namespace SESCAP.Ecommerce.Libraries.Pagamento.Cielo
 
         }
 
+        public Transaction GerarPagamentoCobrancaPix(RecargaViewModel recargaViewModel)
+        {
+            CLIENTELA clientela = LoginClientela.Obter();
+
+            Merchant merchant = new Merchant(Configuration.GetValue<Guid>("Cielo:MerchantId"), Configuration.GetValue<string>("Cielo:MerchantKey"));
+
+            ISerializerJSON json = new SerializerJSON();
+
+            CieloApi apiCielo;
+
+            if(_env.IsDevelopment())
+            {
+                apiCielo = new CieloApi(CieloEnvironment.SANDBOX, merchant, json);
+            }
+            else
+            {
+                apiCielo = new CieloApi(CieloEnvironment.PRODUCTION, merchant, json);
+            }
+
+
+            var customer = new Customer(clientela.NMCLIENTE);
+            customer.SetIdentityType(IdentityType.CPF);
+            customer.Identity = clientela.NUCPF;
+
+
+            var payment = new Payment();
+            payment.SetAmount(recargaViewModel.Total);
+            payment.Type = "Pix";
+
+            var merchantOrderId = new Random().Next();
+
+            var transaction = new Transaction(
+            merchantOrderId: merchantOrderId.ToString(),
+            customer: customer,
+            payment: payment);
+
+            return apiCielo.CreateTransaction(Guid.NewGuid(), transaction);
+
+
+        }
+
         public Transaction VerificarStatusPagamentoPix(Guid paymentId)
         {
             Merchant merchant = new Merchant(Configuration.GetValue<Guid>("Cielo:MerchantId"), Configuration.GetValue<string>("Cielo:MerchantKey"));

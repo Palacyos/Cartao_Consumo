@@ -23,12 +23,14 @@ namespace SESCAP.Ecommerce.Models
         public short IDCATEGORI { get; set; }
         public short VBCATCONV { get; set; }
 
-        public ICollection<CLIENTELA> CLIENTELAS { get; set; }
 
+        public ICollection<CLIENTELA> CLIENTELAS { get; set; }
+        public ICollection<INSCRICAO> INSCRICOES {get; set;}
 
         public CATEGORIA()
         {
             CLIENTELAS = new List<CLIENTELA>();
+            INSCRICOES = new List<INSCRICAO>();
         }
 
         public string DescTipoCategoria

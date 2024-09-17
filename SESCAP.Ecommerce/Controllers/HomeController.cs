@@ -234,7 +234,7 @@ namespace SESCAP.Ecommerce.Controllers
                 int idCadastro;
                 try
                 {
-                    var textoSeguroParaUrl = id.Replace("-","/").Replace("_","+");
+                    var textoSeguroParaUrl = id.Replace("-","/").Replace("_","+").Replace("~","%");
                     var idCadastroDecrip = StringCipher.Decrypt(textoSeguroParaUrl);
                     string[] dados = idCadastroDecrip.Split('|');
 

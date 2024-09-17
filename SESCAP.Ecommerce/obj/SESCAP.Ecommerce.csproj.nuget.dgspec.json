@@ -33,6 +33,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -41,7 +46,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[13.0.1, )"
             },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -53,19 +58,19 @@
             },
             "Hangfire.AspNetCore": {
               "target": "Package",
-              "version": "[1.8.11, )"
+              "version": "[1.8.14, )"
             },
             "Hangfire.Core": {
               "target": "Package",
-              "version": "[1.8.11, )"
+              "version": "[1.8.14, )"
             },
             "Hangfire.InMemory": {
               "target": "Package",
-              "version": "[0.8.0, )"
+              "version": "[0.10.3, )"
             },
             "Hangfire.MemoryStorage": {
               "target": "Package",
-              "version": "[1.8.0, )"
+              "version": "[1.8.1.1, )"
             },
             "IBM.EntityFrameworkCore-osx": {
               "target": "Package",
@@ -73,13 +78,13 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
@@ -87,7 +92,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[8.0.4, )"
             },
             "Net.IBM.Data.Db2-osx": {
               "target": "Package",
@@ -107,7 +112,7 @@
             },
             "System.Drawing.Common": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.8, )"
             }
           },
           "imports": [
@@ -129,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

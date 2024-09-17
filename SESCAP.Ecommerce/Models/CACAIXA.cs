@@ -43,6 +43,7 @@ namespace SESCAP.Ecommerce.Models
         public ICollection<HSTMOVCART> HSTMOVCARTS { get; set; }
         public ICollection<CXDEPRETPDV> CXDEPRETPDVs { get; set; }
         public ICollection<CAIXALANCA> LANCAMENTOSCAIXA { get; set; }
+        public ICollection<PAGAMENTOS> PAGAMENTOS {get; set;}
 
         public string NumeroFechamentoFormatado
         {
@@ -57,6 +58,7 @@ namespace SESCAP.Ecommerce.Models
             HSTMOVCARTS = new List<HSTMOVCART>();
             CXDEPRETPDVs = new List<CXDEPRETPDV>();
             LANCAMENTOSCAIXA = new List<CAIXALANCA>();
+            PAGAMENTOS = new List<PAGAMENTOS>();
         }
 
 

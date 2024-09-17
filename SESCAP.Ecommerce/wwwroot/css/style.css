@@ -424,7 +424,6 @@ a, a:hover, a:focus{
 #sidebar .sidebar-header{
     padding: 26px;
     background-color: #fff;
-    border-bottom: 1px solid #eee;
 }
 
 .sidebar-header h3 {
@@ -444,25 +443,35 @@ a, a:hover, a:focus{
 }
 
 #sidebar ul li {
-    padding: 2px 0px;
+    line-height: 60px !important;
     
 }
 
-#sidebar ul li.active > a {
-    color: #fff !important;
-    background-color: rgb(31, 56, 91);
-}
-
-#sidebar ul li.active > a i {
-    color: #fff !important;
+#sidebar ul li a i {
+    color: rgb(31, 56, 91) !important;
    
 }
 
-#sidebar ul li a:hover {
+#sidebar ul li.active a {
     color: #fff !important;
     background-color: rgb(31, 56, 91);
+    border-left-color: #FFC109 !important;
 }
 
+#sidebar ul li.active a i{
+    color: #fff !important;
+}
+
+#sidebar ul li:hover a {
+    color: #fff !important;
+    background-color: rgb(31, 56, 91);
+    border-left-color: #FFC109 !important;
+    
+}
+
+#sidebar ul li:hover a i{
+    color: #fff !important;   
+}
 
 .dropdown-toggle::after{
     position: absolute;
@@ -480,14 +489,14 @@ a, a:hover, a:focus{
 }
 
 #sidebar ul li a {
-    padding: 5px 10px 15px 20px;
-    line-height: 30px;
+    padding: 5px 20px ;
+    line-height: 50px;
     font-size: 15px;
     position: relative;
-    font-weight: 400;
     display: block;
-    color: rgb(31, 56, 91) !important;
+    color:  rgb(31, 56, 91) !important;
     text-transform: capitalize;
+    border-left: 3px solid transparent;
 }
 
 
@@ -500,9 +509,6 @@ a, a:hover, a:focus{
 #content{
     position: relative;
     transition: all 0.5s;
-   
-    
-
 }
 
 .top-navbar {
@@ -769,7 +775,7 @@ a, a:hover, a:focus{
     min-width: 50px;
     border-radius: 2px;
     outline:none!important;
-    margin-right: 2px;
+    margin-right: 5px;
     padding: 8px;
 
 }
@@ -992,7 +998,7 @@ table.table-stripped.table-hover tbody tr:hover {
     margin-bottom: 2px;
     overflow: hidden;
     bottom: 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
     
 }
 
@@ -1005,7 +1011,7 @@ table.table-stripped.table-hover tbody tr:hover {
     margin-bottom: 2px;
     overflow: hidden;
     bottom: 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 
@@ -1018,7 +1024,7 @@ table.table-stripped.table-hover tbody tr:hover {
 
 }
 
-.cartao-image .cartao-hover {
+/* .cartao-image .cartao-hover {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1032,9 +1038,9 @@ table.table-stripped.table-hover tbody tr:hover {
     transition: .5s;
     opacity: 0;
     
-}
+} */
 
-.cartao-hover.geral  {
+/* .cartao-hover.geral  {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1047,7 +1053,7 @@ table.table-stripped.table-hover tbody tr:hover {
     color: #000;
     transition: .5s;
     opacity: 0;
-}
+} */
 
 .main-cartao .cartao-name{
     position: relative;
@@ -1558,7 +1564,7 @@ table.table-stripped.table-hover tbody tr:hover {
     color: rgb(31, 56, 91);
     background: #f1f5f4;
     width: 330px;
-    height: 50px;
+    height: 70px;
     cursor: pointer !important;
     top: 10px;
     border-radius: 3px;
@@ -1577,8 +1583,8 @@ table.table-stripped.table-hover tbody tr:hover {
     border-top-color: rgb(31, 56, 91);
     animation: an1 1s ease infinite;
     position: relative;
-    right: 60px;
-    top: 10px;
+    right: 50px;
+    top: 28px;
 }
 
 @keyframes an1 {
@@ -1619,3 +1625,125 @@ table.table-stripped.table-hover tbody tr:hover {
     margin: 0 auto;
 }
 
+/*-------------status cobrança--------------------*/
+
+.table-striped tbody tr.selected {
+    background-color: #e9ecef;
+}
+.status-paid {
+    color: green;
+}
+.status-open {
+    color: orange;
+}
+.status-overdue {
+    color: grey;
+}
+.total-amount {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cob-flex-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%;
+}
+
+#payButton{
+    padding: 8px 12px;
+    font-size: 15px;
+    border: 1px solid transparent;
+    
+}
+
+#payButton:disabled {
+    background-color: #f8f8f8;
+    border-color: #f8f8f8;
+    color: #c9c9c9;
+    cursor: not-allowed;
+    transition: ease-out .2s;
+    
+}
+
+#payButton:enabled {
+    background-color: green;
+    border-color: green;
+    cursor: pointer;
+    transition: ease-in .2s;
+}
+
+#payProcessButton{
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 15px;
+    border: 1px solid transparent;
+    background-color: green;
+    cursor: pointer;
+    
+}
+
+.cob_pagas{
+    background-color: #17a2b8;
+     
+}
+
+.cob_canceladas{
+    background-color: #17a2b8;
+       
+}
+
+.cob_abertas{
+    background-color: #17a2b8;
+}
+
+.cob_abertas:active, .cob_abertas:focus{
+    background-color: #0d6efd;
+}
+
+.overdue{
+    color: red;
+    
+}
+
+.due-this-month {
+    color: green;
+}
+
+.btn_sel.active{
+
+    background-color: #0056b3; 
+    border-color: #004085; 
+    color: white; 
+}
+
+.wrapper-pagamento.show {
+    display: block;
+    opacity: 1;
+    transition: 0.5 ease-in;
+}
+
+.payment-options {
+    display: flex;
+    gap: 1rem;
+    
+}
+  
+.payment-option {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    
+}
+  
+.payment-option input[type="radio"] {
+    margin-right: 5px;
+    width: 100%;
+}
+
+#datavencimento{
+    width: 17%;
+}

@@ -6,7 +6,7 @@ namespace SESCAP.Ecommerce.Repositorios
     public interface ICxDepRetPdvRepositorio
     {
        
-        CXDEPRETPDV CadastraDeposito(int nuCartao, int sqcaixa, int cdpessoa, DateTime dtDeposito, decimal vlrDeposito, int moedaPgto);
+        CXDEPRETPDV CadastraDeposito(int nuCartao, int sqcaixa, int cdpessoa, decimal vlrDeposito, int moedaPgto);
 
     }
 }

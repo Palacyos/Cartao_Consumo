@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ClientelaCobrancaViewModel>
+
+@foreach(var item in Model)
+{
+    var statusClass = item.StRecebido == 1 ? "status-paid" : item.StRecebido == 2 ? "status-overdue" : "status-open";
+    var statusLabel = item.StRecebido == 1 ? "Pago" : item.StRecebido == 2? "Cancelada" : "Aberta";
+
+     <tr>
+        <td>@item.DsCobranca</td>
+        <td style="font-weight: bold;">@item.DtVencto.ToShortDateString()</td>
+        <td>@item.Valor.ToString("C")</td>
+        <td class="@statusClass">@statusLabel</td>
+    </tr>
+}
+

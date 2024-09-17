@@ -21,6 +21,7 @@ namespace SESCAP.Ecommerce.Models
 
         public ICollection<CACAIXA> CACAIXAS { get; set; }
         public ICollection<CAIXALANCA> LANCAMENTOSCAIXA { get; set; }
+        public ICollection<PAGAMENTOS> PAGAMENTOS {get; set;}
 
 
         public short? CDADMIN { get; set; }
@@ -30,6 +31,7 @@ namespace SESCAP.Ecommerce.Models
         {
             CACAIXAS = new List<CACAIXA>();
             LANCAMENTOSCAIXA = new List<CAIXALANCA>();
+            PAGAMENTOS = new List<PAGAMENTOS>();
         }
 
     }

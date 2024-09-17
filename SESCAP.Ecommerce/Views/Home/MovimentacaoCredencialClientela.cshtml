@@ -56,10 +56,10 @@
                             <h2 class="ml-lg-2">Movimentações</h2>
                         </div>
                         <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
-                            <a asp-controller="Pagamento" asp-action="FormaPagmento" class="btn btn-success">
+                            @* <a asp-controller="Pagamento" asp-action="FormaPagmento" class="btn btn-success">
                                 <i class="material-icons-sharp">add_circle</i>
                                 <span>Recarregar Cartão</span>
-                            </a>
+                            </a> *@
                         </div>
                     </div>
                 </div>
@@ -102,10 +102,8 @@
                 }
                 else
                 {
-                <div style="font-size:1.7rem; text-align:center; margin:60px;" class="alert alert-warning" role="alert">Não existe movimentação</div>
-
+                    <div style="font-size:1.7rem; text-align:center; margin:60px;" class="alert alert-warning" role="alert">Não existe movimentação</div>
                 }
-           
             </div>
         </div>
     </div>

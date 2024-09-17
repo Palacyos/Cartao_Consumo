@@ -26,6 +26,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Cobranca/CobrancaClientela.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29icmFuY2EvQ29icmFuY2FDbGllbnRlbGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Cobranca/ConfirmacaoPagamentoCobranca.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29icmFuY2EvQ29uZmlybWFjYW9QYWdhbWVudG9Db2JyYW5jYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Cobranca/ConfirmarPagamento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29icmFuY2EvQ29uZmlybWFyUGFnYW1lbnRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Cobranca/ProcessarPagamento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29icmFuY2EvUHJvY2Vzc2FyUGFnYW1lbnRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Cobranca/QrCodeCobrancaPix.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29icmFuY2EvUXJDb2RlQ29icmFuY2FQaXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Cobranca/_CobrancaTablePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29icmFuY2EvX0NvYnJhbmNhVGFibGVQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/Views/Home/CadastroLoginClientela.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DYWRhc3Ryb0xvZ2luQ2xpZW50ZWxhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

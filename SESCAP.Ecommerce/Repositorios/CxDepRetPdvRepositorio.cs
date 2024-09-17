@@ -20,9 +20,9 @@ namespace SESCAP.Ecommerce.Repositorios
             Configuration = configuration;
         }
 
-        public CXDEPRETPDV CadastraDeposito(int nuCartao, int sqcaixa, int cdpessoa, DateTime dtDeposito, decimal vlrDeposito, int moedaPgto)
+        public CXDEPRETPDV CadastraDeposito(int nuCartao, int sqcaixa, int cdpessoa, decimal vlrDeposito, int moedaPgto)
         {
-
+            DateTime dataAtual = DateTime.Now.Date;
             TimeSpan horaAtual = DateTime.Now.TimeOfDay;
             var ultimoCaixaDepositoPessoa = Banco.Cxdepretpdvs.Where(dpt => dpt.SQCAIXA.Equals(sqcaixa) && dpt.CDPESSOA.Equals(cdpessoa)).ToList().LastOrDefault();
 
@@ -39,7 +39,7 @@ namespace SESCAP.Ecommerce.Repositorios
                 deposito.SQDEPRET += Convert.ToInt16(ultimoCaixaDepositoPessoa.SQDEPRET + 1);
             }
             deposito.VLDEPRET = vlrDeposito;
-            deposito.DTDEPRET = dtDeposito;
+            deposito.DTDEPRET = dataAtual;
             deposito.HRDEPRET = horaAtual;
             deposito.DSSTATUS = Configuration.GetValue<string>("DsStatusCxDepRetPdv");
             deposito.CDMOEDAPGT = moedaPgto;

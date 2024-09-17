@@ -81,6 +81,11 @@ namespace SESCAP.Ecommerce.Models
 
         public virtual ICollection<PagamentoOnline> PagamentosOnline { get; set; }
 
+        public ICollection<RESPCLI> RESPCLIs { get; set; }
+
+        public ICollection<INSCRICAO> INSCRICOES { get; set; }
+
+        public ICollection<COBRANCA> COBRANCAS {get; set;}
 
         public string MatFormat => $"{CDUOP.ToString().PadLeft(4, '0')}-{SQMATRIC.ToString().PadLeft(6, '0')}-{NUDV}";
 
@@ -103,7 +108,9 @@ namespace SESCAP.Ecommerce.Models
 
         public CLIENTELA()
         {
-
+            RESPCLIs = new List<RESPCLI>();
+            INSCRICOES = new List<INSCRICAO>();
+            COBRANCAS = new List<COBRANCA>();
         }
     }
 }

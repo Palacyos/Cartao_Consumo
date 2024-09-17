@@ -1,0 +1,94 @@
+﻿@model PagamentoOnline
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Confirmação Pagamento";
+
+}
+
+<div class="top-navbar">
+
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@ViewBag.CartaoImg" style="width: 60px; border-radius: 50%; height: 60px; object-fit: cover;" />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container py-5 h-100" id="confirmacaoPagamento">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+            <div class="card border-top border-bottom border-3" style="border-color: rgb(31, 56, 91) !important;">
+                <div class="card-body p-5">
+
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Pagamento</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col mb-3">
+                            <p class="medium text-muted mb-1">Data</p>
+                            <p>@Model.DataPgto.ToShortDateString()</p>
+                        </div>
+                        <div class="col mb-3">
+                            <p class="medium text-muted mb-1">Pedido Nº:</p>
+                            <p>@Model.OrderId</p>
+                        </div>
+                        <div class="col mb-3">
+                            <p class="medium text-muted mb-1">Situação:</p>
+                            <p><span class="badge bg-success">@Model.Status</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-md-8 col-lg-9">
+                            <p class="mb-0 text-muted medium">Total</p>
+                        </div>
+                        <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+                            <p class="lead fw-bold mb-0" style="color: rgb(31, 56, 91); ">@Model.Total.ToString("C")</p>
+                        </div>
+                    </div>
+
+                    <p class="mt-4 pt-2 mb-0">
+                        <a asp-action="CredencialClientela" asp-controller="Home" style="color: rgb(31, 56, 91) !important; text-decoration:underline !important">
+                            voltar
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

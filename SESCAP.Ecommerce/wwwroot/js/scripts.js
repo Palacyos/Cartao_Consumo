@@ -1,5 +1,4 @@
 ﻿const pwShowHide = document.querySelectorAll(".formulario__input-icon");
-
 pwShowHide.forEach(inputIcon => {
 
     inputIcon.addEventListener("click", () => {
@@ -84,7 +83,6 @@ $(document).ready(function () {
     setInterval(monitorarStatus, intervalo);
 });
 
-
 document.addEventListener('DOMContentLoaded', function(){
 
     var url_string = window.location.href;
@@ -96,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var botaoConfirmacaoPagamento = document.getElementById('respostaCielo');
     var botaoMovimentacao = document.getElementById('btn_movimentacoes');
     var botaoHome = document.getElementById('btn_home');
+    var botaoRecarga = document.getElementById('btn_recarga');
+    var botaoCobranca = document.getElementById('btn_cobranca');
 
     function consultarStatusPagamento(paymentId){
 
@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 botaoConfirmacaoPagamento.style = "background: #fff3cd !important; color: #664d03 !important; pointer-events: none !important;";
                 botaoMovimentacao.style = "pointer-events: none !important;";
                 botaoHome.style = "pointer-events: none !important;";
+                botaoRecarga.style = "pointer-events: none !important;";
+                botaoCobranca.style = "pointer-events: none !important;";
             }
         })
         .catch(error => {
@@ -127,6 +129,5 @@ document.addEventListener('DOMContentLoaded', function(){
     setInterval(function(){
         consultarStatusPagamento(paymentId)
     }, 1000);
+
 });
-
-

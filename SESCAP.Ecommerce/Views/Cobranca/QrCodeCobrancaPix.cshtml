@@ -1,0 +1,77 @@
+﻿@{
+   Layout = "_Layout";
+   ViewData["Title"] = "Cobranca Pix";
+}
+
+<div class="top-navbar">
+
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@ViewBag.ClientelaImg" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container_qrcode">
+    @if (TempData["MSG_E_Pagamento"] != null)
+    {
+        <div style="font-size: 1.4rem; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["MSG_E_Pagamento"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="btn_pix_close"></button>
+        </div>
+    }
+    <p>Scaneie o QrCode ou Copie a chave pix</p>
+    <div id="imgBox">
+        <img src="@ViewBag.QrCodeImg" />
+    </div>
+    <div class="copy_text">
+        <input type="text" class="chave_pix_text" value="@ViewBag.ChavePix" />
+        <button><i class="fa fa-clone"></i></button>
+    </div>
+
+    <button class="pgto_confirm" id="respostaCielo" value="@ViewBag.StatusPagamento">
+        <div class="confirm_loader"></div>
+        <span>verificando pagamento...</span>
+        <span style="color: red;">não saia até finalizarmos,<br>risco de não efetivar o pagamento.</span>
+    </button>
+</div>
+
+<div class="text-center mt-4">
+    <p class="pt-2 mb-0">
+        <a asp-action="CobrancaClientela" asp-controller="Cobranca" id="voltarCobBtn" style="color: rgb(31, 56, 91) !important; text-decoration: underline !important;">
+            voltar
+        </a>
+    </p>
+</div>

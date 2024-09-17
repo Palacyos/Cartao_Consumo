@@ -32,7 +32,7 @@ namespace SESCAP.Ecommerce.Repositorios
             Banco.SaveChanges();
         }
 
-        public void InsereSaldo(int numcartao, int cdproduto, decimal sldvlcart)
+        public SALDOCARTAO InsereSaldo(int numcartao, int cdproduto, decimal sldvlcart)
         {
             using (var conn = new DB2Connection(Configuration.GetConnectionString("conexaoDb2")))
             {
@@ -55,6 +55,16 @@ namespace SESCAP.Ecommerce.Repositorios
                 conn.Close();
 
             }
+
+            return new SALDOCARTAO
+            {
+                NUMCARTAO = numcartao,
+                CDPRODUTO = cdproduto,
+                SLDQTCART = 0,
+                SLDQTBLOQ = 0,
+                SLDVLCART = sldvlcart,
+                SLDVLBLOQ = 0
+            };
         }
     }
 }

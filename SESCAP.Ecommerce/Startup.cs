@@ -86,11 +86,14 @@ namespace SESCAP.Ecommerce
             services.AddScoped<IHstMovCartReposiotrio, HstMovCartRepositorio>();
             services.AddScoped<ICartCredRepositorio, CartCredRepositorio>();
             services.AddScoped<ITarefaRecorrente, TarefaRecorrente>();
+            services.AddScoped<IPagamentosRepositorio, PagamentosRepositorio>();
+            services.AddScoped<ICobrancaRepositorio, CobrancaRepositorio>();
+            
            
 
             /*
              * -> SMTP 
-             */
+            */
             services.AddScoped(options => {
 
                 SmtpClient smtp = new SmtpClient()
@@ -108,7 +111,7 @@ namespace SESCAP.Ecommerce
 
             /*
              * -> Session - configuração - memoryCache -> guarda os dados na memória
-             */
+            */
             services.AddMemoryCache();  
             services.AddHttpContextAccessor();
             services.AddSession(op => { });

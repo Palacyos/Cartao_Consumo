@@ -1,0 +1,130 @@
+﻿@model List<ClientelaCobrancaViewModel>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Cobranças";
+   
+}
+<div class="top-navbar">
+    <div class="xd-topbar">
+        <div class="row">
+
+            <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+                <div class="xp-menubar">
+                    <span class="material-icons-sharp">menu_open</span>
+                </div>
+            </div>
+
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                    <nav class="navbar p-0">
+                        <ul class="nav navbar-nav flex-row ml-auto">
+
+                            <li class="dropdown nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                                    <img src="@ViewBag.ClientelaImg" style="width: 60px; border-radius: 50%; height:60px; object-fit: cover; " />
+                                    <span class="xp-user-live"></span>
+                                </a>
+                                <ul class="dropdown-menu small-menu">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Logout">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+                            <h2 class="ml-lg-2">Cobranças</h2>
+                        </div>
+                        <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+                            <a asp-controller="Cobranca" asp-action="CobrancaClientela" class="btn btn-primary cob_abertas btn_sel" id="showOpen">Aberta</a>
+                            <a id="showPaid" class="btn btn-primary cob_pagas btn_sel">Pagas</a>
+                            <a id="showOverdue" class="btn btn-primary cob_canceladas btn_sel">Canceladas</a> 
+                        </div>
+                    </div>
+                </div>
+
+                @if(Model.Any())
+                {
+                    <div class="container mt-5">
+                        <form id="billingForm" asp-controller="Cobranca" asp-action="ProcessarPagamento" method="post">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Descrição</th>
+                                        <th id="datavr">Vencimento</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
+                                        <th id="selectHeader">Selecionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="billingTableBody">
+                                    @foreach (var cobranca in Model)
+                                    {
+                                        var statusClass = cobranca.StRecebido == 1 ? "status-paid" : cobranca.StRecebido == 2 ? "status-overdue" : "status-open";
+                                        var statusLabel = cobranca.StRecebido == 1 ? "Pago" : cobranca.StRecebido == 2 ? "Cancelada" : "Aberta";
+                                        var isOverdue = cobranca.DtVencto < DateTime.Now;
+                                        var isDueThisMonth = cobranca.DtVencto.Month == DateTime.Now.Month && cobranca.DtVencto.Year == DateTime.Now.Year;
+                                        var dateClass = isOverdue ? "overdue" : isDueThisMonth ? "due-this-month" : "";
+                                        var cobrancaTipo = cobranca.CdElement.Substring(1,7);
+
+                                        <tr>
+                                            <td>@cobranca.DsCobranca</td>
+                                            <td style="font-weight: bold;" class="@dateClass">@cobranca.DtVencto.ToShortDateString()</td>
+                                            <td class="@dateClass">@cobranca.Valor.ToString("C")</td>
+                                            <td class="@statusClass">@statusLabel</td>
+                                            @if (cobranca.StRecebido == 0)
+                                            {
+                                                @if(isOverdue && cobrancaTipo != (string)ViewBag.EducacaoFundamental && cobrancaTipo != (string)ViewBag.EducacaoInfantil)
+                                                {
+                                                    <td id="datavencimento" class="@dateClass">Procure a Central de Atendimento</td>
+                                                }
+                                                else
+                                                {
+                                                    <td id="datavencimento" class="selectColumn">
+                                                        <input type="checkbox" class="billing-checkbox" name="selectedCobrancas"
+                                                        value="@cobranca.IdClasse|@cobranca.CdElement.Trim()|@cobranca.Sqcobranca|@cobranca.Valor|@cobranca.ValorDesconto|@cobranca.ValorJuros|@cobranca.DsCobranca.Trim()"
+                                                        data-type="@cobranca.CdElement.Substring(1,7)" data-status="@cobranca.StRecebido"
+                                                        data-vencimento="@cobranca.DtVencto.ToShortDateString()" data-amount="@cobranca.Valor"/>
+                                                    </td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div class="cob-flex-container mt-3">
+                                <span class="total-amount">Total: R$ <span id="totalAmount">0,00</span></span>
+                                <button id="payButton" class="btn btn-primary mt-2" type="submit" disabled>Efetuar Pagamento</button>
+                            </div>
+                        </form>
+                    </div>
+
+                }
+                else
+                {
+                    <div style="font-size:1.7rem; text-align:center; margin:60px;" class="alert alert-warning" role="alert">Não existe Cobranças</div>
+                }
+            </div>
+        </div>
+    </div>        
+</div>

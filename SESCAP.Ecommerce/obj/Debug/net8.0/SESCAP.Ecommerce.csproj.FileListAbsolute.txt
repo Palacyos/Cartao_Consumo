@@ -157,20 +157,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/System.Security.Cryptography.ProtectedData.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/System.Security.Permissions.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/System.Windows.Extensions.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/ca/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/de/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/es/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/fa/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/fr/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/nb/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/nl/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/pt-BR/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/pt-PT/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/pt/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/sv/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/tr-TR/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/zh-TW/Hangfire.Core.resources.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/zh/Hangfire.Core.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/af/Humanizer.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/ar/Humanizer.resources.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/az/Humanizer.resources.dll
@@ -333,7 +319,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SESCAP.Ecommerce.props
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/staticwebassets.pack.json
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/scopedcss/bundle/SESCAP.Ecommerce.styles.css
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.csproj.CopyComplete
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/refint/SESCAP.Ecommerce.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.Ecommerce.pdb
@@ -352,6 +337,6 @@
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-arm64/native/libSkiaSharp.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-x64/native/libSkiaSharp.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.dll
-/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Diagnostics.EventLog.Messages.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/tpalacio/Documents/SESCAP.Ecommerce/SESCAP.Ecommerce/obj/Debug/net8.0/SESCAP.E.949ED91F.Up2Date

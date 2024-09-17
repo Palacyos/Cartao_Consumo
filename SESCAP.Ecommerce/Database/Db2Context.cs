@@ -28,11 +28,20 @@ namespace SESCAP.Ecommerce.Database
         public DbSet<LOCALVENDA> LocalVendas { get; set; }
         public DbSet<CAIXALANCA> LancamentosCaixas { get; set; }
         public DbSet<CARTCRED> CartCreds { get; set; }
+        public DbSet<RESPONSAVEIS> Responsaveis {get; set;}
+        public DbSet<RESPCLI> Respclis {get; set;}
+        public DbSet<PROGRAMAS> Programas{get; set;}
+        public DbSet<PROGOCORR> Progocorrs {get; set;}
+        public DbSet<INSCRICAO> Inscricoes {get; set;}
+        public DbSet<SGP_SUBMODALID> SgpSubModalidades {get; set;}
+        public DbSet<PROGSUBMOD> ProgSubmods {get; set;}
+        public DbSet<COBRANCA> Cobrancas {get; set;}
+        public DbSet<PAGAMENTOS> Pagamentos {get; set;}
 
         public Db2Context(DbContextOptions<Db2Context> options) : base(options)
         {
             
-
+ 
         }
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
@@ -59,8 +68,15 @@ namespace SESCAP.Ecommerce.Database
             modelbuilder.ApplyConfiguration(new LocalVendaConfiguracao());
             modelbuilder.ApplyConfiguration(new CaixaLancaConfiguracao());
             modelbuilder.ApplyConfiguration(new CartCredConfiguracao());
-            
-            
+            modelbuilder.ApplyConfiguration(new ResponsaveisConfiguracao());
+            modelbuilder.ApplyConfiguration(new RespcliConfiguracao());
+            modelbuilder.ApplyConfiguration(new ProgramasConfiguracao());
+            modelbuilder.ApplyConfiguration(new ProgocorrConfiguracao());
+            modelbuilder.ApplyConfiguration(new InscricaoConfiguracao());
+            modelbuilder.ApplyConfiguration(new SgpSubmodalidadeConfiguracao());
+            modelbuilder.ApplyConfiguration(new ProgSubmodConfiguracao());
+            modelbuilder.ApplyConfiguration(new CobrancaConfiguracao());
+            modelbuilder.ApplyConfiguration(new PagamentosConfiguracao());
         }
 
     }

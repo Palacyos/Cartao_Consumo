@@ -30,7 +30,18 @@ namespace SESCAP.Ecommerce.Repositorios
         {
             return Banco.Clientelas.Include(c => c.CARTAO)
                 .Include(c => c.UOP)
-                .Include(c => c.CATEGORIA).FirstOrDefault(c => c.SQMATRIC.Equals(sqmatric) && c.CDUOP.Equals(cduop));
+                .Include(c => c.CATEGORIA)
+                .Include(c => c.COBRANCAS.Where(c => c.STRECEBIDO == 0).OrderBy(c => c.DTVENCTO))
+                .Include(c => c.INSCRICOES.Where(i => i.STINSCRI == 0 && i.PROGOCORR.DTFIMOCORR > DateTime.Today))
+            .FirstOrDefault(c => c.SQMATRIC.Equals(sqmatric) && c.CDUOP.Equals(cduop));
         }
+
+        public CLIENTELA ObterCobrancasPorStatus(int sqmatric, int cduop, short status)
+        {
+            return Banco.Clientelas
+                .Include(c => c.COBRANCAS.Where(c => c.STRECEBIDO == status).OrderByDescending(c => c.DTVENCTO))
+                    .ThenInclude(cob => cob.PAGAMENTOS)
+            .FirstOrDefault(c => c.SQMATRIC.Equals(sqmatric)&& c.CDUOP.Equals(cduop));
+       }
     }
 }
