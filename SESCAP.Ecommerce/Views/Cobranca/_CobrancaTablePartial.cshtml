@@ -6,7 +6,7 @@
     var statusLabel = item.StRecebido == 1 ? "Pago" : item.StRecebido == 2? "Cancelada" : "Aberta";
 
      <tr>
-        <td>@item.DsCobranca</td>
+        <td>@item.DsCobranca <br/> <span class="text-info" style="font-size: 10px;">@item.Nmcliente</span></td>
         <td style="font-weight: bold;">@item.DtVencto.ToShortDateString()</td>
         <td>@item.Valor.ToString("C")</td>
         <td class="@statusClass">@statusLabel</td>

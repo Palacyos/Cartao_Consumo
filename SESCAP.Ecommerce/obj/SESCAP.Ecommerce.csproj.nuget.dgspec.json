@@ -66,7 +66,7 @@
             },
             "Hangfire.InMemory": {
               "target": "Package",
-              "version": "[0.10.3, )"
+              "version": "[1.0.0, )"
             },
             "Hangfire.MemoryStorage": {
               "target": "Package",
@@ -92,7 +92,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[8.0.4, )"
+              "version": "[8.0.5, )"
             },
             "Net.IBM.Data.Db2-osx": {
               "target": "Package",

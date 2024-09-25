@@ -79,10 +79,10 @@
                                 @foreach (var cobranca in Model.Cobrancas)
                                 {
                                     <tr>
-                                        <td>@cobranca.DsCobranca</td>
+                                        <td>@cobranca.DsCobranca <br/> <span class="text-info" style="font-size: 10px;">@cobranca.Nmcliente</span></td>
                                         <td>@cobranca.Valor.ToString("C")</td>
                                         <input type="hidden" name="cobrancasData" value="@cobranca.IdClasse|@cobranca.CdElement|@cobranca.Sqcobranca|@cobranca.Valor|@cobranca.ValorDesconto|
-                                        @cobranca.ValorJuros|@cobranca.DsCobranca" />
+                                        @cobranca.ValorJuros|@cobranca.DsCobranca|@cobranca.Nmcliente" />
                                     </tr>
                                 }
                                 <input id="montante" name="total" type="hidden" value="@Model.Total"/>

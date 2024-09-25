@@ -81,7 +81,6 @@ namespace SESCAP.Ecommerce.Controllers
                 }
                 TempData["MSG_UsuarioCadastrado"] = $"A matrícula {cadastro.MATRICULA} já possui cadastro. Clique em ENTRAR e faça o login, se necessário altere sua senha caso tenha perdido.";
             }
-
             return RedirectToAction(nameof(CadastroLoginClientela));
         }
 
@@ -101,7 +100,6 @@ namespace SESCAP.Ecommerce.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-           
             return View();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SESCAP.Ecommerce.Models;
 
 namespace SESCAP.Ecommerce.Repositorios
@@ -10,5 +11,7 @@ namespace SESCAP.Ecommerce.Repositorios
         CLIENTELA ObterClientela(int sqmatric, int cduop);
 
         CLIENTELA ObterCobrancasPorStatus(int sqmatric, int cduop, short status);
+
+        List<CLIENTELA> ObterDependentes(string cpf);
     }
 }

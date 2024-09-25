@@ -77,6 +77,9 @@
                                     </tr>
                                 </thead>
                                 <tbody id="billingTableBody">
+                                    @{
+                                        var overdueTypes = new Dictionary<string, bool>();
+                                    }
                                     @foreach (var cobranca in Model)
                                     {
                                         var statusClass = cobranca.StRecebido == 1 ? "status-paid" : cobranca.StRecebido == 2 ? "status-overdue" : "status-open";
@@ -85,23 +88,34 @@
                                         var isDueThisMonth = cobranca.DtVencto.Month == DateTime.Now.Month && cobranca.DtVencto.Year == DateTime.Now.Year;
                                         var dateClass = isOverdue ? "overdue" : isDueThisMonth ? "due-this-month" : "";
                                         var cobrancaTipo = cobranca.CdElement.Substring(1,7);
+                                        
+                                        if(!overdueTypes.ContainsKey(cobrancaTipo))
+                                        {
+                                            overdueTypes[cobrancaTipo] = false;
+                                        }
 
                                         <tr>
-                                            <td>@cobranca.DsCobranca</td>
+                                            <td>@cobranca.DsCobranca <br/> <span class="text-info" style="font-size: 10px;">@cobranca.Nmcliente</span></td>
                                             <td style="font-weight: bold;" class="@dateClass">@cobranca.DtVencto.ToShortDateString()</td>
                                             <td class="@dateClass">@cobranca.Valor.ToString("C")</td>
                                             <td class="@statusClass">@statusLabel</td>
                                             @if (cobranca.StRecebido == 0)
                                             {
-                                                @if(isOverdue && cobrancaTipo != (string)ViewBag.EducacaoFundamental && cobrancaTipo != (string)ViewBag.EducacaoInfantil)
+                                                @if(overdueTypes[cobrancaTipo] || (isOverdue && cobrancaTipo != (string)ViewBag.EducacaoFundamental && cobrancaTipo != (string)ViewBag.EducacaoInfantil))
+                                                {   
+                                                    overdueTypes[cobrancaTipo] = true;
+                                                    <td id="datavencimento" class="text-danger">Procure a Central de Atendimento</td>
+                                                }
+                                                else if(ViewBag.CredencialVencida)
                                                 {
-                                                    <td id="datavencimento" class="@dateClass">Procure a Central de Atendimento</td>
+                                                    <td id="datavencimento" class="text-warning">Credencial Vencida</td>
                                                 }
                                                 else
                                                 {
                                                     <td id="datavencimento" class="selectColumn">
-                                                        <input type="checkbox" class="billing-checkbox" name="selectedCobrancas"
-                                                        value="@cobranca.IdClasse|@cobranca.CdElement.Trim()|@cobranca.Sqcobranca|@cobranca.Valor|@cobranca.ValorDesconto|@cobranca.ValorJuros|@cobranca.DsCobranca.Trim()"
+                                                        <input type="checkbox" class="billing-checkbox" name="selectedCobrancas" style="cursor: pointer;"
+                                                        value="@cobranca.IdClasse|@cobranca.CdElement.Trim()|@cobranca.Sqcobranca|@cobranca.Valor|@cobranca.ValorDesconto|@cobranca.ValorJuros
+                                                        |@cobranca.DsCobranca.Trim()|@cobranca.Nmcliente"
                                                         data-type="@cobranca.CdElement.Substring(1,7)" data-status="@cobranca.StRecebido"
                                                         data-vencimento="@cobranca.DtVencto.ToShortDateString()" data-amount="@cobranca.Valor"/>
                                                     </td>

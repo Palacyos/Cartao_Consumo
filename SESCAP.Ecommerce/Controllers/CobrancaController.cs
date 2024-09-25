@@ -66,6 +66,10 @@ public class CobrancaController: Controller
         var clientelaLogin = _loginClientela.Obter();
         var clientela = _clientelaRepositorio.ObterClientela(clientelaLogin.SQMATRIC, clientelaLogin.CDUOP);
 
+        var dependentes = _clientelaRepositorio.ObterDependentes(clientela.NUCPF);
+
+        ViewBag.CredencialVencida = dependentes.Any(d => d.DTVENCTO < DateTime.Now);
+
         ViewBag.ClientelaImg = clientela.CarregaFoto;
 
         var pcDesconto = _configuration.GetValue<decimal>("DescontoGeralEdu");
@@ -93,7 +97,9 @@ public class CobrancaController: Controller
                 StRecebido = cobranca.STRECEBIDO,
                 IdClasse = cobranca.IDCLASSE,
                 CdElement = cobranca.CDELEMENT,
-                Sqcobranca = cobranca.SQCOBRANCA
+                Sqcobranca = cobranca.SQCOBRANCA,
+                Nmcliente = cobranca.CLIENTELA.NMCLIENTE
+                
             };
             
             if(ElementoEducacional(cobranca.CDELEMENT, cdEducacaoFundamental, cdEducacaoInfantil))
@@ -147,8 +153,9 @@ public class CobrancaController: Controller
             DtVencto = cob.STRECEBIDO == 1 ? cob.PAGAMENTOS.Where(p => p.CDELEMENT == cob.CDELEMENT && p.SQCOBRANCA == cob.SQCOBRANCA).OrderByDescending(p => p.DTRECEBIDO).Select(p => p.DTRECEBIDO).FirstOrDefault() : cob.DTVENCTO,
             Valor = cob.STRECEBIDO == 1 ? cob.PAGAMENTOS.Where(p => p.CDELEMENT == cob.CDELEMENT && p.SQCOBRANCA == cob.SQCOBRANCA ).Sum(p => p.VLRECEBIDO) : cob.VLCOBRADO,
             CdElement = cob.CDELEMENT,
-            StRecebido = cob.STRECEBIDO
-
+            StRecebido = cob.STRECEBIDO,
+            Nmcliente = cob.CLIENTELA.NMCLIENTE
+            
         });
 
         return PartialView("_CobrancaTablePartial", cobrancas); 
@@ -168,7 +175,7 @@ public class CobrancaController: Controller
         foreach(var selected in selectedCobrancas)
         {
             var parts = selected.Split('|');
-            if(parts.Length == 7)
+            if(parts.Length == 8)
             {
                 var cobranca = new ClientelaCobrancaViewModel
                 {
@@ -178,7 +185,8 @@ public class CobrancaController: Controller
                     Valor = decimal.Parse(parts[3]),
                     ValorDesconto = decimal.Parse(parts[4]),
                     ValorJuros = decimal.Parse(parts[5]),
-                    DsCobranca = parts[6]
+                    DsCobranca = parts[6],
+                    Nmcliente = parts[7]
                     
                 };
 
@@ -213,7 +221,7 @@ public class CobrancaController: Controller
         {
             var decryptedString = Encoding.UTF8.GetString(Convert.FromBase64String(encryptedCobranca));
             var parts = decryptedString.Split('|');
-            if (parts.Length == 7)
+            if (parts.Length == 8)
             {
                 var cobranca = new ClientelaCobrancaViewModel
                 {
@@ -223,7 +231,8 @@ public class CobrancaController: Controller
                     Valor = decimal.Parse(parts[3]),
                     ValorDesconto = decimal.Parse(parts[4]),
                     ValorJuros = decimal.Parse(parts[5]),
-                    DsCobranca = parts[6]
+                    DsCobranca = parts[6],
+                    Nmcliente = parts[7]
                 };
 
                 cobrancas.Add(cobranca);
@@ -262,7 +271,7 @@ public class CobrancaController: Controller
     {
         var total = Convert.ToBase64String(Encoding.UTF8.GetBytes(model.Total.ToString()));
         var cobrancasData = model.Cobrancas.Select(
-        c => Convert.ToBase64String(Encoding.UTF8.GetBytes($"{c.IdClasse}|{c.CdElement}|{c.Sqcobranca}|{c.Valor}|{c.ValorDesconto}|{c.ValorJuros}|{c.DsCobranca}"))).ToList();
+        c => Convert.ToBase64String(Encoding.UTF8.GetBytes($"{c.IdClasse}|{c.CdElement}|{c.Sqcobranca}|{c.Valor}|{c.ValorDesconto}|{c.ValorJuros}|{c.DsCobranca}|{c.Nmcliente}"))).ToList();
 
         if(ModelState.IsValid)
         {
@@ -347,7 +356,7 @@ public class CobrancaController: Controller
         {
             var decryptedCobrancas = Encoding.UTF8.GetString(Convert.FromBase64String(encryptedCobrancas));
             var parts = decryptedCobrancas.Split('|');
-            if (parts.Length == 7)
+            if (parts.Length == 8)
             {
                 var cobranca = new ClientelaCobrancaViewModel
                 {
@@ -357,7 +366,8 @@ public class CobrancaController: Controller
                     Valor = decimal.Parse(parts[3]),
                     ValorDesconto = decimal.Parse(parts[4]),
                     ValorJuros = decimal.Parse(parts[5]),
-                    DsCobranca = parts[6]
+                    DsCobranca = parts[6],
+                    Nmcliente = parts[7]
                 };
 
                 cobrancas.Add(cobranca);

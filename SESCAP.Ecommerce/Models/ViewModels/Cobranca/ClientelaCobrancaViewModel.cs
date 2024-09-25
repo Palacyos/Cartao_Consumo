@@ -13,6 +13,7 @@ namespace SESCAP.Ecommerce.Models
         public int Sqcobranca {get; set;}
         public decimal ValorDesconto {get; set;}
         public decimal ValorJuros {get; set;}
+        public string Nmcliente {get; set; }
 
     }
 }

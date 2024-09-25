@@ -83,7 +83,7 @@
     <Content Remove="wwwroot\js\jquery-3.3.1.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -101,7 +101,7 @@
     <PackageReference Include="Hangfire.Core" Version="1.8.14" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.14" />
     <PackageReference Include="Hangfire.MemoryStorage" Version="1.8.1.1" />
-    <PackageReference Include="Hangfire.InMemory" Version="0.10.3" />
+    <PackageReference Include="Hangfire.InMemory" Version="1.0.0" />
     <PackageReference Include="QuestPDF" Version="2023.12.6" />
   </ItemGroup>
   <ItemGroup>
